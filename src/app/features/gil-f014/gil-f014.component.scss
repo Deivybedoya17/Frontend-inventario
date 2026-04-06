@@ -1,0 +1,466 @@
+@import '../../../styles/variables';
+
+.gil-pagina {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+// Cabecera
+.gil-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+
+  &__titulo {
+    font-size: 1.875rem;
+    font-weight: 800;
+    font-family: $fuente-titular;
+    color: $color-en-superficie;
+    letter-spacing: -0.025em;
+  }
+
+  &__subtitulo {
+    color: $color-pizarra-500;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+.boton-nuevo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: $gradiente-primario;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: $radio-xl;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 6px -1px rgba($color-primario, 0.2);
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+
+  &:hover { box-shadow: 0 10px 15px -3px rgba($color-primario, 0.3); transform: translateY(-1px); opacity: 0.95; }
+  &:active { transform: scale(0.95); }
+}
+
+// Grilla KPIs
+.kpi-grilla {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) { grid-template-columns: repeat(4, 1fr); }
+}
+
+.tarjeta-kpi {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  padding: 1.5rem;
+  border-radius: $radio-xl;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border-bottom: 4px solid transparent;
+  transition: transform 0.2s;
+
+  &:hover { transform: scale(1.02); }
+
+  &--esmeralda { border-bottom-color: $color-esmeralda-500; }
+  &--ambar { border-bottom-color: $color-naranja-400; }
+  &--azul { border-bottom-color: #3b82f6; }
+  &--primario { border-bottom-color: $color-primario-contenedor; }
+
+  &__cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  &__icono-caja {
+    padding: 0.75rem;
+    border-radius: 50%;
+    display: flex;
+    
+    // Utilities added inline for clarity to match design
+    &.text-emerald-700 { color: $color-esmeralda-700; }
+    &.bg-emerald-50 { background-color: $color-esmeralda-50; }
+    &.text-amber-600 { color: #d97706; }
+    &.bg-amber-50 { background-color: #fffbeb; }
+    &.text-blue-600 { color: #2563eb; }
+    &.bg-blue-50 { background-color: #eff6ff; }
+    &.text-emerald-600 { color: $color-esmeralda-600; }
+  }
+
+  &__etiqueta {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: $color-pizarra-400;
+    letter-spacing: 0.1em;
+  }
+
+  &__valor {
+    font-size: 1.875rem;
+    font-weight: 900;
+    font-family: $fuente-titular;
+    color: $color-en-superficie;
+  }
+
+  &__desc {
+    font-size: 0.875rem;
+    color: $color-pizarra-500;
+    margin-top: 0.25rem;
+  }
+}
+
+// Panel Tabla
+.panel-tabla {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-xl;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba($color-contorno-variante, 0.2);
+  overflow: hidden;
+  margin-bottom: 2rem;
+
+  &__cabecera {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba($color-superficie-contenedor-alto, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__filtros {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  &__conteo {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $color-pizarra-400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  &__contenedor { overflow-x: auto; }
+}
+
+.select-caja {
+  position: relative;
+  
+  .select-input {
+    appearance: none;
+    background-color: $color-pizarra-50;
+    border: none;
+    padding: 0.5rem 1rem;
+    padding-right: 2.5rem;
+    border-radius: $radio-lg;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $color-pizarra-600;
+    outline: none;
+
+    &:focus { box-shadow: 0 0 0 2px rgba($color-esmeralda-500, 0.2); }
+  }
+
+  .select-icono {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-pizarra-400;
+    pointer-events: none;
+    font-size: 1.25rem;
+  }
+}
+
+.tabla-gil {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+
+  thead {
+    background-color: rgba($color-pizarra-50, 0.5);
+  }
+
+  &__th {
+    padding: 1rem 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: $color-pizarra-400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+
+    &--derecha { text-align: right; }
+  }
+
+  &__cuerpo {
+    border-top: 1px solid rgba($color-pizarra-50, 1);
+  }
+
+  &__fila {
+    border-bottom: 1px solid rgba($color-pizarra-50, 1);
+    transition: background-color 0.2s;
+    &:hover { background-color: $color-pizarra-50; }
+    &:last-child { border-bottom: none; }
+  }
+
+  &__celda {
+    padding: 1.5rem;
+    font-size: 0.875rem;
+
+    &--derecha { text-align: right; }
+  }
+}
+
+.solicitante-celda {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  &__avatar {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background-color: $color-pizarra-100;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__nombre { font-weight: 600; }
+}
+
+.badge-estado {
+  padding: 0.25rem 0.75rem;
+  border-radius: $radio-full;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  &--borrador { background-color: #fef3c7; color: #b45309; } // amber-100, amber-700
+  &--registrada { background-color: #dbeafe; color: #1d4ed8; } // blue-100, blue-700
+  &--aprobada { background-color: $color-esmeralda-100; color: $color-esmeralda-700; }
+}
+
+.acciones-celda {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.boton-icono {
+  padding: 0.5rem;
+  border-radius: $radio-lg;
+  color: $color-pizarra-400;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background-color: white;
+    box-shadow: $sombra-media;
+    color: $color-esmeralda-600;
+  }
+
+  &--peligro:hover:not(:disabled) {
+    color: $color-error;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Paginación
+.paginacion {
+  padding: 1.5rem;
+  background-color: $color-pizarra-50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__enlace {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: $color-pizarra-500;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: none; border: none; cursor: pointer;
+    transition: color 0.2s;
+
+    &:hover { color: $color-esmeralda-700; }
+  }
+
+  &__numeros { display: flex; gap: 0.5rem; }
+
+  &__numero {
+    height: 2rem;
+    width: 2rem;
+    border-radius: $radio-lg;
+    background-color: transparent;
+    color: $color-pizarra-500;
+    font-weight: 700;
+    font-size: 0.75rem;
+    border: none; cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover:not(&--activo) { background-color: white; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+
+    &--activo {
+      background-color: $color-esmeralda-700;
+      color: white;
+    }
+  }
+}
+
+// Cards Adicionales
+.info-grilla {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.card-info {
+  padding: 2rem;
+  border-radius: $radio-2xl;
+  background-color: white;
+  border: 1px solid rgba($color-contorno-variante, 0.2);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+
+  &__bg-icono {
+    position: absolute;
+    top: 0; right: 0;
+    padding: 2rem;
+    opacity: 0.1;
+    transition: opacity 0.3s;
+
+    span { font-size: 6rem; color: $color-primario-contenedor; }
+  }
+
+  &:hover &__bg-icono { opacity: 0.2; }
+
+  &__titulo {
+    font-family: $fuente-titular;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: $color-en-superficie;
+  }
+
+  &__texto {
+    color: $color-pizarra-600;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__enlace {
+    color: $color-esmeralda-700;
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    background: none; border: none; cursor: pointer;
+    position: relative;
+    z-index: 10;
+  }
+}
+
+.card-inversion {
+  padding: 2rem;
+  border-radius: $radio-2xl;
+  background-color: $color-primario-contenedor; // Usando oscuro
+  color: white;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=2029&auto=format&fit=crop');
+    background-size: cover;
+    mix-blend-mode: overlay;
+    opacity: 0.2;
+  }
+
+  &__titulo {
+    font-family: $fuente-titular;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__contenido {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.fila-inversion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 0.5rem;
+
+  &__etiqueta { color: rgba(255,255,255,0.7); font-size: 0.875rem; }
+  &__valor { font-weight: 700; font-size: 1rem; }
+}
+
+.barra-presupuesto {
+  margin-top: 0.5rem;
+
+  &__fondo {
+    width: 100%;
+    background-color: rgba(255,255,255,0.1);
+    height: 0.5rem;
+    border-radius: $radio-full;
+    overflow: hidden;
+  }
+
+  &__lleno {
+    background-color: $color-primario-contenedor;
+    height: 100%;
+    border-radius: $radio-full;
+  }
+
+  &__texto {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.5rem;
+  }
+}
+
+.font-extrabold { font-weight: 800; }
+.font-bold { font-weight: 700; }
+.text-on-surface { color: $color-en-superficie; }
+.text-slate-600 { color: $color-pizarra-600; }
+.text-slate-500 { color: $color-pizarra-500; }
+.opacity-50 { opacity: 0.5; }

@@ -1,0 +1,212 @@
+<div class="gil-pagina">
+  
+  <!-- Header Row -->
+  <div class="gil-cabecera">
+    <div>
+      <h1 class="gil-cabecera__titulo">Formato GIL-F-014</h1>
+      <p class="gil-cabecera__subtitulo">Gestión de bienes y servicios - Centro de Servicios y Gestión Empresarial</p>
+    </div>
+    <a routerLink="/crear-gil-f014" class="boton-nuevo">
+      <span class="material-symbols-outlined">add</span>
+      Nueva Solicitud
+    </a>
+  </div>
+
+  <!-- KPI Grid -->
+  <div class="kpi-grilla">
+    <!-- Total -->
+    <div class="tarjeta-kpi tarjeta-kpi--esmeralda">
+      <div class="tarjeta-kpi__cabecera">
+        <div class="tarjeta-kpi__icono-caja text-emerald-700 bg-emerald-50">
+          <span class="material-symbols-outlined">analytics</span>
+        </div>
+        <span class="tarjeta-kpi__etiqueta">TOTAL</span>
+      </div>
+      <p class="tarjeta-kpi__valor">{{ kpis().total }}</p>
+      <p class="tarjeta-kpi__desc">Solicitudes este periodo</p>
+    </div>
+
+    <!-- Borradores -->
+    <div class="tarjeta-kpi tarjeta-kpi--ambar">
+      <div class="tarjeta-kpi__cabecera">
+        <div class="tarjeta-kpi__icono-caja text-amber-600 bg-amber-50">
+          <span class="material-symbols-outlined">edit_note</span>
+        </div>
+        <span class="tarjeta-kpi__etiqueta">BORRADORES</span>
+      </div>
+      <p class="tarjeta-kpi__valor">{{ kpis().borradores }}</p>
+      <p class="tarjeta-kpi__desc">Pendientes por enviar</p>
+    </div>
+
+    <!-- Registradas -->
+    <div class="tarjeta-kpi tarjeta-kpi--azul">
+      <div class="tarjeta-kpi__cabecera">
+        <div class="tarjeta-kpi__icono-caja text-blue-600 bg-blue-50">
+          <span class="material-symbols-outlined">inventory</span>
+        </div>
+        <span class="tarjeta-kpi__etiqueta">REGISTRADAS</span>
+      </div>
+      <p class="tarjeta-kpi__valor">{{ kpis().registradas }}</p>
+      <p class="tarjeta-kpi__desc">En proceso técnico</p>
+    </div>
+
+    <!-- Aprobadas -->
+    <div class="tarjeta-kpi tarjeta-kpi--primario">
+      <div class="tarjeta-kpi__cabecera">
+        <div class="tarjeta-kpi__icono-caja text-emerald-600 bg-emerald-50">
+          <span class="material-symbols-outlined">verified</span>
+        </div>
+        <span class="tarjeta-kpi__etiqueta">APROBADAS</span>
+      </div>
+      <p class="tarjeta-kpi__valor">{{ kpis().aprobadas }}</p>
+      <p class="tarjeta-kpi__desc">Listas para ejecución</p>
+    </div>
+  </div>
+
+  <!-- Table Section -->
+  <div class="panel-tabla">
+    <div class="panel-tabla__cabecera">
+      <div class="panel-tabla__filtros">
+        <div class="select-caja">
+          <select class="select-input">
+            <option>Filtrar por Estado</option>
+            <option>Borrador</option>
+            <option>Registrada</option>
+            <option>Aprobada</option>
+          </select>
+          <span class="material-symbols-outlined select-icono">expand_more</span>
+        </div>
+        <div class="select-caja">
+          <select class="select-input">
+            <option>Filtrar por Fecha</option>
+            <option>Últimos 7 días</option>
+            <option>Este mes</option>
+            <option>Año 2024</option>
+          </select>
+          <span class="material-symbols-outlined select-icono">calendar_month</span>
+        </div>
+      </div>
+      <p class="panel-tabla__conteo">Mostrando 1-10 de {{ kpis().total }} resultados</p>
+    </div>
+
+    <div class="panel-tabla__contenedor">
+      <table class="tabla-gil">
+        <thead>
+          <tr>
+            <th class="tabla-gil__th">Código</th>
+            <th class="tabla-gil__th">Fecha Solicitud</th>
+            <th class="tabla-gil__th">Solicitante</th>
+            <th class="tabla-gil__th">Grupo/Ficha</th>
+            <th class="tabla-gil__th">Estado</th>
+            <th class="tabla-gil__th">Total</th>
+            <th class="tabla-gil__th tabla-gil__th--derecha">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="tabla-gil__cuerpo">
+          @for (sol of solicitudes(); track sol.codigo) {
+            <tr class="tabla-gil__fila">
+              <td class="tabla-gil__celda font-extrabold text-on-surface">{{ sol.codigo }}</td>
+              <td class="tabla-gil__celda text-slate-600">{{ sol.fecha }}</td>
+              <td class="tabla-gil__celda">
+                <div class="solicitante-celda">
+                  <div class="solicitante-celda__avatar">
+                    <img [src]="sol.avatar" alt="Avatar">
+                  </div>
+                  <span class="solicitante-celda__nombre">{{ sol.solicitante }}</span>
+                </div>
+              </td>
+              <td class="tabla-gil__celda text-slate-500">{{ sol.grupo }}</td>
+              <td class="tabla-gil__celda">
+                <span class="badge-estado" 
+                      [class.badge-estado--borrador]="sol.estado === 'Borrador'"
+                      [class.badge-estado--registrada]="sol.estado === 'Registrada'"
+                      [class.badge-estado--aprobada]="sol.estado === 'Aprobada'">
+                  {{ sol.estado }}
+                </span>
+              </td>
+              <td class="tabla-gil__celda font-bold text-on-surface">{{ sol.total }}</td>
+              <td class="tabla-gil__celda tabla-gil__celda--derecha">
+                <div class="tabla-gil__acciones">
+                  <a routerLink="/detalle-gil-f014" class="boton-icono boton-icono--secundario" title="Ver Detalles">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a routerLink="/pdf-gil-f014" class="boton-icono boton-icono--secundario" title="Descargar PDF">
+                    <span class="material-symbols-outlined">picture_as_pdf</span>
+                  </a>
+                  <button class="boton-icono boton-icono--peligro" title="Eliminar" (click)="abrirModalEliminar(sol)">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Paginación -->
+    <div class="paginacion">
+      <button class="paginacion__enlace">
+        <span class="material-symbols-outlined text-sm">chevron_left</span> Anterior
+      </button>
+      <div class="paginacion__numeros">
+        <button class="paginacion__numero paginacion__numero--activo">1</button>
+        <button class="paginacion__numero">2</button>
+        <button class="paginacion__numero">3</button>
+      </div>
+      <button class="paginacion__enlace">
+        Siguiente <span class="material-symbols-outlined text-sm">chevron_right</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Cards de Información Adicional -->
+  <div class="info-grilla">
+    
+    <!-- Card Info Formato -->
+    <div class="card-info">
+      <div class="card-info__bg-icono">
+        <span class="material-symbols-outlined">info</span>
+      </div>
+      <h3 class="card-info__titulo">Notas del Formato</h3>
+      <p class="card-info__texto">El formato GIL-F-014 es indispensable para el trámite de solicitudes de bienes o servicios. Asegúrese de que el instructor y el coordinador técnico hayan revisado las cantidades antes de registrar formalmente.</p>
+      <button class="card-info__enlace">Ver Manual de Diligenciamiento</button>
+    </div>
+
+    <!-- Card Inversión -->
+    <div class="card-inversion">
+      <h3 class="card-inversion__titulo">Resumen de Inversión</h3>
+      <div class="card-inversion__contenido">
+        
+        <div class="fila-inversion">
+          <span class="fila-inversion__etiqueta">Presupuesto Ejecutado</span>
+          <span class="fila-inversion__valor">$45.800.000</span>
+        </div>
+        
+        <div class="fila-inversion">
+          <span class="fila-inversion__etiqueta">En Trámite</span>
+          <span class="fila-inversion__valor">$12.350.000</span>
+        </div>
+
+        <div class="barra-presupuesto">
+          <div class="barra-presupuesto__fondo">
+            <div class="barra-presupuesto__lleno" style="width: 75%;"></div>
+          </div>
+          <p class="barra-presupuesto__texto">75% del presupuesto anual asignado</p>
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Modal Eliminar -->
+  @if (mostrarModalEliminar()) {
+    <app-eliminar-gil-f014-modal
+      [elementoId]="gilAEliminar()?.id || ''"
+      (confirmar)="confirmarEliminacion()"
+      (cancelar)="cerrarModalEliminar()"
+    ></app-eliminar-gil-f014-modal>
+  }
+
+</div>

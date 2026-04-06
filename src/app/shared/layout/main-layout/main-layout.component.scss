@@ -1,0 +1,10 @@
+// SCSS uses styling from styles.scss globally, so we just add specific tweaks if necessary.
+.contenido-principal__contenedor {
+  // Animación de entrada o estilos extra para la vista que entra
+  animation: fade-in 0.3s ease-in-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

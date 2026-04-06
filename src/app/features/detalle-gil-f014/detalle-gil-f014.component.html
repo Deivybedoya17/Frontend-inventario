@@ -1,0 +1,181 @@
+<div class="detalle-pagina">
+  <!-- Paginación / Cabecera Acciones -->
+  <div class="cabecera-acciones">
+    <div>
+      <div class="cabecera-acciones__miga">
+        <a routerLink="/gil-f014" class="boton-volver">
+          <span class="material-symbols-outlined">arrow_back</span>
+          Volver
+        </a>
+        <span class="separador">/</span>
+        <span class="texto-miga">Solicitudes GIL</span>
+      </div>
+      <h2 class="cabecera-acciones__titulo">{{ solicitud().id }}</h2>
+    </div>
+    
+    <div class="cabecera-acciones__botones">
+      <a routerLink="/editar-gil-f014" class="boton-accion">
+        <span class="material-symbols-outlined">edit</span>
+        Editar
+      </a>
+      <a routerLink="/pdf-gil-f014" class="boton-accion">
+        <span class="material-symbols-outlined">picture_as_pdf</span>
+        Descargar PDF
+      </a>
+      <button class="boton-primario">Enviar a Aprobación</button>
+    </div>
+  </div>
+
+  <!-- Layout Principal (Bento) -->
+  <div class="grilla-bento">
+    
+    <!-- Columna Izquierda -->
+    <div class="columna-izquierda">
+      
+      <!-- Resumen Estado -->
+      <div class="tarjeta">
+        <h3 class="tarjeta__etiqueta-titulo">Estado de Solicitud</h3>
+        <div class="estado-contenedor">
+          <div class="badge-estado">
+            <span class="badge-estado__punto"></span>
+            {{ solicitud().estado }}
+          </div>
+          <div class="texto-fecha">Creado el {{ solicitud().fechaCreacion }}</div>
+        </div>
+
+        <div class="bloque-info">
+          <div>
+            <p class="bloque-info__etiqueta">Total Estimado</p>
+            <p class="bloque-info__total">{{ solicitud().total }}</p>
+          </div>
+          
+          <div class="seccion-responsable">
+            <p class="bloque-info__etiqueta">Responsable (Instructor)</p>
+            <div class="usuario-fila">
+              <div class="usuario-fila__avatar">{{ solicitud().responsable.iniciales }}</div>
+              <p class="usuario-fila__nombre">{{ solicitud().responsable.nombre }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- General Info -->
+      <div class="tarjeta">
+        <h3 class="tarjeta__etiqueta-titulo">Información General</h3>
+        <div class="lista-info">
+          <div class="lista-info__item">
+            <label>Regional</label>
+            <p>{{ solicitud().infoGeneral.regional }}</p>
+          </div>
+          <div class="lista-info__item">
+            <label>Centro de Formación</label>
+            <p>{{ solicitud().infoGeneral.centroFormacion }}</p>
+          </div>
+          <div class="lista-info__item">
+            <label>Área / Programa</label>
+            <p>{{ solicitud().infoGeneral.areaPrograma }}</p>
+          </div>
+          <div class="lista-info__item">
+            <label>Cuentadante Responsable</label>
+            <p>{{ solicitud().infoGeneral.cuentadante }}</p>
+          </div>
+          <div class="lista-info__item">
+            <label>Destino del Bien</label>
+            <p>{{ solicitud().infoGeneral.destino }}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Columna Derecha -->
+    <div class="columna-derecha">
+      
+      <!-- Facturas Asociadas -->
+      <div class="modulo-facturas">
+        <div class="modulo-facturas__cabecera">
+          <h3 class="modulo-facturas__titulo">Pre-Facturas Asociadas</h3>
+          <span class="badge-docs">{{ solicitud().preFacturas.length }} Documentos</span>
+        </div>
+
+        <div class="modulo-facturas__lista">
+          @for (pf of solicitud().preFacturas; track pf.id) {
+            <div class="item-factura">
+              <div class="item-factura__cabecera">
+                <div class="item-factura__info">
+                  <span class="material-symbols-outlined icono-doc">receipt_long</span>
+                  <div>
+                    <p class="item-factura__id">{{ pf.id }}</p>
+                    <p class="item-factura__proveedor">Proveedor: {{ pf.proveedor }}</p>
+                  </div>
+                </div>
+                <p class="item-factura__total">{{ pf.total }}</p>
+              </div>
+
+              <div class="tabla-contenedor">
+                <table class="tabla-items">
+                  <thead>
+                    <tr>
+                      <th class="tabla-items__th tabla-items__th--izq">Ítem / Descripción</th>
+                      <th class="tabla-items__th tabla-items__th--centro">Cant.</th>
+                      <th class="tabla-items__th tabla-items__th--der">Unitario</th>
+                      <th class="tabla-items__th tabla-items__th--der">Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (item of pf.items; track item.des) {
+                      <tr class="tabla-items__fila">
+                        <td class="tabla-items__celda tabla-items__celda--izq">{{ item.des }}</td>
+                        <td class="tabla-items__celda tabla-items__celda--centro">{{ item.cant }}</td>
+                        <td class="tabla-items__celda tabla-items__celda--der">{{ item.unit }}</td>
+                        <td class="tabla-items__celda tabla-items__celda--subtotal">{{ item.sub }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Observaciones -->
+      <div class="tarjeta">
+        <div class="cabecera-observaciones">
+          <span class="material-symbols-outlined icono-obs">comment</span>
+          <h3 class="tarjeta__etiqueta-titulo" style="margin-bottom:0;">Observaciones y Justificación</h3>
+        </div>
+        
+        <div class="caja-observaciones">
+          <p class="texto-observacion">{{ solicitud().observaciones }}</p>
+        </div>
+
+        <div class="pie-observaciones">
+          <div class="avatares-grupo">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2XneGsCrGeGa6IKBuS-Q7r-AkydPxzyotdBULB1P3xZ8VQ6NYDkdjtqE_eNEqdWUrw66UwhdtTXZznVyjoBMd5MBG4XQ8Z3V5PoQ-V8eIRA0_0RbFDiITi2MBKl4PNKMSa5KPkUj2znAGe41E1SSvHolh2s3h_yMlJDKXIM3Z-k6kuSDLE6rwwV6OQ51UkB5sl3eNNrag1WwLIBqGBU6w1YYWBQP7WmGHxGJ3mCoWaXodfbSWk6JcF6iBKmDmgbHGztLwg4bZcxLa" alt="Rev 1">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmXJtZdLW6j5GM39H3lkL7FVaTZ7_pxiT-KcxvfYU8LiPluM7zpvCJEw9NQVRNJb_Syd01qxoyrlCLbooN-hewG7hNASa4olg5M_47bwl0QQG0yt6Oeoa7uJezvICGHT1X8fDgy-Ig2ayoHk-ZGLH-WYzuG9ciatOiL1X3l8mzrLRy67wXzh0GD0ZwbD2APRHvZVe7dlSQ-5V53QzUKScDCqbvM-O8soBOrJUn59HCXolbmIszdG0GZkUq9LLNKpHm9oYkRLMsVMg4" alt="Rev 2">
+            <div class="avatar-mas">+1</div>
+          </div>
+          <button class="boton-anadir">
+            Añadir comentario
+            <span class="material-symbols-outlined">add</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Pie Auditoría -->
+  <div class="pie-auditoria">
+    <div class="info-tx">
+      <span>ID Transacción: #TRX-998210-GIL</span>
+      <span>Hash: 8f9a2b...3c1e</span>
+    </div>
+    <div class="info-validacion">
+      <span class="material-symbols-outlined">verified</span>
+      <span>Validado bajo estándar SENA-GIL-2024</span>
+    </div>
+  </div>
+
+</div>

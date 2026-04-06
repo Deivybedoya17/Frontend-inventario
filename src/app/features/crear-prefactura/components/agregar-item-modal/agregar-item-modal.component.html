@@ -1,0 +1,70 @@
+<div class="modal-overlay" (click)="cerrarModal()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h3 class="modal-titulo">Agregar Ítem a Pre Factura</h3>
+      <p class="modal-subtitulo">Complete los detalles del bien para incluirlo en la pre factura.</p>
+    </div>
+
+    <!-- Modal Body (Form) -->
+    <form class="modal-body">
+      <!-- Field 1: Buscar Bien -->
+      <div class="campo-vertical">
+        <label class="campo-etiqueta" for="item-search">Buscar Bien</label>
+        <div class="campo-wrapper">
+          <div class="campo-icono-izq">
+            <span class="material-symbols-outlined">inventory_2</span>
+          </div>
+          <select id="item-search" class="campo-select-con-icono">
+            <option disabled selected value="">Seleccione un item del inventario...</option>
+            <option>AOL001 - Portátil Dell Latitude 5420</option>
+            <option>AOL002 - Monitor LG 24" UltraGear</option>
+            <option>AOL003 - Teclado Mecánico Logitech G413</option>
+            <option>AOL004 - Escritorio Ergonómico Oficina</option>
+            <option>AOL005 - Silla Ejecutiva Microfibra</option>
+          </select>
+          <div class="campo-icono-der">
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Field 2 & 3: Cantidad & Precio -->
+      <div class="campos-fila">
+        <!-- Cantidad -->
+        <div class="campo-vertical campo-cantidad">
+          <label class="campo-etiqueta" for="quantity">Cantidad</label>
+          <div class="campo-wrapper">
+            <input type="number" id="quantity" class="campo-input" placeholder="0">
+          </div>
+        </div>
+
+        <!-- Precio Adjudicado -->
+        <div class="campo-vertical campo-precio">
+          <label class="campo-etiqueta" for="price">Precio Adjudicado</label>
+          <div class="campo-wrapper">
+            <div class="campo-icono-izq">
+              <span class="simbolo-peso">$</span>
+            </div>
+            <input type="text" id="price" class="campo-input-con-icono" placeholder="0.00">
+          </div>
+        </div>
+      </div>
+
+      <!-- Contextual Info Card -->
+      <div class="tarjeta-info">
+        <span class="material-symbols-outlined tarjeta-info__icono">info</span>
+        <div class="tarjeta-info__contenido">
+          <p class="tarjeta-info__titulo">Resumen de Cálculo</p>
+          <p class="tarjeta-info__texto">El total parcial para este item se calculará automáticamente al guardar e impactará el balance total de la pre factura.</p>
+        </div>
+      </div>
+    </form>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+      <button type="button" class="boton-cancelar" (click)="cerrarModal()">Cancelar</button>
+      <button type="button" class="boton-agregar">Agregar Ítem</button>
+    </div>
+  </div>
+</div>

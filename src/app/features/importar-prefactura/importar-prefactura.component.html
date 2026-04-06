@@ -1,0 +1,151 @@
+<div class="importar-pf-pagina">
+  
+  <!-- Header Section -->
+  <div class="importar-pf-cabecera">
+    <div>
+      <nav class="miga-de-pan">
+        <a routerLink="/prefacturas" class="miga-de-pan__enlace">Inicio</a>
+        <span class="miga-de-pan__separador">/</span>
+        <span class="miga-de-pan__actual">Pre Facturas</span>
+      </nav>
+      <h1 class="importar-pf-cabecera__titulo">Importar Pre Factura</h1>
+    </div>
+    
+    <div class="importar-pf-cabecera__acciones">
+      <button class="boton-plantilla">
+        <span class="material-symbols-outlined">download</span>
+        Descargar Plantilla
+      </button>
+      <button class="boton-procesar">
+        <span class="material-symbols-outlined">sync</span>
+        Procesar Importación
+      </button>
+    </div>
+  </div>
+
+  <!-- Grilla Principal -->
+  <div class="importar-pf-grilla">
+    
+    <!-- Zona Primaria (Dropzone y Tabla) -->
+    <div class="importar-pf-grilla__primaria">
+      
+      <!-- Dropzone -->
+      <div class="zona-drop">
+        <div class="zona-drop__icono-caja">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">upload_file</span>
+        </div>
+        <h3 class="zona-drop__titulo">Arrastra tu archivo aquí</h3>
+        <p class="zona-drop__texto">
+          Sube tus archivos de pre facturación en formato <span class="font-bold">.xlsx</span> o <span class="font-bold">.csv</span>. Tamaño máximo 10MB.
+        </p>
+        <button class="boton-seleccionar">Seleccionar Archivo</button>
+      </div>
+
+      <!-- Tabla Preview -->
+      <div class="panel-preview">
+        <div class="panel-preview__cabecera">
+          <h4 class="panel-preview__titulo">
+            <span class="material-symbols-outlined">visibility</span>
+            Vista Previa de Datos
+          </h4>
+          <span class="panel-preview__subtitulo">Muestra de los primeros 5 registros</span>
+        </div>
+        
+        <div class="panel-preview__tabla-contenedor">
+          <table class="tabla-preview">
+            <thead>
+              <tr>
+                <th class="tabla-preview__th">Number</th>
+                <th class="tabla-preview__th">Date</th>
+                <th class="tabla-preview__th">Program</th>
+                <th class="tabla-preview__th">Instructor</th>
+                <th class="tabla-preview__th tabla-preview__th--centro">Estatus</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (fila of dataPreview(); track fila.numero) {
+                <tr class="tabla-preview__fila" [class.tabla-preview__fila--error]="fila.error">
+                  <td class="tabla-preview__celda font-semibold text-slate-700">{{ fila.numero }}</td>
+                  <td class="tabla-preview__celda">{{ fila.fecha }}</td>
+                  <td class="tabla-preview__celda">{{ fila.programa }}</td>
+                  <td class="tabla-preview__celda">{{ fila.instructor }}</td>
+                  <td class="tabla-preview__celda tabla-preview__celda--centro">
+                    <span class="badge-estatus" [class.badge-estatus--error]="fila.error">
+                      {{ fila.estatus }}
+                    </span>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Zona Secundaria (Instrucciones) -->
+    <div class="importar-pf-grilla__secundaria">
+      
+      <!-- Card Instrucciones -->
+      <div class="tarjeta-instrucciones">
+        <div class="tarjeta-instrucciones__decoracion"></div>
+        <h4 class="tarjeta-instrucciones__titulo">
+          <span class="material-symbols-outlined">info</span>
+          Instrucciones
+        </h4>
+        
+        <ul class="lista-pasos">
+          <li class="lista-pasos__item">
+            <span class="lista-pasos__numero">1</span>
+            <div>
+              <p class="lista-pasos__nombre">Descargar Plantilla</p>
+              <p class="lista-pasos__desc">Utiliza exclusivamente nuestro formato oficial para evitar errores de mapeo.</p>
+            </div>
+          </li>
+          <li class="lista-pasos__item">
+            <span class="lista-pasos__numero">2</span>
+            <div>
+              <p class="lista-pasos__nombre">Completar Datos</p>
+              <p class="lista-pasos__desc">Asegúrate de que los campos "Number" y "Date" sigan el formato estándar.</p>
+            </div>
+          </li>
+          <li class="lista-pasos__item">
+            <span class="lista-pasos__numero">3</span>
+            <div>
+              <p class="lista-pasos__nombre">Cargar y Validar</p>
+              <p class="lista-pasos__desc">El sistema validará automáticamente instructores y programas existentes.</p>
+            </div>
+          </li>
+          <li class="lista-pasos__item">
+            <span class="lista-pasos__numero">4</span>
+            <div>
+              <p class="lista-pasos__nombre">Procesar</p>
+              <p class="lista-pasos__desc">Confirma la importación una vez que la vista previa no muestre errores.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Ayuda Widget -->
+      <div class="widget-ayuda">
+        <span class="material-symbols-outlined widget-ayuda__icono">help_outline</span>
+        <h4 class="widget-ayuda__titulo">¿Necesitas ayuda?</h4>
+        <p class="widget-ayuda__texto">Si tienes problemas con el formato del archivo o el sistema no reconoce a un instructor, contacta a soporte técnico.</p>
+        <button class="boton-manual">Ver Manual de Importación</button>
+      </div>
+
+      <!-- Estado Servidor -->
+      <div class="widget-estado">
+        <h5 class="widget-estado__titulo">Estado del Servidor</h5>
+        <div class="widget-estado__fila">
+          <span class="widget-estado__etiqueta">Capacidad de Carga</span>
+          <span class="widget-estado__valor">Excelente</span>
+        </div>
+        <div class="barra-progreso">
+          <div class="barra-progreso__lleno" style="width: 15%"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

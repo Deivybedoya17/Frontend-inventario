@@ -1,0 +1,187 @@
+<div class="prefacturas">
+  <!-- Cabecera -->
+  <section class="prefacturas__cabecera">
+    <div>
+      <h2 class="titular prefacturas__titulo">Gestión de Pre Facturas</h2>
+      <p class="prefacturas__descripcion">Control y administración de documentos de pre-facturación institucional.</p>
+    </div>
+    <div class="prefacturas__acciones-cabecera">
+      <a routerLink="/importar-prefactura" class="boton-secundario-pf" style="text-decoration: none;">
+        <span class="material-symbols-outlined">upload_file</span>
+        Importar Datos
+      </a>
+      <a routerLink="/crear-prefactura" class="boton-primario-degradado-pf">
+        <span class="material-symbols-outlined">add</span>
+        Nueva Pre Factura
+      </a>
+    </div>
+  </section>
+
+  <!-- Métricas Bento Grid -->
+  <section class="prefacturas__metricas-grilla">
+    <!-- Total -->
+    <div class="tarjeta-metrica">
+      <div class="tarjeta-metrica__cabecera">
+        <div class="tarjeta-metrica__icono-caja tarjeta-metrica__icono-caja--primario">
+          <span class="material-symbols-outlined">description</span>
+        </div>
+        <span class="tarjeta-metrica__badge">Mensual</span>
+      </div>
+      <p class="tarjeta-metrica__etiqueta">Total Pre Facturas</p>
+      <h3 class="tarjeta-metrica__valor">{{ metricas().total | number:'2.0-0' }}</h3>
+    </div>
+    <!-- Pendientes -->
+    <div class="tarjeta-metrica">
+      <div class="tarjeta-metrica__cabecera">
+        <div class="tarjeta-metrica__icono-caja tarjeta-metrica__icono-caja--terciario">
+          <span class="material-symbols-outlined">pending_actions</span>
+        </div>
+        <span class="tarjeta-metrica__badge tarjeta-metrica__badge--terciario">Atención</span>
+      </div>
+      <p class="tarjeta-metrica__etiqueta">Pendientes</p>
+      <h3 class="tarjeta-metrica__valor">{{ metricas().pendientes | number:'2.0-0' }}</h3>
+    </div>
+    <!-- Validadas -->
+    <div class="tarjeta-metrica">
+      <div class="tarjeta-metrica__cabecera">
+        <div class="tarjeta-metrica__icono-caja tarjeta-metrica__icono-caja--primario">
+          <span class="material-symbols-outlined">verified</span>
+        </div>
+        <span class="tarjeta-metrica__badge tarjeta-metrica__badge--primario">Ok</span>
+      </div>
+      <p class="tarjeta-metrica__etiqueta">Validadas</p>
+      <h3 class="tarjeta-metrica__valor">{{ metricas().validadas | number:'2.0-0' }}</h3>
+    </div>
+    <!-- Valor Total -->
+    <div class="tarjeta-metrica">
+      <div class="tarjeta-metrica__cabecera">
+        <div class="tarjeta-metrica__icono-caja tarjeta-metrica__icono-caja--secundario">
+          <span class="material-symbols-outlined">payments</span>
+        </div>
+      </div>
+      <p class="tarjeta-metrica__etiqueta">Valor Total</p>
+      <h3 class="tarjeta-metrica__valor">{{ metricas().valorTotal }}</h3>
+    </div>
+  </section>
+
+  <!-- Barra de Filtros -->
+  <section class="barra-filtros">
+    <div class="barra-filtros__campos">
+      <div class="barra-filtros__buscador">
+        <span class="material-symbols-outlined barra-filtros__buscador-icono">search</span>
+        <input class="barra-filtros__buscador-input" type="text" placeholder="Buscar por número o instructor...">
+      </div>
+      <select class="barra-filtros__select">
+        <option value="">Estado: Todos</option>
+        <option value="validada">Validada</option>
+        <option value="pendiente">Pendiente</option>
+      </select>
+      <select class="barra-filtros__select barra-filtros__select--ancho">
+        <option value="">Programa: Todos</option>
+        <option value="adso">ADSO</option>
+        <option value="multimedia">Multimedia</option>
+      </select>
+    </div>
+    <div class="barra-filtros__exportar">
+      <button class="boton-exportar-icono boton-exportar-icono--excel" title="Exportar a Excel">
+        <span class="material-symbols-outlined">grid_on</span>
+      </button>
+      <button class="boton-exportar-icono boton-exportar-icono--pdf" title="Exportar a PDF">
+        <span class="material-symbols-outlined">picture_as_pdf</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Tabla de Pre Facturas -->
+  <section class="panel-tabla-pf">
+    <div class="panel-tabla-pf__encabezado">
+      <h4 class="titular panel-tabla-pf__titulo">Pre Facturas Registradas</h4>
+      <button class="boton-enlace-primario-pf">Ver todas</button>
+    </div>
+
+    <div class="panel-tabla-pf__contenedor">
+      <table class="tabla-pf">
+        <thead class="tabla-pf__cabecera">
+          <tr>
+            <th class="tabla-pf__th">Número</th>
+            <th class="tabla-pf__th">Fecha</th>
+            <th class="tabla-pf__th">Programa</th>
+            <th class="tabla-pf__th">Instructor</th>
+            <th class="tabla-pf__th">Estado</th>
+            <th class="tabla-pf__th tabla-pf__th--derecha">Total</th>
+            <th class="tabla-pf__th tabla-pf__th--centrado">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="tabla-pf__cuerpo">
+          @for (fila of filas(); track fila.numero) {
+            <tr class="tabla-pf__fila">
+              <td class="tabla-pf__celda">
+                <span class="tabla-pf__numero">{{ fila.numero }}</span>
+              </td>
+              <td class="tabla-pf__celda tabla-pf__celda--secundario">{{ fila.fecha }}</td>
+              <td class="tabla-pf__celda">
+                <div class="tabla-pf__programa">
+                  <div class="tabla-pf__programa-punto"
+                       [class.tabla-pf__programa-punto--primario]="fila.programaColor === 'primario'"
+                       [class.tabla-pf__programa-punto--secundario]="fila.programaColor === 'secundario'"></div>
+                  <span class="tabla-pf__programa-nombre">{{ fila.programa }}</span>
+                </div>
+              </td>
+              <td class="tabla-pf__celda">{{ fila.instructor }}</td>
+              <td class="tabla-pf__celda">
+                <span class="etiqueta-estado-pf"
+                      [class.etiqueta-estado-pf--validada]="fila.estado === 'Validada'"
+                      [class.etiqueta-estado-pf--pendiente]="fila.estado === 'Pendiente'">
+                  {{ fila.estado }}
+                </span>
+              </td>
+              <td class="tabla-pf__celda tabla-pf__celda--derecha tabla-pf__celda--negrita">{{ fila.total }}</td>
+              <td class="tabla-pf__celda tabla-pf__celda--centrado">
+                <div class="tabla-pf__acciones">
+                  <a routerLink="/detalle-prefactura" class="accion-boton-pf accion-boton-pf--ver" title="Ver" style="text-decoration: none;">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <a routerLink="/validar-prefactura" class="accion-boton-pf accion-boton-pf--validar" title="Validar"
+                          [class.accion-boton-pf--deshabilitado]="fila.estado === 'Validada'" style="text-decoration: none;">
+                    <span class="material-symbols-outlined">check_circle</span>
+                  </a>
+                  <button class="accion-boton-pf accion-boton-pf--eliminar" title="Eliminar"
+                          (click)="abrirModalEliminar(fila.numero)">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Paginación -->
+    <div class="panel-tabla-pf__paginacion">
+      <p class="paginacion-pf__info">Mostrando 2 de 2 registros encontrados</p>
+      <div class="paginacion-pf__controles">
+        <button class="paginacion-pf__boton paginacion-pf__boton--icono">
+          <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <button class="paginacion-pf__boton paginacion-pf__boton--activo">1</button>
+        <button class="paginacion-pf__boton">2</button>
+        <button class="paginacion-pf__boton paginacion-pf__boton--icono">
+          <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FAB -->
+<a routerLink="/crear-prefactura" class="fab-pf">
+  <span class="material-symbols-outlined fab-pf__icono">add</span>
+</a>
+
+<app-eliminar-prefactura-modal
+  [open]="mostrarModalEliminar()"
+  [prefacturaId]="prefacturaSeleccionada()"
+  (cancel)="cerrarModalEliminar()"
+  (confirm)="confirmarEliminacion()">
+</app-eliminar-prefactura-modal>

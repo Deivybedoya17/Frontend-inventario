@@ -1,0 +1,311 @@
+@import '../../../styles/variables';
+
+.pdf-vista {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #e5e7eb; // zinc-200
+  position: relative;
+  overflow: hidden;
+  z-index: 50; // Para estar encima si es toda la pantalla
+}
+
+// Toolbar
+.toolbar {
+  background-color: white;
+  border-bottom: 1px solid $color-pizarra-200;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  z-index: 10;
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__acciones {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
+
+.icono-contenedor {
+  padding: 0.5rem;
+  background-color: $color-superficie-contenedor-bajo;
+  border-radius: $radio-xl;
+
+  .icono-rojo { color: $color-terciario; }
+}
+
+.titulo-doc {
+  font-family: $fuente-titular;
+  font-weight: 700;
+  color: $color-en-superficie;
+  line-height: 1.2;
+}
+
+.subtitulo-doc {
+  font-size: 0.75rem;
+  color: $color-pizarra-500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.boton-secundario {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: $radio-xl;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: $color-pizarra-600;
+  background-color: white;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover { background-color: $color-superficie-contenedor-alto; }
+  span { font-size: 1.125rem; }
+}
+
+.boton-primario {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  border-radius: $radio-xl;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: white;
+  background: $gradiente-primario;
+  border: none;
+  box-shadow: 0 4px 6px -1px rgba($color-primario, 0.2);
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover { opacity: 0.9; }
+  span { font-size: 1.125rem; }
+}
+
+// Visor y Hoja Documento
+.visor-contenedor {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.hoja-papel {
+  width: 100%;
+  max-width: 816px; // Ancho carta aprox a 96DPI
+  min-height: 1056px; // Alto carta aprox
+  background-color: white;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+// Elementos de la Hoja (Estilo documento oficial sin Tailwind)
+.doc-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  border: 1px solid rgba(0,0,0,0.2);
+  margin-bottom: 2rem;
+
+  &__logo {
+    padding: 1rem;
+    border-right: 1px solid rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img { height: 4rem; width: 4rem; object-fit: contain; }
+  }
+
+  &__titulo {
+    padding: 1rem;
+    border-right: 1px solid rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    .texto-proceso { font-size: 0.625rem; font-weight: 700; text-transform: uppercase; }
+    .texto-formato { font-size: 0.75rem; font-weight: 700; margin-top: 0.5rem; }
+  }
+
+  &__meta {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.625rem;
+
+    .meta-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding: 0.25rem 0;
+      &:last-child { border-bottom: none; }
+    }
+  }
+}
+
+.info-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+  margin-bottom: 2rem;
+  font-size: 0.6875rem;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 0.25rem;
+
+    .etiqueta { font-size: 0.5625rem; font-weight: 700; text-transform: uppercase; color: $color-pizarra-500; }
+    .valor { font-weight: 600; color: #000; }
+  }
+}
+
+.tabla-doc-contenedor {
+  flex: 1;
+}
+
+.tabla-doc {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    border: 1px solid rgba(0,0,0,0.2);
+    padding: 0.5rem;
+    font-size: 0.6875rem;
+  }
+
+  th {
+    background-color: rgba(0,0,0,0.05);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.625rem;
+    text-align: left;
+  }
+
+  .centrado { text-align: center; }
+  .obs { font-style: italic; color: $color-pizarra-500; }
+
+  .w-item { width: 3rem; text-align: center; }
+  .w-unidad { width: 4rem; text-align: center; }
+  .w-cant { width: 4rem; text-align: center; }
+  .w-obs { width: 8rem; }
+
+  .h-vacio td { height: 2.5rem; }
+}
+
+.seccion-firmas {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.caja-firma {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 6rem;
+  position: relative;
+
+  .firma-linea {
+    width: 100%;
+    border-top: 1px solid #000;
+    padding-top: 0.5rem;
+    text-align: center;
+  }
+
+  .titulo-firma { font-size: 0.625rem; font-weight: 700; margin-bottom: 0.125rem; }
+  .subtitulo-firma { font-size: 0.5625rem; color: $color-pizarra-500; }
+}
+
+.firma-autoriza {
+  .sello-agua {
+    position: absolute;
+    top: -0.5rem;
+    opacity: 0.1;
+    transform: rotate(-15deg);
+    pointer-events: none;
+
+    span { font-size: 3.75rem; color: $color-primario; }
+  }
+}
+
+.doc-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  text-align: center;
+  font-size: 0.5rem;
+  color: $color-pizarra-500;
+  line-height: 1.5;
+}
+
+// Controles Flotantes
+.controles-flotantes {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(#191c1d, 0.9);
+  backdrop-filter: blur(8px);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: $radio-full;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+  z-index: 100;
+}
+
+.zoom-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-right: 1px solid rgba(255,255,255,0.2);
+  padding-right: 1rem;
+
+  span { font-size: 0.75rem; }
+  .material-symbols-outlined { font-size: 1.25rem; }
+}
+
+.paginacion-control {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  button {
+    background: none; border: none; color: white; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: color 0.2s;
+
+    &:hover { color: $color-primario; }
+    &.deshabilitado { opacity: 0.3; cursor: not-allowed; }
+  }
+
+  .texto-pagina {
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+}

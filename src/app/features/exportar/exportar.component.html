@@ -1,0 +1,194 @@
+<div class="exportar">
+  <!-- Botón Volver -->
+  <a routerLink="/bienes" class="boton-volver">
+    <span class="material-symbols-outlined">arrow_back</span>
+    Volver a Gestión de Bienes
+  </a>
+
+  <!-- Cabecera -->
+  <div class="exportar__cabecera">
+    <h2 class="titular exportar__titulo">Exportar Reporte de Bienes</h2>
+    <p class="exportar__descripcion">Configure los parámetros del reporte para generar un archivo detallado del inventario actual. Los reportes generados se archivan automáticamente en el historial del sistema.</p>
+  </div>
+
+  <div class="exportar__cuadricula">
+    <!-- Panel de Configuración -->
+    <div class="exportar__panel-configuracion">
+      
+      <!-- Sección de Filtros -->
+      <section class="tarjeta-modulo-ligero">
+        <div class="tarjeta-modulo-ligero__cabecera">
+          <span class="material-symbols-outlined icono-primario">tune</span>
+          <h3 class="tarjeta-modulo-ligero__titulo">Parámetros de Filtrado</h3>
+        </div>
+        
+        <div class="grilla-filtros">
+          <!-- Rango Fechas -->
+          <div class="campo-grupo">
+            <label class="campo-etiqueta">Rango de Fechas</label>
+            <div class="campo-rango">
+              <input class="campo-input" type="date">
+              <span class="campo-separador">al</span>
+              <input class="campo-input" type="date">
+            </div>
+          </div>
+          
+          <!-- Categoría -->
+          <div class="campo-grupo">
+            <label class="campo-etiqueta">Categoría</label>
+            <select class="campo-select">
+              <option>Todas las categorías</option>
+              <option>Equipos de Cómputo</option>
+              <option>Mobiliario de Oficina</option>
+              <option>Herramientas Especializadas</option>
+              <option>Materiales de Formación</option>
+            </select>
+          </div>
+          
+          <!-- Estado -->
+          <div class="campo-grupo">
+            <label class="campo-etiqueta">Estado del Bien</label>
+            <div class="grilla-2-col">
+              <label class="opcion-caja opcion-caja--exito">
+                <input type="checkbox" checked class="opcion-caja__input">
+                <span class="opcion-caja__texto">Activo</span>
+              </label>
+              <label class="opcion-caja opcion-caja--alerta">
+                <input type="checkbox" class="opcion-caja__input opcion-caja__input--alerta">
+                <span class="opcion-caja__texto">Bajo Stock</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Almacén -->
+          <div class="campo-grupo">
+            <label class="campo-etiqueta">Almacén / Bodega</label>
+            <select class="campo-select">
+              <option>Todos los almacenes</option>
+              <option>Almacén Central - Bogotá</option>
+              <option>Centro de Logística - Medellín</option>
+              <option>Sede Regional - Cali</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Selector de Formato -->
+      <section class="tarjeta-modulo-ligero">
+        <div class="tarjeta-modulo-ligero__cabecera">
+          <span class="material-symbols-outlined icono-primario">file_download</span>
+          <h3 class="tarjeta-modulo-ligero__titulo">Formato de Exportación</h3>
+        </div>
+        
+        <div class="grilla-formatos">
+          <!-- Excel -->
+          <label class="formato-tarjeta formato-tarjeta--activo">
+            <input type="radio" name="formato" value="xlsx" checked class="formato-tarjeta__radio">
+            <span class="material-symbols-outlined formato-tarjeta__icono formato-tarjeta__icono--excel">table_view</span>
+            <span class="formato-tarjeta__nombre formato-tarjeta__nombre--excel">Excel</span>
+            <span class="formato-tarjeta__extension formato-tarjeta__extension--excel">.xlsx</span>
+          </label>
+          
+          <!-- PDF -->
+          <label class="formato-tarjeta">
+            <input type="radio" name="formato" value="pdf" class="formato-tarjeta__radio">
+            <span class="material-symbols-outlined formato-tarjeta__icono formato-tarjeta__icono--pdf">picture_as_pdf</span>
+            <span class="formato-tarjeta__nombre">PDF</span>
+            <span class="formato-tarjeta__extension">Documento</span>
+          </label>
+          
+          <!-- CSV -->
+          <label class="formato-tarjeta">
+            <input type="radio" name="formato" value="csv" class="formato-tarjeta__radio">
+            <span class="material-symbols-outlined formato-tarjeta__icono formato-tarjeta__icono--csv">csv</span>
+            <span class="formato-tarjeta__nombre">CSV</span>
+            <span class="formato-tarjeta__extension">Texto plano</span>
+          </label>
+        </div>
+      </section>
+    </div>
+
+    <!-- Panel Lateral: Resumen y Acción -->
+    <div class="exportar__panel-lateral">
+      
+      <!-- Preview Card -->
+      <div class="tarjeta-oscura">
+        <div class="tarjeta-oscura__fondo-decorativo"></div>
+        <div class="tarjeta-oscura__contenido">
+          <p class="tarjeta-oscura__subtitulo">Resumen del Reporte</p>
+          <h3 class="tarjeta-oscura__titulo">Vista Previa</h3>
+          
+          <div class="tarjeta-oscura__metricas">
+            <div class="tarjeta-oscura__fila">
+              <span class="tarjeta-oscura__etiqueta">Registros totales</span>
+              <span class="tarjeta-oscura__valor tarjeta-oscura__valor--esmeralda">1,248</span>
+            </div>
+            <div class="tarjeta-oscura__fila">
+              <span class="tarjeta-oscura__etiqueta">Valor estimado</span>
+              <span class="tarjeta-oscura__valor">$142,500.00</span>
+            </div>
+            <div class="tarjeta-oscura__fila">
+              <span class="tarjeta-oscura__etiqueta">Columnas incluidas</span>
+              <span class="tarjeta-oscura__valor">24</span>
+            </div>
+          </div>
+          
+          <div class="tarjeta-oscura__info-box">
+            <span class="material-symbols-outlined tarjeta-oscura__info-icono">info</span>
+            <p class="tarjeta-oscura__info-texto">
+              Este reporte incluye datos de depreciación y activos en comodato según la normativa vigente del SENA.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Action Button -->
+      <button class="boton-accion-principal">
+        <div class="boton-accion-principal__contenedor">
+          <span class="material-symbols-outlined boton-accion-principal__icono">cloud_download</span>
+          <span class="boton-accion-principal__texto">Generar y Descargar</span>
+        </div>
+        <span class="boton-accion-principal__subtexto">Procesar reporte ahora</span>
+      </button>
+
+      <!-- Historial Corto -->
+      <div class="tarjeta-historial">
+        <h4 class="tarjeta-historial__titulo">Exportaciones Recientes</h4>
+        
+        <div class="lista-historial">
+          <div class="item-historial">
+            <div class="item-historial__info">
+              <div class="item-historial__icono-contenedor item-historial__icono-contenedor--excel">
+                <span class="material-symbols-outlined">description</span>
+              </div>
+              <div>
+                <p class="item-historial__nombre">Inv_Bienes_Oct.xlsx</p>
+                <p class="item-historial__meta">Hace 2 horas • 4.2 MB</p>
+              </div>
+            </div>
+            <button class="item-historial__boton-descarga item-historial__boton-descarga--excel">
+              <span class="material-symbols-outlined">download</span>
+            </button>
+          </div>
+          
+          <div class="item-historial">
+            <div class="item-historial__info">
+              <div class="item-historial__icono-contenedor item-historial__icono-contenedor--pdf">
+                <span class="material-symbols-outlined">description</span>
+              </div>
+              <div>
+                <p class="item-historial__nombre">Reporte_BajoStock.pdf</p>
+                <p class="item-historial__meta">Ayer • 1.8 MB</p>
+              </div>
+            </div>
+            <button class="item-historial__boton-descarga item-historial__boton-descarga--pdf">
+              <span class="material-symbols-outlined">download</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div>

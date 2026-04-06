@@ -1,0 +1,126 @@
+<div class="importar">
+  <!-- Botón Volver -->
+  <a routerLink="/bienes" class="boton-volver">
+    <span class="material-symbols-outlined">arrow_back</span>
+    Volver a Gestión de Bienes
+  </a>
+
+  <!-- Cabecera -->
+  <div class="importar__cabecera">
+    <div>
+      <h2 class="titular importar__titulo">Importar Bienes</h2>
+      <p class="importar__descripcion">Cargue archivos masivos para actualizar el inventario nacional.</p>
+    </div>
+    <button class="boton-utilidad">
+      <span class="material-symbols-outlined">download</span>
+      Descargar Plantilla
+    </button>
+  </div>
+
+  <!-- Contenido Principal: Grilla Bento -->
+  <div class="importar__cuadricula">
+    <!-- Área de Subida Principal -->
+    <div class="area-subida">
+      <div class="area-subida__icono-contenedor">
+        <span class="material-symbols-outlined area-subida__icono">upload_file</span>
+      </div>
+      <h3 class="area-subida__titulo">Arrastre su archivo aquí</h3>
+      <p class="area-subida__texto">Soporta formatos <span class="texto-destacado">.xlsx</span> y <span class="texto-destacado">.csv</span>. Máximo 25MB por archivo.</p>
+      <button class="boton-accion-oscura">Seleccionar Archivo</button>
+    </div>
+
+    <!-- Instrucciones -->
+    <div class="tarjeta-instrucciones">
+      <h3 class="tarjeta-instrucciones__titulo">
+        <span class="material-symbols-outlined">info</span>
+        Instrucciones
+      </h3>
+      <ul class="lista-instrucciones">
+        <li class="lista-instrucciones__item">
+          <span class="lista-instrucciones__numero">1</span>
+          <span>Asegúrese de usar los encabezados definidos en la plantilla institucional.</span>
+        </li>
+        <li class="lista-instrucciones__item">
+          <span class="lista-instrucciones__numero">2</span>
+          <span>Los campos marcados con asterisco (*) son obligatorios para el registro oficial.</span>
+        </li>
+        <li class="lista-instrucciones__item">
+          <span class="lista-instrucciones__numero">3</span>
+          <span>Revise la vista previa antes de procesar para evitar duplicidades de seriales.</span>
+        </li>
+      </ul>
+      <div class="estado-servidor">
+        <div class="estado-servidor__caja">
+          <p class="estado-servidor__etiqueta">Estado del Servidor</p>
+          <div class="estado-servidor__indicador">
+            <div class="estado-servidor__punto estado-servidor__punto--pulso"></div>
+            <span class="estado-servidor__texto">Listo para procesamiento</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vista Previa de Datos -->
+  <div class="vista-previa">
+    <div class="vista-previa__cabecera">
+      <h3 class="vista-previa__titulo">
+        <span class="material-symbols-outlined vista-previa__icono">visibility</span>
+        Vista Previa de Datos
+      </h3>
+      <span class="etiqueta-estado">5 Filas Encontradas</span>
+    </div>
+
+    <div class="vista-previa__contenedor-tabla">
+      <table class="tabla-datos">
+        <thead class="tabla-datos__cabecera">
+          <tr>
+            <th class="tabla-datos__encabezado">Código Placa</th>
+            <th class="tabla-datos__encabezado">Descripción del Bien</th>
+            <th class="tabla-datos__encabezado">Serial</th>
+            <th class="tabla-datos__encabezado">Ubicación</th>
+            <th class="tabla-datos__encabezado">Estado</th>
+          </tr>
+        </thead>
+        <tbody class="tabla-datos__cuerpo">
+          <tr class="tabla-datos__fila">
+            <td class="tabla-datos__celda font-mono text-pizarra-600">SENA-001245</td>
+            <td class="tabla-datos__celda font-bold">Computador Portátil HP EliteBook</td>
+            <td class="tabla-datos__celda text-pizarra-500">5CG12345XYZ</td>
+            <td class="tabla-datos__celda text-pizarra-500">Sede Central - Piso 3</td>
+            <td class="tabla-datos__celda">
+              <span class="etiqueta-estado etiqueta-estado--exito">Activo</span>
+            </td>
+          </tr>
+          <tr class="tabla-datos__fila">
+            <td class="tabla-datos__celda font-mono text-pizarra-600">SENA-001246</td>
+            <td class="tabla-datos__celda font-bold">Monitor Dell UltraSharp 27"</td>
+            <td class="tabla-datos__celda text-pizarra-500">CN-0X123-456</td>
+            <td class="tabla-datos__celda text-pizarra-500">Sede Central - Piso 3</td>
+            <td class="tabla-datos__celda">
+              <span class="etiqueta-estado etiqueta-estado--exito">Activo</span>
+            </td>
+          </tr>
+          <tr class="tabla-datos__fila">
+            <td class="tabla-datos__celda font-mono text-pizarra-600">SENA-001247</td>
+            <td class="tabla-datos__celda font-bold">Silla Ergonómica Pro-Manager</td>
+            <td class="tabla-datos__celda text-pizarra-500">N/A</td>
+            <td class="tabla-datos__celda text-pizarra-500">Biblioteca - Ala Norte</td>
+            <td class="tabla-datos__celda">
+              <span class="etiqueta-estado etiqueta-estado--alerta">Bajo Stock</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Botones de Acción -->
+  <div class="importar__acciones">
+    <button class="boton-texto">Cancelar</button>
+    <button class="boton-primario-degradado">
+      <span class="material-symbols-outlined">check_circle</span>
+      Procesar Importación
+    </button>
+  </div>
+</div>

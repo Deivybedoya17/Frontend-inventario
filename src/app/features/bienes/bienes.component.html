@@ -1,0 +1,191 @@
+<!-- Cabecera de Página -->
+<div class="bienes__cabecera">
+  <div>
+    <h1 class="titular bienes__titulo">Gestión de Bienes</h1>
+    <p class="bienes__descripcion">Control exhaustivo y trazabilidad de activos de formación.</p>
+  </div>
+  <div class="bienes__acciones-cabecera">
+    <button class="boton-secundario" routerLink="/importar">
+      <span class="material-symbols-outlined boton-secundario__icono">file_upload</span>
+      Importar
+    </button>
+    <button class="boton-secundario" routerLink="/exportar">
+      <span class="material-symbols-outlined boton-secundario__icono">file_download</span>
+      Exportar
+    </button>
+    <button class="boton-primario-degradado" (click)="abrirModal()">
+      <span class="material-symbols-outlined boton-primario-degradado__icono">add</span>
+      Nuevo Bien
+    </button>
+  </div>
+</div>
+
+<!-- Panel de tabla -->
+<div class="panel-tabla">
+
+  <!-- Controles de tabla -->
+  <div class="panel-tabla__controles">
+    <div class="panel-tabla__titulo-contenedor">
+      <span class="material-symbols-outlined panel-tabla__titulo-icono">list_alt</span>
+      <h3 class="titular panel-tabla__titulo">Lista de Bienes</h3>
+    </div>
+    <div class="panel-tabla__buscador-grupo">
+      <div class="panel-tabla__buscador">
+        <span class="material-symbols-outlined panel-tabla__buscador-icono">search</span>
+        <input class="panel-tabla__buscador-input" placeholder="Buscar por código o nombre..." type="text"/>
+      </div>
+      <button class="boton-filtro">
+        <span class="material-symbols-outlined boton-filtro__icono">filter_list</span>
+        Filtros
+      </button>
+    </div>
+  </div>
+
+  <!-- Tabla de datos -->
+  <div class="panel-tabla__contenedor">
+    <table class="tabla-bienes">
+      <thead class="tabla-bienes__cabecera">
+        <tr>
+          <th class="tabla-bienes__encabezado">Código</th>
+          <th class="tabla-bienes__encabezado">Nombre</th>
+          <th class="tabla-bienes__encabezado">Categoría</th>
+          <th class="tabla-bienes__encabezado tabla-bienes__encabezado--centrado">Stock</th>
+          <th class="tabla-bienes__encabezado tabla-bienes__encabezado--centrado">Stock Mín.</th>
+          <th class="tabla-bienes__encabezado">Valor</th>
+          <th class="tabla-bienes__encabezado">Estado</th>
+          <th class="tabla-bienes__encabezado tabla-bienes__encabezado--centrado">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="tabla-bienes__cuerpo">
+        @for (bien of bienes(); track bien.id) {
+          <tr class="tabla-bienes__fila">
+            <!-- Código -->
+            <td class="tabla-bienes__celda">
+              <span class="tabla-bienes__codigo">{{ bien.codigo }}</span>
+            </td>
+            <!-- Nombre + Descripcion -->
+            <td class="tabla-bienes__celda">
+              <p class="tabla-bienes__nombre">{{ bien.nombre }}</p>
+              @if (bien.descripcion) {
+                <p class="tabla-bienes__descripcion">{{ bien.descripcion }}</p>
+              }
+            </td>
+            <!-- Categoría Badge -->
+            <td class="tabla-bienes__celda">
+              <span class="categoria-etiqueta"
+                    [ngClass]="'categoria-etiqueta--' + (bien.categoriaColor || 'gris')">
+                {{ bien.categoria }}
+              </span>
+            </td>
+            <!-- Stock -->
+            <td class="tabla-bienes__celda tabla-bienes__celda--centrada">
+              <span class="tabla-bienes__stock"
+                    [ngClass]="{'tabla-bienes__stock--alerta': bien.stock < bien.stockMinimo}">
+                {{ bien.stock }}
+              </span>
+            </td>
+            <!-- Stock Mínimo -->
+            <td class="tabla-bienes__celda tabla-bienes__celda--centrada">
+              <span class="tabla-bienes__stock-minimo">{{ bien.stockMinimo }}</span>
+            </td>
+            <!-- Valor -->
+            <td class="tabla-bienes__celda">
+              <span class="tabla-bienes__valor">{{ bien.valorUnitario | currency:'COP':'symbol-narrow':'1.0-0' }}</span>
+            </td>
+            <!-- Estado -->
+            <td class="tabla-bienes__celda">
+              <span class="estado-etiqueta"
+                    [ngClass]="{'estado-etiqueta--activo': bien.estado === 'Activo', 'estado-etiqueta--bajo-stock': bien.estado === 'Bajo Stock', 'estado-etiqueta--inactivo': bien.estado === 'Inactivo'}">
+                <span class="estado-etiqueta__punto"></span>
+                {{ bien.estado }}
+              </span>
+            </td>
+            <!-- Acciones -->
+            <td class="tabla-bienes__celda tabla-bienes__celda--centrada">
+              <div class="tabla-bienes__acciones">
+                <a class="accion-boton" title="Editar" routerLink="/editar-bien">
+                  <span class="material-symbols-outlined">edit</span>
+                </a>
+                <a class="accion-boton" title="Ver detalles" routerLink="/detalle-bien">
+                  <span class="material-symbols-outlined">visibility</span>
+                </a>
+                <button class="accion-boton accion-boton--peligro" title="Eliminar" (click)="abrirDeleteModal()">
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Paginación -->
+  <div class="panel-tabla__paginacion">
+    <p class="paginacion__info">Mostrando {{ bienes().length }} de 1,248 bienes</p>
+    <div class="paginacion__controles">
+      <button class="paginacion__boton paginacion__boton--icono">
+        <span class="material-symbols-outlined">chevron_left</span>
+      </button>
+      <button class="paginacion__boton paginacion__boton--activo">1</button>
+      <button class="paginacion__boton">2</button>
+      <button class="paginacion__boton">3</button>
+      <span class="paginacion__puntos">...</span>
+      <button class="paginacion__boton">42</button>
+      <button class="paginacion__boton paginacion__boton--icono">
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Cards de resumen al pie (Bento Grid Style) -->
+<div class="bienes__resumen-cuadricula">
+
+  <div class="tarjeta-resumen">
+    <div class="tarjeta-resumen__cabecera">
+      <div class="tarjeta-resumen__icono-contenedor tarjeta-resumen__icono-contenedor--verde">
+        <span class="material-symbols-outlined">account_balance</span>
+      </div>
+      <span class="tarjeta-resumen__tendencia tarjeta-resumen__tendencia--positiva">+12% vs mes anterior</span>
+    </div>
+    <p class="tarjeta-resumen__etiqueta">Valor Total Inventario</p>
+    <h4 class="tarjeta-resumen__valor titular">$458.240.000</h4>
+  </div>
+
+  <div class="tarjeta-resumen">
+    <div class="tarjeta-resumen__cabecera">
+      <div class="tarjeta-resumen__icono-contenedor tarjeta-resumen__icono-contenedor--rojo">
+        <span class="material-symbols-outlined">inventory</span>
+      </div>
+      <span class="tarjeta-resumen__tendencia tarjeta-resumen__tendencia--alerta">Crítico</span>
+    </div>
+    <p class="tarjeta-resumen__etiqueta">Bienes en Alerta</p>
+    <h4 class="tarjeta-resumen__valor titular">{{ getters.alertasStock().length }} Items</h4>
+  </div>
+
+  <div class="tarjeta-resumen">
+    <div class="tarjeta-resumen__cabecera">
+      <div class="tarjeta-resumen__icono-contenedor tarjeta-resumen__icono-contenedor--azul">
+        <span class="material-symbols-outlined">sync</span>
+      </div>
+      <span class="tarjeta-resumen__tendencia tarjeta-resumen__tendencia--neutra">Hoy</span>
+    </div>
+    <p class="tarjeta-resumen__etiqueta">Movimientos Recientes</p>
+    <h4 class="tarjeta-resumen__valor titular">156 Altas</h4>
+  </div>
+
+</div>
+
+<!-- FAB -->
+<button class="fab" title="Nuevo Bien" (click)="abrirModal()">
+  <span class="material-symbols-outlined fab__icono">add</span>
+</button>
+
+@if (isModalOpen()) {
+  <app-registrar-bien-modal (close)="isModalOpen.set(false)" />
+}
+
+@if (isDeleteModalOpen()) {
+  <app-eliminar-bien-modal (close)="isDeleteModalOpen.set(false)" />
+}

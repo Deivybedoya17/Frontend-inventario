@@ -1,0 +1,406 @@
+@import '../../../styles/variables';
+
+.detalle-pf-pagina {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+// Cabecera Principal
+.detalle-pf-cabecera {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  &__titulo {
+    font-size: 1.875rem;
+    font-weight: 800;
+    font-family: $fuente-titular;
+    color: $color-en-superficie;
+    letter-spacing: -0.025em;
+  }
+
+  &__acciones {
+    display: flex;
+    gap: 0.75rem;
+  }
+}
+
+.miga-de-pan {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-family: $fuente-etiqueta;
+  color: $color-secundario;
+  margin-bottom: 0.5rem;
+
+  &__enlace {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+    &:hover { color: $color-primario; }
+  }
+
+  &__separador { font-size: 0.875rem; }
+
+  &__actual__fuerte {
+    font-weight: 600;
+    color: $color-primario;
+  }
+}
+
+// Botones
+.boton-regresar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background-color: $color-superficie-contenedor-alto;
+  color: $color-en-superficie;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: $radio-xl;
+  text-decoration: none;
+  transition: all 0.15s ease-out;
+
+  &:hover { background-color: $color-superficie-variante; transform: scale(1.02); }
+  &:active { transform: scale(0.98); }
+}
+
+.boton-descargar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  background: $gradiente-primario;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  border-radius: $radio-xl;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba($color-primario, 0.2);
+  transition: all 0.15s ease-out;
+
+  &:hover { opacity: 0.95; transform: scale(1.02); box-shadow: 0 15px 20px -3px rgba($color-primario, 0.3); }
+  &:active { transform: scale(0.98); }
+}
+
+// Info Layout (Bento)
+.detalle-pf-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+.tarjeta-info-pf {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-2xl;
+  padding: 2rem;
+  box-shadow: $sombra-baja;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    grid-column: span 5;
+    &--centro {
+      grid-column: span 4;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  &__icono {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--primario {
+      background-color: rgba($color-primario-contenedor, 0.1);
+      color: $color-primario;
+      span { font-size: 1.875rem; }
+    }
+  }
+
+  &__etiqueta {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: $color-pizarra-400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+
+  &__valor-principal {
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-family: $fuente-titular;
+    color: $color-en-superficie;
+  }
+
+  &__subvalor {
+    font-size: 0.875rem;
+    color: $color-pizarra-600;
+    margin-top: 0.25rem;
+  }
+
+  &__grilla-interior {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+  }
+
+  &__valor-secundario {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $color-en-superficie;
+  }
+}
+
+.tarjeta-referencia {
+  background-color: $color-primario;
+  color: white;
+  border-radius: $radio-2xl;
+  padding: 2rem;
+  box-shadow: 0 10px 15px -3px rgba($color-primario, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    grid-column: span 3;
+  }
+
+  &__bg-icono {
+    position: absolute;
+    right: -1rem;
+    bottom: -1rem;
+    font-size: 6rem;
+    color: rgba(255, 255, 255, 0.1);
+  }
+
+  &__etiqueta {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__valor {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: $fuente-titular;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.etiqueta-estado-oval {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: $radio-full;
+  background-color: $color-primario-contenedor;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+// Desglose de Items
+.panel-desglose {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-2xl;
+  box-shadow: $sombra-baja;
+  overflow: hidden;
+  border: 1px solid rgba($color-contorno-variante, 0.1);
+
+  &__cabecera {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba($color-contorno-variante, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__titulo {
+    font-size: 1.125rem;
+    font-weight: 700;
+    font-family: $fuente-titular;
+    color: $color-en-superficie;
+  }
+
+  &__subtitulo {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $color-pizarra-500;
+  }
+
+  &__tabla-contenedor {
+    overflow-x: auto;
+  }
+
+  &__footer {
+    padding: 2rem;
+    background-color: rgba($color-superficie-contenedor-bajo, 0.5);
+    border-top: 1px solid rgba($color-contorno-variante, 0.2);
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.tabla-desglose {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+
+  &__fila-cabecera {
+    background-color: $color-superficie-contenedor-bajo;
+  }
+
+  &__th {
+    padding: 1rem 2rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: $color-pizarra-500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    &--centro { text-align: center; }
+    &--derecha { text-align: right; }
+  }
+
+  &__cuerpo {
+    border-top: 1px solid rgba($color-contorno-variante, 0.1);
+  }
+
+  &__fila {
+    border-bottom: 1px solid rgba($color-contorno-variante, 0.1);
+    transition: background-color 0.2s;
+    
+    &:hover { background-color: $color-superficie-contenedor-bajo; }
+    &:last-child { border-bottom: none; }
+  }
+
+  &__celda {
+    padding: 1.5rem 2rem;
+    font-size: 0.875rem;
+    color: $color-en-superficie;
+
+    &--centro { text-align: center; }
+    &--derecha { text-align: right; }
+    &--fuerte { font-weight: 700; color: $color-en-superficie; }
+  }
+
+  &__nombre {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $color-en-superficie;
+  }
+
+  &__caracteristica {
+    font-size: 0.75rem;
+    color: $color-pizarra-500;
+    margin-top: 0.125rem;
+  }
+
+  &__badge {
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: $color-pizarra-600;
+    background-color: rgba($color-superficie-contenedor-bajo, 0.8);
+    padding: 0.25rem 0.5rem;
+    border-radius: $radio-defecto;
+  }
+}
+
+.totales-tabla {
+  width: 100%;
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  &__fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+
+    &--final {
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba($color-contorno-variante, 0.3);
+      margin-top: 0.25rem;
+    }
+  }
+
+  &__etiqueta { color: $color-pizarra-500; font-weight: 500; }
+  &__valor { color: $color-en-superficie; }
+
+  &__etiqueta-final {
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: $fuente-titular;
+    color: $color-en-superficie;
+  }
+
+  &__valor-final {
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: $fuente-titular;
+    color: $color-primario;
+  }
+}
+
+// Notas Additional
+.notas-pf {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: rgba($color-superficie-contenedor-bajo, 0.3);
+  border-radius: $radio-2xl;
+  border: 1px dashed $color-contorno-variante;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+
+  &__icono { color: $color-contorno; }
+
+  &__titulo {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: $color-en-superficie;
+    margin-bottom: 0.25rem;
+  }
+
+  &__texto {
+    font-size: 0.75rem;
+    color: $color-pizarra-500;
+    line-height: 1.6;
+  }
+}
+
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }

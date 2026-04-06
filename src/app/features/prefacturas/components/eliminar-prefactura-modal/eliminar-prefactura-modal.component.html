@@ -1,0 +1,33 @@
+@if (open) {
+  <div class="modal-overlay" (click)="onCancel()">
+    <div class="modal-pf-eliminar" (click)="$event.stopPropagation()">
+      <div class="modal-pf-eliminar__contenido">
+        
+        <div class="icono-riesgo">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+        </div>
+        
+        <h3 class="modal-pf-eliminar__titulo">Confirmar Eliminación</h3>
+        <p class="modal-pf-eliminar__texto">
+          ¿Estás seguro de que deseas eliminar esta pre-factura? Esta acción no se puede deshacer.
+        </p>
+
+        <div class="item-objetivo">
+          <span class="material-symbols-outlined">description</span>
+          <span class="item-objetivo__id">{{ prefacturaId }}</span>
+        </div>
+
+        <div class="modal-pf-eliminar__acciones">
+          <button class="boton-peligro" (click)="onConfirm()">
+            Eliminar Definitivamente
+          </button>
+          <button class="boton-cancelar" (click)="onCancel()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-pf-eliminar__decoracion"></div>
+    </div>
+  </div>
+}

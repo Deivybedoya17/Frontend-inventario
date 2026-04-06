@@ -1,0 +1,168 @@
+<div class="detalle">
+  <!-- Botón Volver -->
+  <a routerLink="/bienes" class="boton-volver">
+    <span class="material-symbols-outlined">arrow_back</span>
+    Volver a Gestión de Bienes
+  </a>
+
+  <!-- Breadcrumbs -->
+  <nav class="detalle__breadcrumbs">
+    <span>Inventario</span>
+    <span class="detalle__breadcrumbs-sep">/</span>
+    <span>{{ bien().categoria }}</span>
+    <span class="detalle__breadcrumbs-sep">/</span>
+    <span class="detalle__breadcrumbs-activo">{{ bien().codigo }}</span>
+  </nav>
+
+  <!-- Cabecera con Acciones -->
+  <div class="detalle__cabecera">
+    <div>
+      <h1 class="titular detalle__titulo">{{ bien().nombre }}</h1>
+      <p class="detalle__descripcion">{{ bien().descripcion }}</p>
+    </div>
+    <div class="detalle__acciones">
+      <button class="boton-secundario-contorno">
+        <span class="material-symbols-outlined">history</span>
+        Exportar Historial
+      </button>
+      <a routerLink="/editar-bien" class="boton-degradado">
+        <span class="material-symbols-outlined">edit</span>
+        Editar Activo
+      </a>
+    </div>
+  </div>
+
+  <!-- Layout Bento Grid -->
+  <div class="detalle__cuadricula">
+
+    <!-- Columna Izquierda: Imagen y estado -->
+    <div class="detalle__col-imagen">
+      <div class="tarjeta-imagen">
+        <div class="tarjeta-imagen__placeholder">
+          <span class="material-symbols-outlined tarjeta-imagen__icono">laptop_mac</span>
+          <p class="tarjeta-imagen__texto">{{ bien().nombre }}</p>
+        </div>
+      </div>
+      <div class="tarjeta-meta">
+        <div class="tarjeta-meta__item">
+          <p class="tarjeta-meta__etiqueta">Estado</p>
+          <span class="tarjeta-meta__badge tarjeta-meta__badge--activo">{{ bien().estado }}</span>
+        </div>
+        <div class="tarjeta-meta__item">
+          <p class="tarjeta-meta__etiqueta">Categoría</p>
+          <p class="tarjeta-meta__valor">{{ bien().categoria }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna Derecha: KPIs y Specs -->
+    <div class="detalle__col-datos">
+      <!-- Stock Card -->
+      <div class="tarjeta-kpi-detalle">
+        <div class="tarjeta-kpi-detalle__icono-contenedor tarjeta-kpi-detalle__icono-contenedor--verde">
+          <span class="material-symbols-outlined">inventory</span>
+        </div>
+        <h3 class="tarjeta-kpi-detalle__etiqueta">Stock Actual</h3>
+        <p class="tarjeta-kpi-detalle__valor">{{ bien().stock }}</p>
+        <div class="tarjeta-kpi-detalle__pie">
+          <span class="tarjeta-kpi-detalle__punto"></span>
+          <p class="tarjeta-kpi-detalle__nota">Stock Mínimo Requerido: <strong>{{ bien().stockMinimo }}</strong></p>
+        </div>
+      </div>
+
+      <!-- Value Card -->
+      <div class="tarjeta-kpi-detalle">
+        <div class="tarjeta-kpi-detalle__icono-contenedor tarjeta-kpi-detalle__icono-contenedor--azul">
+          <span class="material-symbols-outlined">payments</span>
+        </div>
+        <h3 class="tarjeta-kpi-detalle__etiqueta">Valor Unitario</h3>
+        <p class="tarjeta-kpi-detalle__valor tarjeta-kpi-detalle__valor--menor">{{ bien().valorUnitario | currency:'COP':'symbol-narrow':'1.0-0' }}</p>
+        <p class="tarjeta-kpi-detalle__nota">Depreciación anual: {{ bien().depreciacion }}</p>
+      </div>
+
+      <!-- Specs Card -->
+      <div class="tarjeta-especificaciones">
+        <div class="tarjeta-especificaciones__cabecera">
+          <span class="material-symbols-outlined icono-primario">settings_suggest</span>
+          <h3 class="tarjeta-especificaciones__titulo">Especificaciones Técnicas</h3>
+        </div>
+        <div class="tarjeta-especificaciones__grilla">
+          <div class="tarjeta-especificaciones__fila">
+            <span class="tarjeta-especificaciones__clave">Procesador</span>
+            <span class="tarjeta-especificaciones__valor">{{ bien().procesador }}</span>
+          </div>
+          <div class="tarjeta-especificaciones__fila">
+            <span class="tarjeta-especificaciones__clave">Memoria RAM</span>
+            <span class="tarjeta-especificaciones__valor">{{ bien().memoriaRam }}</span>
+          </div>
+          <div class="tarjeta-especificaciones__fila">
+            <span class="tarjeta-especificaciones__clave">Almacenamiento</span>
+            <span class="tarjeta-especificaciones__valor">{{ bien().almacenamiento }}</span>
+          </div>
+          <div class="tarjeta-especificaciones__fila">
+            <span class="tarjeta-especificaciones__clave">Sistema Operativo</span>
+            <span class="tarjeta-especificaciones__valor">{{ bien().sistemaOperativo }}</span>
+          </div>
+          <div class="tarjeta-especificaciones__fila">
+            <span class="tarjeta-especificaciones__clave">Código Activo</span>
+            <span class="tarjeta-especificaciones__valor tarjeta-especificaciones__valor--primario">{{ bien().codigo }}</span>
+          </div>
+          <div class="tarjeta-especificaciones__fila">
+            <span class="tarjeta-especificaciones__clave">Fecha Compra</span>
+            <span class="tarjeta-especificaciones__valor">{{ bien().fechaCompra }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de Movimientos -->
+  <div class="panel-movimientos">
+    <div class="panel-movimientos__cabecera">
+      <h3 class="panel-movimientos__titulo">
+        <span class="material-symbols-outlined icono-primario">swap_vert</span>
+        Historial de Movimientos
+      </h3>
+      <button class="boton-enlace-primario">Ver todo el historial</button>
+    </div>
+    <div class="panel-movimientos__contenedor-tabla">
+      <table class="tabla-datos">
+        <thead class="tabla-datos__cabecera">
+          <tr>
+            <th class="tabla-datos__encabezado">Fecha</th>
+            <th class="tabla-datos__encabezado">Tipo</th>
+            <th class="tabla-datos__encabezado">Responsable</th>
+            <th class="tabla-datos__encabezado">Ubicación</th>
+            <th class="tabla-datos__encabezado">Cantidad</th>
+            <th class="tabla-datos__encabezado">Observación</th>
+          </tr>
+        </thead>
+        <tbody class="tabla-datos__cuerpo">
+          @for (mov of movimientos(); track mov.fecha) {
+            <tr class="tabla-datos__fila">
+              <td class="tabla-datos__celda text-pizarra-600">{{ mov.fecha }}</td>
+              <td class="tabla-datos__celda">
+                <span class="etiqueta-tipo"
+                      [class.etiqueta-tipo--entrada]="mov.tipo === 'Entrada'"
+                      [class.etiqueta-tipo--salida]="mov.tipo === 'Salida'"
+                      [class.etiqueta-tipo--traslado]="mov.tipo === 'Traslado'">
+                  {{ mov.tipo }}
+                </span>
+              </td>
+              <td class="tabla-datos__celda font-bold">{{ mov.responsable }}</td>
+              <td class="tabla-datos__celda text-pizarra-600">{{ mov.ubicacion }}</td>
+              <td class="tabla-datos__celda"
+                  [class.text-esmeralda]="mov.cantidad.startsWith('+')"
+                  [class.text-terciario]="mov.cantidad.startsWith('-')"
+                  [class.text-pizarra-400]="mov.cantidad === '0'"
+                  style="font-weight: 700;">
+                {{ mov.cantidad }}
+              </td>
+              <td class="tabla-datos__celda text-pizarra-400" style="font-style: italic;">{{ mov.observacion }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

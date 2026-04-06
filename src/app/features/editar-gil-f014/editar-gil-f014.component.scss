@@ -1,0 +1,328 @@
+@import '../../../styles/variables';
+
+.editar-pagina {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  display: flex;
+  flex-direction: column;
+}
+
+.principal {
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+.contenedor-centrado {
+  max-width: 56rem; // max-w-4xl
+  margin: 0 auto;
+}
+
+// Cabecera
+.cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  &__titulo {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: $color-en-superficie;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.25rem;
+  }
+
+  &__subtitulo {
+    color: $color-pizarra-500;
+    font-weight: 500;
+  }
+
+  &__badges {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
+
+.badge-activo {
+  background-color: rgba($color-primario-contenedor, 0.2);
+  color: $color-primario;
+  padding: 0.25rem 0.75rem;
+  border-radius: $radio-full;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-id {
+  color: $color-pizarra-400;
+  font-size: 0.875rem;
+}
+
+// Grilla Principal
+.grilla {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.columna-formulario {
+  @media (min-width: 768px) {
+    grid-column: span 2 / span 2;
+  }
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.columna-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+// Secciones Formulario
+.seccion-form {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: $radio-xl;
+  border: 1px solid $color-pizarra-100;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+
+  &__cabecera {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $color-pizarra-50;
+  }
+
+  &__titulo {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: $color-pizarra-800;
+  }
+
+  .icono-verde {
+    color: $color-primario;
+  }
+}
+
+.campos-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grupo-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: $color-pizarra-400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-left: 0.25rem;
+  }
+
+  .campo-input {
+    width: 100%;
+    background-color: $color-superficie-contenedor-bajo;
+    border: none;
+    border-radius: $radio-xl;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: $color-en-superficie;
+    outline: none;
+    transition: box-shadow 0.2s;
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba($color-primario, 0.2);
+    }
+  }
+}
+
+.col-span-2 {
+  grid-column: span 1 / span 1;
+  @media (min-width: 640px) {
+    grid-column: span 2 / span 2;
+  }
+}
+
+// Botones Formulario
+.botones-accion {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.boton-cancelar {
+  padding: 0.75rem 2rem;
+  border-radius: $radio-xl;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: $color-pizarra-600;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s;
+
+  &:hover { background-color: $color-pizarra-100; }
+}
+
+.boton-guardar {
+  padding: 0.75rem 2rem;
+  border-radius: $radio-xl;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: white;
+  background: $gradiente-primario;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba($color-primario, 0.2);
+  transition: all 0.2s;
+
+  &:hover { transform: scale(1.02); }
+  &:active { transform: scale(0.95); }
+}
+
+// Info Historial
+.info-historial {
+  background-color: $color-pizarra-50;
+  padding: 1.5rem;
+  border-radius: $radio-xl;
+  border: 1px solid $color-pizarra-100;
+
+  &__titulo {
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: $color-pizarra-800;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    span { font-size: 1rem; }
+  }
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &__item {
+    display: flex;
+    gap: 0.75rem;
+    position: relative;
+
+    &.base::before {
+      content: '';
+      position: absolute;
+      left: 0.6875rem;
+      top: 1.5rem;
+      bottom: -1rem;
+      width: 2px;
+      background-color: $color-pizarra-200;
+      z-index: 0;
+    }
+  }
+
+  &__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 10;
+
+    span { font-size: 0.75rem; font-weight: 700; }
+
+    &--pasado {
+      background-color: rgba($color-primario, 0.2);
+      color: $color-primario;
+    }
+    &--actual {
+      background-color: $color-primario;
+      color: white;
+    }
+  }
+
+  &__texto-principal { font-size: 0.75rem; font-weight: 700; color: $color-pizarra-800; }
+  &__texto-secundario { font-size: 0.625rem; color: $color-pizarra-500; }
+}
+
+// Resumen Info
+.info-resumen {
+  background-color: rgba($color-primario-contenedor, 0.1);
+  padding: 1.5rem;
+  border-radius: $radio-xl;
+  border: 1px solid rgba($color-primario, 0.1);
+
+  &__titulo { font-weight: 700; font-size: 0.875rem; color: $color-primario; margin-bottom: 0.5rem; }
+  &__desc { font-size: 0.75rem; color: darken($color-primario-contenedor, 40%); line-height: 1.6; }
+  
+  &__footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba($color-primario, 0.1);
+  }
+}
+
+.valor-asegurado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: $color-primario;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+}
+
+// Imagen Decorativa
+.imagen-decorativa {
+  height: 12rem;
+  width: 100%;
+  border-radius: $radio-xl;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid $color-pizarra-100;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s;
+  }
+
+  &:hover img { transform: scale(1.05); }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+
+    p { color: white; font-size: 0.625rem; font-weight: 500; font-style: italic; opacity: 0.8; }
+  }
+}

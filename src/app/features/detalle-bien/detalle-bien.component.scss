@@ -1,0 +1,298 @@
+@import '../../../styles/variables';
+
+.detalle {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 1rem 0 2rem;
+
+  &__breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    font-size: 0.875rem;
+    color: $color-pizarra-400;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  &__breadcrumbs-sep { margin: 0 0.5rem; color: $color-pizarra-200; }
+  &__breadcrumbs-activo { color: $color-esmeralda-700; font-weight: 600; }
+
+  &__cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+  }
+
+  &__titulo {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: $color-en-superficie;
+    letter-spacing: -0.025em;
+  }
+
+  &__descripcion { color: $color-pizarra-500; font-weight: 500; margin-top: 0.25rem; }
+
+  &__acciones { display: flex; gap: 0.75rem; }
+
+  &__cuadricula {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 5fr 7fr;
+    }
+  }
+
+  &__col-imagen { display: flex; flex-direction: column; gap: 1.5rem; }
+  &__col-datos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+// Botones
+.boton-secundario-contorno {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  background-color: $color-superficie-contenedor;
+  border: 1px solid rgba($color-contorno-variante, 0.3);
+  color: $color-en-superficie;
+  font-weight: 600; border-radius: $radio-xl;
+  cursor: pointer; transition: all 0.2s ease;
+  &:hover { background-color: $color-superficie-contenedor-alto; }
+  span { font-size: 1.125rem; }
+}
+
+.boton-degradado {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  background: $gradiente-primario;
+  color: white; font-weight: 700; border-radius: $radio-xl;
+  border: none; cursor: pointer; text-decoration: none;
+  box-shadow: 0 4px 6px -1px rgba($color-esmeralda-700, 0.1);
+  transition: all 0.2s ease;
+  &:hover { opacity: 0.9; }
+  &:active { transform: scale(0.95); }
+  span { font-size: 1.125rem; }
+}
+
+.boton-enlace-primario {
+  background: transparent; border: none;
+  color: $color-esmeralda-700; font-size: 0.875rem;
+  font-weight: 700; cursor: pointer;
+  &:hover { text-decoration: underline; }
+}
+
+// Tarjeta Imagen
+.tarjeta-imagen {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-2xl;
+  padding: 0.5rem;
+  box-shadow: $sombra-baja;
+  overflow: hidden;
+
+  &__placeholder {
+    aspect-ratio: 1;
+    background-color: $color-superficie-contenedor-bajo;
+    border-radius: $radio-xl;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  &__icono { font-size: 4rem; color: $color-pizarra-400; }
+  &__texto { font-size: 0.875rem; color: $color-pizarra-500; font-weight: 600; }
+}
+
+// Tarjeta Meta
+.tarjeta-meta {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-2xl;
+  padding: 2rem;
+  box-shadow: $sombra-baja;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  &__item {
+    text-align: center;
+    padding: 1rem;
+    background-color: $color-superficie-contenedor-bajo;
+    border-radius: $radio-xl;
+  }
+
+  &__etiqueta {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $color-pizarra-400;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    border-radius: $radio-completo;
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    &--activo {
+      background-color: rgba($color-primario-contenedor, 0.15);
+      color: $color-en-primario-contenedor;
+    }
+  }
+
+  &__valor { font-weight: 700; color: $color-en-superficie; }
+}
+
+// KPI Detalle
+.tarjeta-kpi-detalle {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  padding: 2rem;
+  border-radius: $radio-2xl;
+  box-shadow: $sombra-baja;
+  display: flex;
+  flex-direction: column;
+
+  &__icono-contenedor {
+    width: 3rem; height: 3rem;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+
+    &--verde { background-color: $color-esmeralda-50; color: $color-esmeralda-600; }
+    &--azul { background-color: #eff6ff; color: #2563eb; }
+  }
+
+  &__etiqueta {
+    font-size: 0.875rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: $color-pizarra-500;
+  }
+
+  &__valor {
+    font-size: 3rem; font-weight: 800;
+    color: $color-en-superficie; margin-top: 0.5rem;
+
+    &--menor { font-size: 2rem; }
+  }
+
+  &__pie {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  &__punto {
+    width: 0.5rem; height: 0.5rem;
+    border-radius: 50%;
+    background-color: $color-primario;
+    animation: pulso 2s infinite;
+  }
+
+  &__nota { font-size: 0.75rem; color: $color-pizarra-400; font-weight: 500; }
+}
+
+@keyframes pulso {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba($color-primario, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba($color-primario, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba($color-primario, 0); }
+}
+
+// Specs
+.tarjeta-especificaciones {
+  grid-column: span 2;
+  background-color: $color-superficie-contenedor-mas-bajo;
+  padding: 2rem;
+  border-radius: $radio-2xl;
+  box-shadow: $sombra-baja;
+
+  &__cabecera {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  &__titulo { font-size: 1.125rem; font-weight: 700; }
+
+  &__grilla {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2rem;
+  }
+
+  &__fila {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-pizarra-50;
+    padding-bottom: 0.5rem;
+  }
+
+  &__clave { font-size: 0.875rem; font-weight: 500; color: $color-pizarra-400; }
+  &__valor { font-size: 0.875rem; font-weight: 700; color: $color-en-superficie;
+    &--primario { color: $color-esmeralda-700; }
+  }
+}
+
+.icono-primario { color: $color-esmeralda-700; }
+
+// Panel Movimientos
+.panel-movimientos {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-2xl;
+  box-shadow: $sombra-baja;
+  overflow: hidden;
+  margin-top: 1rem;
+
+  &__cabecera {
+    padding: 2rem;
+    border-bottom: 1px solid $color-pizarra-50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__titulo {
+    font-size: 1.25rem; font-weight: 700;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  &__contenedor-tabla { overflow-x: auto; }
+}
+
+.tabla-datos {
+  width: 100%; border-collapse: collapse; text-align: left;
+  &__cabecera { background-color: rgba($color-pizarra-50, 0.5); }
+  &__encabezado {
+    padding: 1rem 2rem;
+    font-size: 0.75rem; font-weight: 700;
+    color: $color-pizarra-500;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  &__cuerpo tr {
+    border-bottom: 1px solid $color-pizarra-50;
+    transition: background-color 0.2s ease;
+    &:hover { background-color: $color-superficie-contenedor-bajo; }
+  }
+  &__celda { padding: 1.25rem 2rem; font-size: 0.875rem; }
+}
+
+.etiqueta-tipo {
+  padding: 0.25rem 0.75rem; border-radius: $radio-completo;
+  font-size: 0.625rem; font-weight: 700; text-transform: uppercase;
+
+  &--entrada { background-color: $color-esmeralda-50; color: $color-esmeralda-700; }
+  &--salida { background-color: rgba($color-naranja-400, 0.1); color: $color-naranja-500; }
+  &--traslado { background-color: #eff6ff; color: #2563eb; }
+}
+
+.text-pizarra-400 { color: $color-pizarra-400; }
+.text-pizarra-600 { color: $color-pizarra-600; }
+.text-esmeralda { color: $color-esmeralda-700; }
+.text-terciario { color: $color-terciario; }
+.font-bold { font-weight: 700; color: $color-en-superficie; }

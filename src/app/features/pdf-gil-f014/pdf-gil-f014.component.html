@@ -1,0 +1,161 @@
+<div class="pdf-vista">
+  
+  <!-- Toolbar Superior -->
+  <div class="toolbar">
+    <div class="toolbar__info">
+      <div class="icono-contenedor">
+        <span class="material-symbols-outlined icono-rojo">picture_as_pdf</span>
+      </div>
+      <div>
+        <h2 class="titulo-doc">Vista Previa: GIL-F-014_Inventario_2024.pdf</h2>
+        <p class="subtitulo-doc">Documento Oficial SENA</p>
+      </div>
+    </div>
+    <div class="toolbar__acciones">
+      <button class="boton-secundario" (click)="cerrarVistaPrevia()">
+        <span class="material-symbols-outlined">close</span>
+        Cerrar Vista Previa
+      </button>
+      <button class="boton-primario" (click)="descargar()">
+        <span class="material-symbols-outlined">download</span>
+        Descargar Ahora
+      </button>
+    </div>
+  </div>
+
+  <!-- Contenedor del Visor A4 -->
+  <div class="visor-contenedor">
+    
+    <!-- Hoja de Papel -->
+    <div class="hoja-papel">
+      
+      <!-- Encabezado Documento -->
+      <header class="doc-header">
+        <div class="doc-header__logo">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJSlkLKFKRSHBO_OOHVw8lpNgMhlcoWu1P7wvS3QoWiz-mZwjFhokjbVStJb2BrkeEHVlb2bWt62Apl3_cYcyk1mTdECV7viqhOdnYglkA_rSN-bIa_XtP_oWNEgdYnViHGZufCGVg0pVWeH24tev4VzAEIkTIE04NqGOPg9gXOzidVG1ulgVou7pn_QePJvUPzWmRW45494SzgcFn_Ic36leBo8Dt9eRlXEELbvJwbGaqHQy0N7-lGhRFhidgeaKgdtJyHDicxqPZ" alt="Logo SENA">
+        </div>
+        <div class="doc-header__titulo">
+          <p class="texto-proceso">Proceso Gestión de Infraestructura y Logística</p>
+          <p class="texto-formato">FORMATO SOLICITUD DE BIENES</p>
+        </div>
+        <div class="doc-header__meta">
+          <div class="meta-item"><span>Código:</span> <strong>GIL-F-014</strong></div>
+          <div class="meta-item"><span>Versión:</span> <strong>04</strong></div>
+          <div class="meta-item"><span>Fecha:</span> <strong>15/03/2024</strong></div>
+        </div>
+      </header>
+
+      <!-- Info Meta -->
+      <div class="info-meta">
+        <div class="info-meta__item">
+          <span class="etiqueta">Regional:</span>
+          <span class="valor">Distrito Capital</span>
+        </div>
+        <div class="info-meta__item">
+          <span class="etiqueta">Centro de Formación:</span>
+          <span class="valor">Centro de Gestión Administrativa</span>
+        </div>
+        <div class="info-meta__item">
+          <span class="etiqueta">Solicitante:</span>
+          <span class="valor">Admin_Precision_Ledger</span>
+        </div>
+        <div class="info-meta__item">
+          <span class="etiqueta">Fecha de Solicitud:</span>
+          <span class="valor">12 de Octubre, 2024</span>
+        </div>
+      </div>
+
+      <!-- Tabla Items -->
+      <div class="tabla-doc-contenedor">
+        <table class="tabla-doc">
+          <thead>
+            <tr>
+              <th class="w-item">Ítem</th>
+              <th>Descripción de Bienes</th>
+              <th class="w-unidad">Unidad</th>
+              <th class="w-cant">Cant.</th>
+              <th class="w-obs">Observaciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="centrado">01</td>
+              <td>Portátil Corporativo Core i7 16GB RAM - Serial: SN-9283-A</td>
+              <td class="centrado">UND</td>
+              <td class="centrado">05</td>
+              <td class="obs">Asignación Aula 402</td>
+            </tr>
+            <tr>
+              <td class="centrado">02</td>
+              <td>Monitor Ultrawide 34" Curvo para Diseño Gráfico</td>
+              <td class="centrado">UND</td>
+              <td class="centrado">02</td>
+              <td class="obs">Reposición por daño</td>
+            </tr>
+            <tr>
+              <td class="centrado">03</td>
+              <td>Silla Ergonómica con Soporte Lumbar Ajustable</td>
+              <td class="centrado">UND</td>
+              <td class="centrado">10</td>
+              <td class="obs">Dotación personal planta</td>
+            </tr>
+            <!-- Filas Vacias -->
+            <tr class="h-vacio"><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr class="h-vacio"><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Firmas -->
+      <div class="seccion-firmas">
+        
+        <div class="caja-firma">
+          <div class="firma-linea">
+            <p class="titulo-firma">SOLICITANTE</p>
+            <p class="subtitulo-firma">Nombre y Cédula</p>
+          </div>
+        </div>
+
+        <div class="caja-firma firma-autoriza">
+          <!-- Sello Marca de Agua -->
+          <div class="sello-agua">
+            <span class="material-symbols-outlined">verified</span>
+          </div>
+          <div class="firma-linea z-10">
+            <p class="titulo-firma">AUTORIZA</p>
+            <p class="subtitulo-firma">Coordinador de Área</p>
+          </div>
+        </div>
+
+        <div class="caja-firma">
+          <div class="firma-linea">
+            <p class="titulo-firma">ENTREGA</p>
+            <p class="subtitulo-firma">Almacén / Logística</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pie de Pagina Doc -->
+      <footer class="doc-footer">
+        Este documento es propiedad del Servicio Nacional de Aprendizaje - SENA. Cualquier reproducción no autorizada será sancionada de acuerdo con la normatividad vigente. <br> Documento generado automáticamente por el sistema Precision Ledger para la Gestión de Bienes.
+      </footer>
+
+    </div>
+
+  </div>
+
+  <!-- Controles Inferiores Flotantes -->
+  <div class="controles-flotantes">
+    <div class="zoom-control">
+      <span class="material-symbols-outlined text-xl">zoom_in</span>
+      <span>100%</span>
+    </div>
+    <div class="paginacion-control">
+      <button><span class="material-symbols-outlined">first_page</span></button>
+      <span class="texto-pagina">Página 1 de 1</span>
+      <button class="deshabilitado"><span class="material-symbols-outlined">last_page</span></button>
+    </div>
+  </div>
+
+</div>

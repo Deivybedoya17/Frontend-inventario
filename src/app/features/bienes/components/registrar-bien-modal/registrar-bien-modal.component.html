@@ -1,0 +1,111 @@
+<!-- Capa de Oscurecimiento (Overlay) -->
+<div class="modal-overlay" (click)="cerrarModal()">
+  
+  <!-- Contenedor del Modal -->
+  <div class="modal-contenedor" (click)="$event.stopPropagation()">
+    
+    <!-- Cabecera del Modal -->
+    <div class="modal-cabecera">
+      <div>
+        <h2 class="modal-titulo">Registrar Nuevo Bien</h2>
+        <p class="modal-descripcion">Complete los detalles para añadir un nuevo activo al inventario.</p>
+      </div>
+      <button class="boton-cerrar" (click)="cerrarModal()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Contenido del Modal (Formulario) -->
+    <div class="modal-cuerpo">
+      <form class="formulario-grilla">
+        
+        <!-- Nombre del Bien -->
+        <div class="campo-grupo ancho-completo">
+          <label class="campo-etiqueta">Nombre del Bien</label>
+          <input type="text" class="campo-input" placeholder="Ej: Impresora Láser Kyocera">
+        </div>
+
+        <!-- Código del Bien -->
+        <div class="campo-grupo">
+          <label class="campo-etiqueta">Código del Bien</label>
+          <input type="text" class="campo-input" placeholder="SENA-BN-000">
+        </div>
+
+        <!-- Categoría -->
+        <div class="campo-grupo">
+          <label class="campo-etiqueta">Categoría</label>
+          <select class="campo-select">
+            <option disabled selected>Seleccionar categoría</option>
+            <option>Muebles y Enseres</option>
+            <option>Equipo de Cómputo</option>
+            <option>Maquinaria</option>
+            <option>Vehículos</option>
+          </select>
+        </div>
+
+        <!-- Descripción -->
+        <div class="campo-grupo ancho-completo">
+          <label class="campo-etiqueta">Descripción</label>
+          <textarea class="campo-textarea" rows="3" placeholder="Detalles técnicos, especificaciones o estado físico..."></textarea>
+        </div>
+
+        <!-- Stock y Unidad -->
+        <div class="campo-grupo">
+          <label class="campo-etiqueta">Stock Mínimo</label>
+          <input type="number" class="campo-input" placeholder="0">
+        </div>
+        <div class="campo-grupo">
+          <label class="campo-etiqueta">Unidad de Medida</label>
+          <select class="campo-select">
+            <option>Unidad</option>
+            <option>Caja</option>
+            <option>Paquete</option>
+            <option>Metro</option>
+          </select>
+        </div>
+
+        <!-- Proveedor y Almacén -->
+        <div class="campo-grupo">
+          <label class="campo-etiqueta">Proveedor</label>
+          <select class="campo-select">
+            <option disabled selected>Seleccionar proveedor</option>
+            <option>Suministros SAS</option>
+            <option>Global Tech Colombia</option>
+            <option>Logística SENA</option>
+          </select>
+        </div>
+        <div class="campo-grupo">
+          <label class="campo-etiqueta">Código de Almacén</label>
+          <input type="text" class="campo-input" placeholder="ALM-CENTRO-01">
+        </div>
+
+        <!-- Valores Monetarios -->
+        <div class="campo-grupo">
+          <label class="campo-etiqueta">Valor Unitario (COP)</label>
+          <div class="campo-con-icono">
+            <span class="campo-icono-izquierdo">$</span>
+            <input type="number" class="campo-input-con-icono-izquierdo" placeholder="0.00">
+          </div>
+        </div>
+        <div class="campo-grupo">
+          <label class="campo-etiqueta">IVA %</label>
+          <div class="campo-con-icono">
+            <input type="number" class="campo-input-con-icono-derecho" value="19">
+            <span class="campo-icono-derecho">%</span>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Pie del Modal (Botones) -->
+    <div class="modal-pie">
+      <button class="boton-cancelar" (click)="cerrarModal()">Cancelar</button>
+      <button class="boton-guardar">
+        <span class="material-symbols-outlined">save</span>
+        Registrar Bien
+      </button>
+    </div>
+
+  </div>
+</div>

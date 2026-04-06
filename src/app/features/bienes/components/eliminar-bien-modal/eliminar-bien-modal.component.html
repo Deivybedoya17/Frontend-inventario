@@ -1,0 +1,46 @@
+<!-- Overlay -->
+<div class="modal-overlay" (click)="cerrarModal()">  
+  <!-- Modal -->
+  <div class="modal-eliminar" (click)="$event.stopPropagation()">
+    
+    <!-- Contenido Central -->
+    <div class="modal-eliminar__cuerpo">
+      <!-- Icono de Advertencia -->
+      <div class="modal-eliminar__icono-contenedor">
+        <span class="material-symbols-outlined modal-eliminar__icono">warning</span>
+      </div>
+      
+      <h2 class="modal-eliminar__titulo">¿Está seguro de que desea eliminar este bien?</h2>
+      <p class="modal-eliminar__descripcion">
+        Esta acción no se puede deshacer. Se borrarán permanentemente todos los registros históricos asociados.
+      </p>
+
+      <!-- Referencia al bien -->
+      <div class="modal-eliminar__referencia">
+        <div class="modal-eliminar__referencia-icono">
+          <span class="material-symbols-outlined">devices</span>
+        </div>
+        <div class="modal-eliminar__referencia-info">
+          <p class="modal-eliminar__referencia-etiqueta">Referencia al bien</p>
+          <p class="modal-eliminar__referencia-nombre">EQU-2024-001 - Portátil Dell Latitude 5420</p>
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <div class="modal-eliminar__acciones">
+        <button class="boton-eliminar" (click)="confirmarEliminacion()">
+          Eliminar Definitivamente
+        </button>
+        <button class="boton-cancelar-eliminar" (click)="cerrarModal()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+
+    <!-- Pie de seguridad -->
+    <div class="modal-eliminar__pie">
+      <span class="material-symbols-outlined modal-eliminar__pie-icono">security</span>
+      Confirmación de Seguridad del Sistema
+    </div>
+  </div>
+</div>

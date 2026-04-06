@@ -1,0 +1,151 @@
+<div class="editar-pagina">
+
+  <!-- Main Content Area -->
+  <main class="principal">
+    <div class="contenedor-centrado">
+      
+      <div class="cabecera">
+        <div>
+          <h2 class="cabecera__titulo">Editar Solicitud GIL-F-014</h2>
+          <p class="cabecera__subtitulo">Actualice la información de asignación de bienes de inventario.</p>
+        </div>
+        <div class="cabecera__badges">
+          <span class="badge-activo">Activo</span>
+          <span class="badge-id">ID: GIL-2023-0892</span>
+        </div>
+      </div>
+
+      <div class="grilla">
+        
+        <!-- Columna de Formularios -->
+        <div class="columna-formulario">
+          
+          <!-- Sec Info Solicitante -->
+          <div class="seccion-form">
+            <div class="seccion-form__cabecera">
+              <span class="material-symbols-outlined icono-verde">person</span>
+              <h3 class="seccion-form__titulo">Información del Solicitante</h3>
+            </div>
+            
+            <div class="campos-grid-2">
+              <div class="grupo-campo">
+                <label>Nombre Completo</label>
+                <input type="text" class="campo-input" [(ngModel)]="solicitud.solicitante.nombre">
+              </div>
+              <div class="grupo-campo">
+                <label>Identificación</label>
+                <input type="text" class="campo-input" [(ngModel)]="solicitud.solicitante.identificacion">
+              </div>
+              <div class="grupo-campo">
+                <label>Centro de Formación</label>
+                <input type="text" class="campo-input" [(ngModel)]="solicitud.solicitante.centro">
+              </div>
+              <div class="grupo-campo">
+                <label>Cargo</label>
+                <input type="text" class="campo-input" [(ngModel)]="solicitud.solicitante.cargo">
+              </div>
+            </div>
+          </div>
+
+          <!-- Sec Info Bien -->
+          <div class="seccion-form">
+            <div class="seccion-form__cabecera">
+              <span class="material-symbols-outlined icono-verde">inventory_2</span>
+              <h3 class="seccion-form__titulo">Detalles del Bien</h3>
+            </div>
+            
+            <div class="campos-grid-2">
+              <div class="grupo-campo col-span-2">
+                <label>Descripción del Equipo</label>
+                <input type="text" class="campo-input" [(ngModel)]="solicitud.bien.descripcion">
+              </div>
+              <div class="grupo-campo">
+                <label>Placa Inventario</label>
+                <input type="text" class="campo-input" [(ngModel)]="solicitud.bien.placa">
+              </div>
+              <div class="grupo-campo">
+                <label>Número de Serie</label>
+                <input type="text" class="campo-input" [(ngModel)]="solicitud.bien.serie">
+              </div>
+              <div class="grupo-campo">
+                <label>Estado Entrega</label>
+                <select class="campo-input" [(ngModel)]="solicitud.bien.estado">
+                  <option>Excelente</option>
+                  <option>Bueno</option>
+                  <option>Regular</option>
+                </select>
+              </div>
+              <div class="grupo-campo">
+                <label>Fecha de Asignación</label>
+                <input type="date" class="campo-input" [(ngModel)]="solicitud.bien.fecha">
+              </div>
+            </div>
+          </div>
+
+          <!-- Botones Accion -->
+          <div class="botones-accion">
+            <a routerLink="/detalle-gil-f014" class="boton-cancelar">Cancelar</a>
+            <button class="boton-guardar" (click)="guardarCambios()">Guardar Cambios</button>
+          </div>
+
+        </div>
+
+        <!-- Columna de Información Lateral (Sidebar Info) -->
+        <div class="columna-info">
+          
+          <!-- Historial -->
+          <div class="info-historial">
+            <h4 class="info-historial__titulo">
+              <span class="material-symbols-outlined">history</span>
+              Historial del Formato
+            </h4>
+            <div class="timeline">
+              <div class="timeline__item base">
+                <div class="timeline__icon timeline__icon--pasado">
+                  <span class="material-symbols-outlined">check</span>
+                </div>
+                <div class="timeline__contenido">
+                  <p class="timeline__texto-principal">Creado por Almacén</p>
+                  <p class="timeline__texto-secundario">14 Mayo, 2023 - 09:30 AM</p>
+                </div>
+              </div>
+              <div class="timeline__item actual">
+                <div class="timeline__icon timeline__icon--actual">
+                  <span class="material-symbols-outlined">edit</span>
+                </div>
+                <div class="timeline__contenido">
+                  <p class="timeline__texto-principal">Edición Actual</p>
+                  <p class="timeline__texto-secundario">Hoy - En proceso</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resumen -->
+          <div class="info-resumen">
+            <h4 class="info-resumen__titulo">Resumen de Bienes</h4>
+            <p class="info-resumen__desc">
+              Este formulario representa el soporte legal de la entrega física de bienes a funcionarios. Cualquier modificación será registrada en la auditoría del sistema.
+            </p>
+            <div class="info-resumen__footer">
+              <div class="valor-asegurado">
+                <span>Valor Asegurado</span>
+                <span>$3.250.000 COP</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Imagen Decorativa -->
+          <div class="imagen-decorativa">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTGH4OIkhgXE8-BA-PCI1lhsljA3bKfDhUY_zRWc3JsYTPcje_8PdiVmzrPTuC0FLNViRdifq1dre17wzJ0qQ36kYfHFKnWTzctUFKndjZMRMRNhJ5bUWJDIzbu9yf_mrzCGdp3dxMLlVSOGWzbmL8LpRwxFjlS6wlEQBxhQIG0jlrQ2-kKio40cfQxhzZaicXJ4IerDAbGjAUKBIQT9i4iiYyWBlllOyZv6co4bbEwP4jPN0FFA78MieOnUTbd_0NAT8FicHXxaUT" alt="Equipo">
+            <div class="imagen-decorativa__overlay">
+              <p>Referencia visual del activo asignado</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,282 @@
+@import '../../../styles/variables';
+
+.crear-gil-pagina {
+  max-width: 72rem; // 6xl max-width
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+// Cabecera
+.crear-gil-cabecera {
+  margin-bottom: 2.5rem;
+
+  &__titulo {
+    font-size: 1.875rem;
+    font-weight: 800;
+    font-family: $fuente-titular;
+    color: $color-en-superficie;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+  }
+
+  &__subtitulo {
+    font-size: 1rem;
+    font-weight: 500;
+    color: $color-en-superficie-variante;
+  }
+}
+
+// Formularios
+.panel-formulario {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-xl;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.formulario-grilla {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  
+  @media (min-width: 768px) { 
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3rem;
+  }
+}
+
+.formulario-columna {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.grupo-campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.etiqueta-campo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-contorno;
+  margin-bottom: 0.5rem;
+}
+
+.campo-bloqueado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $color-superficie-contenedor-bajo;
+  padding: 0.75rem 1rem;
+  border-radius: $radio-xl;
+  border: 1px solid transparent;
+
+  span {
+    color: $color-en-superficie;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .icono-candado {
+    color: $color-pizarra-400;
+    font-size: 1.125rem;
+  }
+}
+
+.campo-input, .campo-select, .campo-textarea {
+  width: 100%;
+  background-color: $color-superficie-contenedor-bajo;
+  border: none;
+  border-radius: $radio-xl;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $color-en-superficie;
+  transition: all 0.2s;
+  outline: none;
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba($color-primario, 0.2);
+  }
+}
+
+// Prefacturas Disponibles
+.seccion-prefacturas {
+  margin-bottom: 2rem;
+
+  &__cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  &__titulo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $color-en-superficie;
+  }
+}
+
+.boton-enlace-secundario {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: $color-primario;
+  font-size: 0.875rem;
+  font-weight: 700;
+  background: none; border: none; cursor: pointer;
+  
+  &:hover { text-decoration: underline; }
+}
+
+.grilla-prefacturas {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.tarjeta-pf {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-xl;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &--activa {
+    border-color: $color-primario;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  &--inactiva {
+    border-color: transparent;
+    &:hover { border-color: rgba($color-contorno-variante, 0.3); }
+
+    .tarjeta-pf__id { color: $color-pizarra-400; }
+    .tarjeta-pf__total { color: $color-pizarra-400; }
+    .tarjeta-pf__conteo { background-color: $color-pizarra-100; color: $color-pizarra-400; }
+    .tarjeta-pf__cuerpo { filter: grayscale(100%); opacity: 0.6; }
+  }
+
+  &__cabecera {
+    padding: 1.25rem;
+    border-bottom: 1px solid $color-superficie-contenedor;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__identificador {
+    display: flex;
+    align-items: center;
+  }
+
+  &__checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    border: 2px solid $color-contorno-variante;
+    margin-right: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+
+    &--marcado {
+      background-color: $color-primario;
+      border-color: $color-primario;
+      color: white;
+    }
+  }
+
+  &__id { font-weight: 700; color: $color-en-superficie; font-size: 1rem; }
+  &__area { font-size: 0.75rem; color: $color-en-superficie-variante; }
+
+  &__resumen { text-align: right; }
+  &__conteo {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background-color: rgba($color-primario-contenedor, 0.1);
+    color: $color-primario;
+    padding: 0.125rem 0.5rem;
+    border-radius: $radio-full;
+    display: inline-block;
+    margin-bottom: 0.25rem;
+  }
+  &__total { font-weight: 700; color: $color-en-superficie; font-size: 1rem; }
+
+  &__cuerpo {
+    padding: 1rem;
+    background-color: rgba($color-superficie-contenedor-bajo, 0.5);
+  }
+}
+
+.lista-items-pf {
+  list-style: none; padding: 0; margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    color: $color-en-superficie-variante;
+  }
+
+  &__icono { font-size: 1rem; color: $color-pizarra-400; margin-right: 0.5rem; }
+}
+.material-symbols-outlined--pequeno { font-size: 14px; }
+
+// Observaciones
+.seccion-observaciones {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-xl;
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+// Botones Acciones
+.grupo-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+}
+
+.boton-cancelar {
+  padding: 0.75rem 2rem;
+  border-radius: $radio-full;
+  color: $color-pizarra-600;
+  font-weight: 700;
+  background-color: transparent;
+  border: none; cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+
+  &:hover { background-color: $color-superficie-contenedor; }
+  &:active { transform: scale(0.95); }
+}
+
+.boton-guardar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2.5rem;
+  border-radius: $radio-full;
+  background: $gradiente-primario;
+  color: white;
+  font-weight: 700;
+  border: none; cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba($color-primario, 0.2);
+  transition: all 0.2s;
+
+  &:hover { opacity: 0.9; }
+  &:active { transform: scale(0.95); }
+}

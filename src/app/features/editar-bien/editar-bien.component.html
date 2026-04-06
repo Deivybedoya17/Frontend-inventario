@@ -1,0 +1,125 @@
+<div class="editar">
+  <!-- Botón Volver -->
+  <a routerLink="/bienes" class="boton-volver">
+    <span class="material-symbols-outlined">arrow_back</span>
+    Volver a Gestión de Bienes
+  </a>
+
+  <!-- Breadcrumbs -->
+  <nav class="editar__breadcrumbs">
+    <span>Inventario</span>
+    <span class="material-symbols-outlined editar__breadcrumbs-sep">chevron_right</span>
+    <span class="editar__breadcrumbs-activo">Editar Bien</span>
+  </nav>
+
+  <!-- Cabecera -->
+  <div class="editar__encabezado">
+    <h1 class="titular editar__titulo">Editar Bien</h1>
+    <p class="editar__descripcion">Actualice la información técnica y administrativa del activo en el sistema.</p>
+  </div>
+
+  <div class="editar__cuadricula">
+    <!-- Columna Izquierda: Imagen & Estado -->
+    <div class="editar__col-imagen">
+      <div class="tarjeta-imagen-editar">
+        <div class="tarjeta-imagen-editar__placeholder">
+          <div class="tarjeta-imagen-editar__overlay">
+            <span class="material-symbols-outlined">photo_camera</span>
+          </div>
+          <span class="material-symbols-outlined tarjeta-imagen-editar__icono">laptop_mac</span>
+          <p class="tarjeta-imagen-editar__texto">{{ bien().nombre }}</p>
+        </div>
+      </div>
+
+      <div class="tarjeta-estado-editar">
+        <label class="tarjeta-estado-editar__label">Estado del Activo</label>
+        <div class="tarjeta-estado-editar__caja">
+          <div class="tarjeta-estado-editar__indicador">
+            <span class="tarjeta-estado-editar__punto"></span>
+            <span class="tarjeta-estado-editar__texto">{{ bien().estado }}</span>
+          </div>
+          <span class="material-symbols-outlined tarjeta-estado-editar__icono-swap">swap_vert</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Formulario -->
+    <div class="editar__col-formulario">
+      <form class="formulario-editar">
+        <div class="formulario-editar__grilla">
+          <!-- Nombre -->
+          <div class="campo-grupo ancho-completo">
+            <label class="campo-etiqueta">Nombre del Bien</label>
+            <div class="campo-con-check">
+              <input type="text" class="campo-input" [value]="bien().nombre" placeholder="Ingrese nombre del equipo">
+              <span class="material-symbols-outlined campo-check-icono">check_circle</span>
+            </div>
+          </div>
+
+          <!-- Código (Disabled) -->
+          <div class="campo-grupo">
+            <label class="campo-etiqueta">Código Interno (EQU)</label>
+            <input type="text" class="campo-input campo-input--deshabilitado" [value]="bien().codigo" disabled>
+          </div>
+
+          <!-- Categoría -->
+          <div class="campo-grupo">
+            <label class="campo-etiqueta">Categoría</label>
+            <select class="campo-select">
+              <option selected>Equipos de Cómputo</option>
+              <option>Mobiliario</option>
+              <option>Herramientas Industriales</option>
+            </select>
+          </div>
+
+          <!-- Stock con botones +/- -->
+          <div class="campo-grupo">
+            <label class="campo-etiqueta">Stock Actual</label>
+            <div class="campo-stepper">
+              <button type="button" class="campo-stepper__boton">
+                <span class="material-symbols-outlined">remove</span>
+              </button>
+              <input type="number" class="campo-stepper__input" [value]="bien().stock">
+              <button type="button" class="campo-stepper__boton">
+                <span class="material-symbols-outlined">add</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Stock Mínimo -->
+          <div class="campo-grupo">
+            <label class="campo-etiqueta">Stock Mínimo Alerta</label>
+            <input type="number" class="campo-input" [value]="bien().stockMinimo">
+            <p class="campo-nota-alerta">Se notificará al llegar a este límite.</p>
+          </div>
+
+          <!-- Valor -->
+          <div class="campo-grupo ancho-completo">
+            <label class="campo-etiqueta">Valor Unitario (COP)</label>
+            <div class="campo-con-prefijo">
+              <span class="campo-prefijo">$</span>
+              <input type="text" class="campo-input-con-prefijo" [value]="bien().valorUnitario">
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="formulario-editar__acciones">
+          <a routerLink="/bienes" class="boton-cancelar-editar">Cancelar</a>
+          <button type="submit" class="boton-guardar-editar">
+            <span class="material-symbols-outlined">save</span>
+            Guardar Cambios
+          </button>
+        </div>
+      </form>
+
+      <!-- Audit Info -->
+      <div class="info-auditoria">
+        <span class="material-symbols-outlined info-auditoria__icono">history</span>
+        <p class="info-auditoria__texto">
+          Última modificación: <strong>12 Oct 2024, 08:34 AM</strong> por <span class="info-auditoria__usuario">Admin_Sena_Bogota</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

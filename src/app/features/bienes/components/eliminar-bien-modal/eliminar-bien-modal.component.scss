@@ -1,0 +1,167 @@
+@import '../../../../../styles/variables';
+
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+  background-color: rgba($color-pizarra-950, 0.4);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-eliminar {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  width: 100%;
+  max-width: 32rem;
+  border-radius: $radio-2xl;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+  border: 1px solid rgba($color-pizarra-200, 0.5);
+  overflow: hidden;
+  animation: zoomIn 0.3s ease-out forwards;
+
+  &__cuerpo {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__icono-contenedor {
+    width: 5rem; height: 5rem;
+    background-color: rgba($color-terciario-contenedor, 0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  &__icono {
+    color: $color-terciario;
+    font-size: 2.25rem;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+
+  &__titulo {
+    font-family: $fuente-titular;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $color-en-superficie;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.75rem;
+  }
+
+  &__descripcion {
+    color: $color-secundario-texto;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 24rem;
+  }
+
+  &__referencia {
+    width: 100%;
+    background-color: $color-superficie-contenedor;
+    padding: 1.5rem;
+    border-radius: $radio-xl;
+    border: 1px solid $color-pizarra-100;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    text-align: left;
+  }
+
+  &__referencia-icono {
+    width: 3rem; height: 3rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: $sombra-baja;
+    flex-shrink: 0;
+    span { color: $color-pizarra-400; }
+  }
+
+  &__referencia-etiqueta {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $color-pizarra-500;
+    margin-bottom: 0.25rem;
+  }
+
+  &__referencia-nombre {
+    font-family: $fuente-titular;
+    font-weight: 700;
+    color: $color-esmeralda-900;
+    line-height: 1.25;
+  }
+
+  &__acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+
+    @media (min-width: 640px) {
+      flex-direction: row;
+    }
+  }
+
+  &__pie {
+    padding: 1rem 2.5rem;
+    background-color: $color-pizarra-50;
+    border-top: 1px solid $color-pizarra-100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $color-pizarra-400;
+  }
+
+  &__pie-icono { font-size: 0.875rem; }
+}
+
+.boton-eliminar {
+  flex: 1;
+  background-color: $color-terciario;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: $radio-2xl;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba($color-terciario, 0.2);
+  transition: all 0.2s ease;
+
+  &:hover { background-color: $color-en-terciario-fijo-variante; }
+  &:active { transform: scale(0.95); }
+}
+
+.boton-cancelar-eliminar {
+  flex: 1;
+  background-color: white;
+  color: $color-pizarra-600;
+  padding: 1rem 1.5rem;
+  border-radius: $radio-2xl;
+  font-weight: 700;
+  border: 1px solid $color-pizarra-200;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover { background-color: $color-pizarra-50; }
+  &:active { transform: scale(0.95); }
+}

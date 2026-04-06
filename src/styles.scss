@@ -1,0 +1,104 @@
+@import 'styles/variables';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+// Reseteo básico y variables nativas
+:root {
+  font-family: $fuente-cuerpo;
+  color: $color-en-fondo;
+  background-color: $color-superficie;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, .titular {
+  font-family: $fuente-titular;
+}
+
+// Iconografía
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+
+// Clases de utilería comunes según el HTML base
+.texto-centrado {
+  text-align: center;
+}
+
+.texto-derecha {
+  text-align: right;
+}
+
+.fuente-negrita {
+  font-weight: 700;
+}
+
+.fuente-seminegrita {
+  font-weight: 600;
+}
+
+.fuente-mediana {
+  font-weight: 500;
+}
+
+.cursor-puntero {
+  cursor: pointer;
+}
+
+.transicion-suave {
+  transition: all 0.3s ease;
+}
+
+// Layout principal
+.layout-principal {
+  display: flex;
+  min-height: 100vh;
+}
+
+.contenido-principal {
+  margin-left: 16rem; /* 256px de la barra lateral */
+  flex: 1;
+  min-height: 100vh;
+  padding-top: 6rem; /* 96px para dar espacio a la cabecera fija */
+  padding-bottom: 3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.oculto {
+  display: none;
+}
+
+// Botón de navegación "Volver" reutilizable
+.boton-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $color-pizarra-500;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: $radio-xl;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: $color-esmeralda-700;
+    background-color: rgba($color-esmeralda-50, 0.8);
+  }
+
+  span { font-size: 1.125rem; }
+}

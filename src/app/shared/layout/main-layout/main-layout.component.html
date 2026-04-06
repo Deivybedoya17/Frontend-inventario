@@ -1,0 +1,14 @@
+<div class="layout-principal">
+  <!-- Barra lateral siempre visible -->
+  <app-barra-lateral></app-barra-lateral>
+
+  <!-- Área de contenido que fluye a la derecha -->
+  <main class="contenido-principal">
+    <app-barra-superior></app-barra-superior>
+    
+    <!-- Aquí se renderizan las vistas de las páginas hijas (Dashboard, Bienes, Prefacturas) -->
+    <div class="contenido-principal__contenedor">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

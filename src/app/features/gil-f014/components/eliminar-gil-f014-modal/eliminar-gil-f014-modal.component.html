@@ -1,0 +1,44 @@
+<div class="modal-overlay">
+  <!-- Backdrop -->
+  <div class="modal-backdrop" (click)="onCancelar()"></div>
+
+  <!-- Modal Container -->
+  <div class="modal-contenedor">
+    <!-- Top Accent -->
+    <div class="modal-acento"></div>
+
+    <div class="modal-contenido">
+      <!-- Icono -->
+      <div class="icono-alerta">
+        <span class="material-symbols-outlined">warning</span>
+      </div>
+
+      <!-- Texto -->
+      <div class="texto-alerta">
+        <h3 class="texto-alerta__titulo">¿Estás seguro de que deseas eliminar esta solicitud?</h3>
+        <p class="texto-alerta__desc">
+          Esta acción no se puede deshacer. Se eliminarán permanentemente todos los registros asociados al formato 
+          <span class="font-bold text-en-superficie">{{ elementoId }}</span> del sistema.
+        </p>
+      </div>
+
+      <!-- Acciones -->
+      <div class="acciones-alerta">
+        <button class="boton-eliminar" (click)="onConfirmar()">
+          <span class="material-symbols-outlined">delete_forever</span>
+          Eliminar Solicitud
+        </button>
+        <button class="boton-cancelar" (click)="onCancelar()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer Context -->
+    <div class="modal-pie">
+      <span class="material-symbols-outlined">info</span>
+      <span>Identificador: GIL-F-014-SYS-92</span>
+    </div>
+
+  </div>
+</div>

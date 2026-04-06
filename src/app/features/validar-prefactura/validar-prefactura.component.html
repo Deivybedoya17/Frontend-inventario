@@ -1,0 +1,192 @@
+<div class="validar-pf-pagina">
+  <!-- Cabecera -->
+  <div class="validar-pf-cabecera">
+    <div>
+      <nav class="miga-de-pan">
+        <a routerLink="/prefacturas" class="miga-de-pan__enlace">Pre-Facturas</a>
+        <span class="material-symbols-outlined miga-de-pan__separador">chevron_right</span>
+        <span class="miga-de-pan__actual">Validación</span>
+      </nav>
+      <h2 class="validar-pf-cabecera__titulo">Validar Pre Factura #{{ data().numero }}</h2>
+    </div>
+    <div class="validar-pf-cabecera__estado-container">
+      <span class="etiqueta-estado etiqueta-estado--pendiente">
+        <span class="etiqueta-estado__punto"></span>
+        {{ data().estado }}
+      </span>
+    </div>
+  </div>
+
+  <div class="validar-pf-grilla">
+    <!-- Columna Izquierda: Detalles e Ítems -->
+    <div class="validar-pf-grilla__col-principal">
+      
+      <!-- Resumen Transacción -->
+      <section class="tarjeta-resumen">
+        <h3 class="tarjeta-resumen__titulo">
+          <span class="material-symbols-outlined">info</span>
+          Resumen de la Transacción
+        </h3>
+        <div class="tarjeta-resumen__grilla">
+          <div class="campo-dato">
+            <span class="campo-dato__etiqueta">Proveedor</span>
+            <span class="campo-dato__valor">{{ data().proveedor }}</span>
+          </div>
+          <div class="campo-dato">
+            <span class="campo-dato__etiqueta">Fecha Emisión</span>
+            <span class="campo-dato__valor">{{ data().fechaEmision }}</span>
+          </div>
+          <div class="campo-dato">
+            <span class="campo-dato__etiqueta">Centro de Costos</span>
+            <span class="campo-dato__valor">{{ data().centroCostos }}</span>
+          </div>
+          <div class="campo-dato">
+            <span class="campo-dato__etiqueta">Responsable</span>
+            <span class="campo-dato__valor">{{ data().responsable }}</span>
+          </div>
+          <div class="campo-dato">
+            <span class="campo-dato__etiqueta">Moneda</span>
+            <span class="campo-dato__valor">{{ data().moneda }}</span>
+          </div>
+          <div class="campo-dato">
+            <span class="campo-dato__etiqueta">Método Pago</span>
+            <span class="campo-dato__valor">{{ data().metodoPago }}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ítems -->
+      <section class="tarjeta-items">
+        <div class="tarjeta-items__cabecera">
+          <h3 class="tarjeta-items__titulo">
+            <span class="material-symbols-outlined">list_alt</span>
+            Ítems para Revisión
+          </h3>
+          <span class="tarjeta-items__contador">{{ items().length }} Ítems detectados</span>
+        </div>
+        
+        <div class="tarjeta-items__tabla-contenedor">
+          <table class="tabla-detalles-pf">
+            <thead>
+              <tr>
+                <th class="tabla-detalles-pf__th">Descripción de Bien</th>
+                <th class="tabla-detalles-pf__th tabla-detalles-pf__th--centro">Cant.</th>
+                <th class="tabla-detalles-pf__th tabla-detalles-pf__th--derecha">Precio Unit.</th>
+                <th class="tabla-detalles-pf__th tabla-detalles-pf__th--derecha">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of items(); track item.id) {
+                <tr class="tabla-detalles-pf__fila">
+                  <td class="tabla-detalles-pf__celda">
+                    <div class="item-info">
+                      <div class="item-info__icono-caja" [class.item-info__icono-caja--alerta]="item.alerta">
+                        <span class="material-symbols-outlined">{{ item.icono }}</span>
+                      </div>
+                      <div>
+                        <p class="item-info__nombre">{{ item.descripcion }}</p>
+                        @if (item.alerta) {
+                          <p class="item-info__alerta">{{ item.alerta }}</p>
+                        } @else {
+                          <p class="item-info__id">ID: {{ item.id }}</p>
+                        }
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tabla-detalles-pf__celda tabla-detalles-pf__celda--centro font-medium">{{ item.cantidad | number:'2.0-0' }}</td>
+                  <td class="tabla-detalles-pf__celda tabla-detalles-pf__celda--derecha font-medium">$ {{ item.precioUnitario | number:'1.2-2' }}</td>
+                  <td class="tabla-detalles-pf__celda tabla-detalles-pf__celda--derecha tabla-detalles-pf__celda--fuerte">$ {{ item.subtotal | number:'1.2-2' }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Totales -->
+        <div class="tarjeta-items__totales">
+          <div class="totales-contenedor">
+            <div class="totales-fila">
+              <span class="totales-fila__etiqueta">Subtotal</span>
+              <span class="totales-fila__valor font-medium">$ {{ data().subtotal | number:'1.2-2' }}</span>
+            </div>
+            <div class="totales-fila">
+              <span class="totales-fila__etiqueta">IVA (19%)</span>
+              <span class="totales-fila__valor font-medium">$ {{ data().iva | number:'1.2-2' }}</span>
+            </div>
+            <div class="totales-separador"></div>
+            <div class="totales-fila totales-fila--final">
+              <span class="totales-fila__etiqueta-final">Total</span>
+              <span class="totales-fila__valor-final">$ {{ data().total | number:'1.2-2' }}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Columna Derecha: Acciones y Trazabilidad -->
+    <div class="validar-pf-grilla__col-lateral">
+      
+      <!-- Panel de Validación -->
+      <section class="panel-validacion">
+        <div class="panel-validacion__cabecera">
+          <h3 class="panel-validacion__titulo">Acciones de Validación</h3>
+          <p class="panel-validacion__descripcion">Revise cuidadosamente los montos y cantidades antes de proceder con el registro contable.</p>
+        </div>
+        
+        <div class="panel-validacion__formulario">
+          <div class="campo-observacion">
+            <label class="campo-observacion__etiqueta">Observaciones del Validador</label>
+            <textarea class="campo-observacion__textarea" placeholder="Ingrese aquí cualquier discrepancia o anotación relevante para el rechazo o aprobación..." rows="6"></textarea>
+          </div>
+          
+          <div class="panel-validacion__acciones">
+            <button class="boton-aprobar">
+              <span class="material-symbols-outlined">verified</span>
+              Aprobar Pre-Factura
+            </button>
+            <button class="boton-rechazar">
+              <span class="material-symbols-outlined">block</span>
+              Rechazar
+            </button>
+          </div>
+          
+          <div class="panel-validacion__footer">
+            <div class="alerta-info">
+              <span class="material-symbols-outlined alerta-info__icono">shield_person</span>
+              <p class="alerta-info__texto">
+                Esta acción quedará registrada bajo su firma digital como <span class="font-bold">Validador Senior</span>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trazabilidad -->
+      <section class="panel-trazabilidad">
+        <h4 class="panel-trazabilidad__titulo">Trazabilidad</h4>
+        <div class="trazabilidad-lista">
+          <div class="trazabilidad-item">
+            <div class="trazabilidad-item__conector">
+              <div class="trazabilidad-item__punto trazabilidad-item__punto--activo"></div>
+              <div class="trazabilidad-item__linea"></div>
+            </div>
+            <div class="trazabilidad-item__contenido">
+              <p class="trazabilidad-item__evento trazabilidad-item__evento--activo">Generado por Sistema</p>
+              <p class="trazabilidad-item__fecha">24 Oct, 08:30 AM</p>
+            </div>
+          </div>
+          <div class="trazabilidad-item">
+            <div class="trazabilidad-item__conector">
+              <div class="trazabilidad-item__punto"></div>
+            </div>
+            <div class="trazabilidad-item__contenido">
+              <p class="trazabilidad-item__evento">Enviado a Validación</p>
+              <p class="trazabilidad-item__fecha">24 Oct, 09:12 AM</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

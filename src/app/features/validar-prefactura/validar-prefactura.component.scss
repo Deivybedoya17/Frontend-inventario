@@ -1,0 +1,517 @@
+@import '../../../styles/variables';
+
+.validar-pf-pagina {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+// Cabecera Principal
+.validar-pf-cabecera {
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  &__titulo {
+    font-size: 2.25rem;
+    font-weight: 800;
+    font-family: $fuente-titular;
+    color: $color-en-superficie;
+    letter-spacing: -0.025em;
+  }
+
+  &__estado-container {
+    display: flex;
+    gap: 0.75rem;
+  }
+}
+
+.miga-de-pan {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-family: $fuente-etiqueta;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-secundario;
+  margin-bottom: 0.5rem;
+
+  &__enlace {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+    &:hover { color: $color-primario; }
+  }
+
+  &__separador {
+    font-size: 0.625rem;
+  }
+
+  &__actual {
+    color: $color-en-superficie-variante;
+  }
+}
+
+.etiqueta-estado {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 1rem;
+  border-radius: $radio-full;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  &--pendiente {
+    background-color: $color-secundario-contenedor;
+    color: $color-en-secundario-contenedor;
+  }
+
+  &__punto {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    background-color: $color-secundario;
+  }
+}
+
+// Grilla Layout Bento
+.validar-pf-grilla {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &__col-principal {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    @media (min-width: 1024px) { grid-column: span 2; }
+  }
+
+  &__col-lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+// Resumen Transacción
+.tarjeta-resumen {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-2xl;
+  padding: 2rem;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.03);
+
+  &__titulo {
+    font-size: 1.125rem;
+    font-weight: 700;
+    font-family: $fuente-titular;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+
+    span {
+      color: $color-primario;
+    }
+  }
+
+  &__grilla {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2rem;
+    column-gap: 1rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.campo-dato {
+  &__etiqueta {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: $color-pizarra-400;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+  }
+
+  &__valor {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $color-en-superficie;
+  }
+}
+
+// Tarjeta Items
+.tarjeta-items {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-2xl;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.03);
+
+  &__cabecera {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba($color-contorno-variante, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__titulo {
+    font-size: 1.125rem;
+    font-weight: 700;
+    font-family: $fuente-titular;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    span { color: $color-primario; }
+  }
+
+  &__contador {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: $color-pizarra-500;
+  }
+
+  &__tabla-contenedor {
+    overflow-x: auto;
+  }
+
+  &__totales {
+    padding: 2rem;
+    background-color: rgba($color-superficie-contenedor-bajo, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+.tabla-detalles-pf {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+
+  thead {
+    background-color: $color-superficie-contenedor-bajo;
+  }
+
+  &__th {
+    padding: 1rem 1.5rem;
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: $color-pizarra-500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+
+    &--centro { text-align: center; }
+    &--derecha { text-align: right; }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid rgba($color-contorno-variante, 0.2);
+      transition: background-color 0.2s;
+      
+      &:hover { background-color: $color-superficie-contenedor-bajo; }
+      &:last-child { border-bottom: none; }
+    }
+  }
+
+  &__celda {
+    padding: 1.25rem 1.5rem;
+    font-size: 0.875rem;
+    color: $color-en-superficie;
+
+    &--centro { text-align: center; }
+    &--derecha { text-align: right; }
+    &--fuerte { font-weight: 700; }
+  }
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  &__icono-caja {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: $color-superficie-contenedor-alto;
+    border-radius: $radio-xl;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span { color: $color-pizarra-400; }
+
+    &--alerta {
+      background-color: rgba($color-terciario-contenedor, 0.1);
+      span { color: $color-terciario; }
+    }
+  }
+
+  &__nombre {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: $color-en-superficie;
+  }
+
+  &__id {
+    font-size: 0.625rem;
+    color: $color-pizarra-400;
+  }
+
+  &__alerta {
+    font-size: 0.625rem;
+    color: $color-terciario;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
+// Totales de la Tabla
+.totales-contenedor {
+  width: 100%;
+  max-width: 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.totales-fila {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+
+  &__etiqueta { color: $color-pizarra-500; }
+  &__valor { color: $color-en-superficie; }
+
+  &--final {
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  &__etiqueta-final {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $color-en-superficie;
+  }
+
+  &__valor-final {
+    font-size: 1.25rem;
+    font-weight: 900;
+    font-family: $fuente-titular;
+    color: $color-primario;
+  }
+}
+
+.totales-separador {
+  height: 1px;
+  background-color: rgba($color-contorno-variante, 0.4);
+  margin: 0.5rem 0;
+}
+
+// Panel de Validación (Lateral)
+.panel-validacion {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-2xl;
+  padding: 2rem;
+  box-shadow: 0 20px 25px -5px rgba($color-primario, 0.05);
+  border: 2px solid rgba($color-primario, 0.1);
+
+  &__cabecera { margin-bottom: 2rem; }
+  &__titulo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-family: $fuente-titular;
+    color: $color-en-superficie;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+  }
+  &__descripcion { font-size: 0.875rem; color: $color-pizarra-500; line-height: 1.5; }
+  &__formulario { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  &__acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1rem;
+  }
+
+  &__footer {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba($color-contorno-variante, 0.2);
+  }
+}
+
+.campo-observacion {
+  &__etiqueta {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: $color-pizarra-500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    padding-left: 0.25rem;
+  }
+
+  &__textarea {
+    width: 100%;
+    border-radius: $radio-xl;
+    background-color: $color-superficie-contenedor-bajo;
+    border: none;
+    padding: 1rem;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    color: $color-en-superficie;
+    box-sizing: border-box;
+    font-family: inherit;
+
+    &::placeholder { color: $color-pizarra-400; }
+    &:focus { outline: none; box-shadow: 0 0 0 2px rgba($color-primario, 0.2); }
+  }
+}
+
+.boton-aprobar {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: $radio-xl;
+  background: $gradiente-primario;
+  color: white;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba($color-primario, 0.2);
+  transition: all 0.2s;
+
+  span { font-size: 1.125rem; font-variation-settings: 'FILL' 1; }
+  &:hover { transform: scale(1.02); }
+  &:active { transform: scale(0.98); }
+}
+
+.boton-rechazar {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  border-radius: $radio-xl;
+  background: transparent;
+  color: $color-terciario;
+  font-weight: 700;
+  font-size: 0.875rem;
+  border: 2px solid $color-terciario;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+
+  span { font-size: 1.125rem; }
+  &:hover { background-color: rgba($color-terciario, 0.05); }
+}
+
+.alerta-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background-color: rgba($color-primario-contenedor, 0.1);
+  border-radius: $radio-lg;
+
+  &__icono { color: $color-primario; font-size: 1.25rem; }
+  &__texto { font-size: 0.6875rem; color: $color-en-primario-fijo-variante; line-height: 1.25; }
+}
+
+// Panel Trazabilidad
+.panel-trazabilidad {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-xl;
+  padding: 1.5rem;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.03);
+
+  &__titulo {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: $color-pizarra-400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+}
+
+.trazabilidad-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.trazabilidad-item {
+  display: flex;
+  gap: 0.75rem;
+
+  &__conector {
+    position: relative;
+    padding-top: 0.375rem;
+  }
+
+  &__punto {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: $color-pizarra-200;
+
+    &--activo { background-color: $color-primario; }
+  }
+
+  &__linea {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.2rem;
+    width: 2px;
+    height: 100%;
+    background-color: $color-superficie-contenedor-bajo;
+  }
+
+  &__contenido {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__evento {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: $color-pizarra-400;
+
+    &--activo { color: $color-en-superficie; }
+  }
+
+  &__fecha {
+    font-size: 0.625rem;
+    color: $color-pizarra-400;
+  }
+}
+
+.font-medium { font-weight: 500; }
+.font-bold { font-weight: 700; }

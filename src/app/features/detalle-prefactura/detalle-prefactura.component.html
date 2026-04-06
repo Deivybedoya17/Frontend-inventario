@@ -1,0 +1,127 @@
+<div class="detalle-pf-pagina">
+  <!-- Acciones Cabecera -->
+  <div class="detalle-pf-cabecera">
+    <div>
+      <nav class="miga-de-pan">
+        <a routerLink="/prefacturas" class="miga-de-pan__enlace">Pre-Facturas</a>
+        <span class="material-symbols-outlined miga-de-pan__separador">chevron_right</span>
+        <span class="miga-de-pan__actual__fuerte">Detalles</span>
+      </nav>
+      <h1 class="detalle-pf-cabecera__titulo">Detalles de Pre Factura #{{ data().numero }}</h1>
+    </div>
+    
+    <div class="detalle-pf-cabecera__acciones">
+      <a routerLink="/prefacturas" class="boton-regresar">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Regresar
+      </a>
+      <button class="boton-descargar">
+        <span class="material-symbols-outlined">picture_as_pdf</span>
+        Descargar PDF
+      </button>
+    </div>
+  </div>
+
+  <!-- Bento Layout Info -->
+  <div class="detalle-pf-info">
+    <!-- Instructor -->
+    <div class="tarjeta-info-pf">
+      <div class="tarjeta-info-pf__icono tarjeta-info-pf__icono--primario">
+        <span class="material-symbols-outlined">person</span>
+      </div>
+      <div>
+        <p class="tarjeta-info-pf__etiqueta">Información del Instructor</p>
+        <h3 class="tarjeta-info-pf__valor-principal">{{ data().instructor }}</h3>
+        <p class="tarjeta-info-pf__subvalor">Programa: {{ data().programa }}</p>
+      </div>
+    </div>
+
+    <!-- Estado & Fecha -->
+    <div class="tarjeta-info-pf tarjeta-info-pf--centro">
+      <div class="tarjeta-info-pf__grilla-interior">
+        <div>
+          <p class="tarjeta-info-pf__etiqueta">Fecha de Creación</p>
+          <p class="tarjeta-info-pf__valor-secundario">{{ data().fechaCreacion }}</p>
+        </div>
+        <div>
+          <p class="tarjeta-info-pf__etiqueta">Estado</p>
+          <span class="etiqueta-estado-oval">
+            {{ data().estado }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Referencia -->
+    <div class="tarjeta-referencia">
+      <span class="material-symbols-outlined tarjeta-referencia__bg-icono">receipt_long</span>
+      <p class="tarjeta-referencia__etiqueta">Referencia Interna</p>
+      <p class="tarjeta-referencia__valor">{{ data().referenciaInterna }}</p>
+    </div>
+  </div>
+
+  <!-- Items Table Area -->
+  <div class="panel-desglose">
+    <div class="panel-desglose__cabecera">
+      <h2 class="panel-desglose__titulo">Desglose de Ítems</h2>
+      <span class="panel-desglose__subtitulo">{{ items().length }} Ítems registrados</span>
+    </div>
+
+    <div class="panel-desglose__tabla-contenedor">
+      <table class="tabla-desglose">
+        <thead>
+          <tr class="tabla-desglose__fila-cabecera">
+            <th class="tabla-desglose__th">Nombre del Bien</th>
+            <th class="tabla-desglose__th">Código</th>
+            <th class="tabla-desglose__th tabla-desglose__th--centro">Cantidad</th>
+            <th class="tabla-desglose__th tabla-desglose__th--derecha">Precio Unitario</th>
+            <th class="tabla-desglose__th tabla-desglose__th--derecha">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody class="tabla-desglose__cuerpo">
+          @for (item of items(); track item.id) {
+            <tr class="tabla-desglose__fila">
+              <td class="tabla-desglose__celda">
+                <p class="tabla-desglose__nombre">{{ item.descripcion }}</p>
+                <p class="tabla-desglose__caracteristica">{{ item.caracteristicas }}</p>
+              </td>
+              <td class="tabla-desglose__celda">
+                <span class="tabla-desglose__badge">{{ item.id }}</span>
+              </td>
+              <td class="tabla-desglose__celda tabla-desglose__celda--centro font-medium">{{ item.cantidad | number:'2.0-0' }}</td>
+              <td class="tabla-desglose__celda tabla-desglose__celda--derecha">$ {{ item.precioUnitario | number:'1.2-2' }}</td>
+              <td class="tabla-desglose__celda tabla-desglose__celda--derecha tabla-desglose__celda--fuerte">$ {{ item.subtotal | number:'1.2-2' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Table Footer / Totals -->
+    <div class="panel-desglose__footer">
+      <div class="totales-tabla">
+        <div class="totales-tabla__fila">
+          <span class="totales-tabla__etiqueta">Subtotal Neto</span>
+          <span class="totales-tabla__valor font-semibold">$ {{ data().subtotal | number:'1.2-2' }}</span>
+        </div>
+        <div class="totales-tabla__fila">
+          <span class="totales-tabla__etiqueta">IVA (19%)</span>
+          <span class="totales-tabla__valor font-semibold">$ {{ data().iva | number:'1.2-2' }}</span>
+        </div>
+        <div class="totales-tabla__fila totales-tabla__fila--final">
+          <span class="totales-tabla__etiqueta-final">Total General</span>
+          <span class="totales-tabla__valor-final">$ {{ data().total | number:'1.2-2' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notas -->
+  <div class="notas-pf">
+    <span class="material-symbols-outlined notas-pf__icono">info</span>
+    <div>
+      <h4 class="notas-pf__titulo">Notas de Validación</h4>
+      <p class="notas-pf__texto">Esta pre-factura ha sido validada por el departamento de inventarios. Los precios reflejados corresponden a la lista oficial vigente para el segundo semestre del 2024. Los bienes serán asignados al programa de formación una vez se complete la firma digital del acta de entrega.</p>
+    </div>
+  </div>
+</div>

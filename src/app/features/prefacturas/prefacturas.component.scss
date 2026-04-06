@@ -1,0 +1,409 @@
+@import '../../../styles/variables';
+
+// ============================
+// Layout Principal
+// ============================
+.prefacturas {
+  &__cabecera {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+
+  &__titulo {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: $color-en-superficie;
+    letter-spacing: -0.025em;
+  }
+
+  &__descripcion { color: $color-secundario-texto; font-weight: 500; margin-top: 0.5rem; }
+
+  &__acciones-cabecera { display: flex; gap: 0.75rem; }
+
+  &__metricas-grilla {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+
+    @media (min-width: 640px) { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 1024px) { grid-template-columns: repeat(4, 1fr); }
+  }
+}
+
+// ============================
+// Botones Cabecera
+// ============================
+.boton-secundario-pf {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: $color-superficie-contenedor-bajo;
+  color: $color-en-superficie;
+  font-weight: 600; font-size: 0.875rem;
+  border: none; border-radius: $radio-xl;
+  cursor: pointer; transition: all 0.2s ease;
+  &:hover { background-color: $color-superficie-contenedor; }
+}
+
+.boton-primario-degradado-pf {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: $gradiente-primario;
+  color: white; font-weight: 700; font-size: 0.875rem;
+  border: none; border-radius: $radio-xl;
+  cursor: pointer; text-decoration: none;
+  box-shadow: 0 2px 8px rgba($color-primario, 0.15);
+  transition: all 0.2s ease;
+  &:hover { opacity: 0.9; }
+}
+
+// ============================
+// Tarjetas Métricas
+// ============================
+.tarjeta-metrica {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  padding: 1.5rem;
+  border-radius: $radio-2xl;
+  box-shadow: $sombra-baja;
+  border: 1px solid rgba($color-contorno-variante, 0.05);
+
+  &__cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  &__icono-caja {
+    width: 3rem; height: 3rem;
+    border-radius: $radio-xl;
+    display: flex; align-items: center; justify-content: center;
+
+    &--primario { background-color: rgba($color-primario-contenedor, 0.1); color: $color-primario; }
+    &--terciario { background-color: rgba($color-terciario-contenedor, 0.1); color: $color-terciario; }
+    &--secundario { background-color: rgba($color-secundario-contenedor, 0.2); color: $color-secundario; }
+  }
+
+  &__badge {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    color: $color-en-superficie-variante;
+    background-color: $color-superficie-contenedor-bajo;
+
+    &--terciario { color: $color-terciario; background-color: rgba($color-terciario-contenedor, 0.1); }
+    &--primario { color: $color-primario; background-color: rgba($color-primario-contenedor, 0.1); }
+  }
+
+  &__etiqueta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $color-en-superficie-variante;
+    margin-bottom: 0.25rem;
+  }
+
+  &__valor {
+    font-family: $fuente-titular;
+    font-size: 1.875rem;
+    font-weight: 900;
+    color: $color-en-superficie;
+  }
+}
+
+// ============================
+// Barra de Filtros
+// ============================
+.barra-filtros {
+  background-color: $color-superficie-contenedor-bajo;
+  padding: 1.5rem;
+  border-radius: $radio-2xl;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  &__campos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+  }
+
+  &__buscador {
+    position: relative;
+    min-width: 300px;
+    flex: 1;
+  }
+
+  &__buscador-icono {
+    position: absolute;
+    left: 1rem; top: 50%;
+    transform: translateY(-50%);
+    color: $color-en-superficie-variante;
+  }
+
+  &__buscador-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    background-color: $color-superficie-contenedor-mas-bajo;
+    border: none; border-radius: $radio-xl;
+    font-size: 0.875rem; font-weight: 500;
+    color: $color-en-superficie;
+    transition: box-shadow 0.2s ease;
+
+    &::placeholder { color: $color-pizarra-400; }
+    &:focus { outline: none; box-shadow: 0 0 0 2px rgba($color-primario, 0.2); }
+  }
+
+  &__select {
+    background-color: $color-superficie-contenedor-mas-bajo;
+    border: none; border-radius: $radio-xl;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem; font-weight: 500;
+    color: $color-en-superficie;
+    min-width: 160px;
+
+    &:focus { outline: none; box-shadow: 0 0 0 2px rgba($color-primario, 0.2); }
+    &--ancho { min-width: 200px; }
+  }
+
+  &__exportar { display: flex; gap: 0.75rem; }
+}
+
+.boton-exportar-icono {
+  padding: 0.75rem;
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border: none; border-radius: $radio-xl;
+  cursor: pointer; transition: all 0.2s ease;
+
+  &--excel { color: $color-primario; &:hover { background-color: white; } }
+  &--pdf { color: $color-terciario; &:hover { background-color: white; } }
+}
+
+// ============================
+// Panel Tabla
+// ============================
+.panel-tabla-pf {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-2xl;
+  box-shadow: $sombra-baja;
+  overflow: hidden;
+  border: 1px solid rgba($color-contorno-variante, 0.1);
+
+  &__encabezado {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba($color-contorno-variante, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__titulo { font-size: 1.25rem; font-weight: 700; }
+
+  &__contenedor { overflow-x: auto; }
+
+  &__paginacion {
+    padding: 1.5rem 2rem;
+    background-color: rgba($color-superficie-contenedor-bajo, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.boton-enlace-primario-pf {
+  background: none; border: none;
+  color: $color-primario;
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  &:hover { text-decoration: underline; }
+}
+
+// ============================
+// Tabla
+// ============================
+.tabla-pf {
+  width: 100%; border-collapse: collapse; text-align: left;
+
+  &__cabecera {
+    background-color: rgba($color-superficie-contenedor-bajo, 0.3);
+  }
+
+  &__th {
+    padding: 1.25rem 2rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: $color-en-superficie-variante;
+
+    &--derecha { text-align: right; }
+    &--centrado { text-align: center; }
+  }
+
+  &__fila {
+    transition: background-color 0.2s ease;
+    &:hover { background-color: $color-superficie-contenedor-bajo; }
+  }
+
+  &__celda {
+    padding: 2rem;
+    font-size: 0.875rem;
+    color: $color-en-superficie;
+    vertical-align: middle;
+    font-weight: 500;
+
+    &--secundario { color: $color-en-superficie-variante; }
+    &--derecha { text-align: right; }
+    &--centrado { text-align: center; }
+    &--negrita { font-weight: 700; }
+  }
+
+  &__numero { font-weight: 700; color: $color-primario; }
+
+  &__programa { display: flex; align-items: center; gap: 0.5rem; }
+  &__programa-punto {
+    width: 0.5rem; height: 0.5rem; border-radius: 50%;
+    &--primario { background-color: $color-primario; }
+    &--secundario { background-color: $color-secundario; }
+  }
+  &__programa-nombre { font-size: 0.875rem; font-weight: 600; }
+
+  &__acciones { display: flex; justify-content: center; gap: 0.75rem; }
+}
+
+// ============================
+// Etiquetas Estado
+// ============================
+.etiqueta-estado-pf {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 1rem;
+  border-radius: $radio-completo;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &--validada {
+    background-color: $color-primario-contenedor;
+    color: white;
+  }
+
+  &--pendiente {
+    background-color: $color-superficie-contenedor-alto;
+    color: $color-en-superficie-variante;
+  }
+}
+
+// ============================
+// Botones Acción Tabla
+// ============================
+.accion-boton-pf {
+  width: 2.25rem; height: 2.25rem;
+  border-radius: $radio-xl;
+  background-color: $color-superficie-contenedor-alto;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s ease;
+
+  span { font-size: 1.125rem; }
+
+  &--ver { color: $color-en-superficie;
+    &:hover { background-color: $color-primario; color: white; }
+  }
+
+  &--validar { color: $color-en-superficie;
+    &:hover { background-color: $color-primario-contenedor; color: white; }
+  }
+
+  &--eliminar { color: $color-terciario;
+    &:hover { background-color: $color-terciario; color: white; }
+  }
+
+  &--deshabilitado {
+    opacity: 0.4;
+    cursor: not-allowed;
+    &:hover { background-color: $color-superficie-contenedor-alto; color: $color-en-superficie; }
+  }
+}
+
+// ============================
+// Paginación
+// ============================
+.paginacion-pf {
+  &__info {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $color-en-superficie-variante;
+  }
+
+  &__controles { display: flex; gap: 0.5rem; }
+
+  &__boton {
+    width: 2.5rem; height: 2.5rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 0.5rem;
+    font-size: 0.875rem; font-weight: 700;
+    border: 1px solid rgba($color-contorno-variante, 0.2);
+    background-color: $color-superficie-contenedor-mas-bajo;
+    color: $color-en-superficie;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover { background-color: $color-superficie-contenedor-bajo; }
+
+    &--activo {
+      background-color: $color-primario;
+      color: white;
+      border-color: $color-primario;
+      &:hover { background-color: $color-esmeralda-700; }
+    }
+
+    &--icono {
+      color: $color-contorno;
+      span { font-size: 1.25rem; }
+    }
+  }
+}
+
+// ============================
+// FAB
+// ============================
+.fab-pf {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  width: 4rem; height: 4rem;
+  border-radius: 50%;
+  background-color: $color-primario-contenedor;
+  color: white;
+  border: none; cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  z-index: 50;
+
+  &:hover { transform: scale(1.1); }
+  &:active { transform: scale(0.95); }
+
+  &__icono { font-size: 1.75rem; }
+}

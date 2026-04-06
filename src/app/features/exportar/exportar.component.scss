@@ -1,0 +1,432 @@
+@import '../../../styles/variables';
+
+.exportar {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  &__cabecera {
+    margin-bottom: 2.5rem;
+  }
+
+  &__titulo {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: $color-en-superficie;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+  }
+
+  &__descripcion {
+    color: $color-secundario-texto;
+    max-width: 42rem;
+    line-height: 1.5;
+  }
+
+  &__cuadricula {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
+  &__panel-configuracion {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__panel-lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+// ============================
+// Tarjetas de Módulo (Claras)
+// ============================
+.tarjeta-modulo-ligero {
+  background-color: $color-superficie-contenedor-mas-bajo;
+  border-radius: $radio-xl;
+  padding: 2rem;
+  box-shadow: $sombra-baja;
+
+  &__cabecera {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__titulo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $color-pizarra-800;
+  }
+}
+
+.icono-primario { color: $color-esmeralda-600; }
+
+// ============================
+// Formularios y Filtros
+// ============================
+.grilla-filtros {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.campo-etiqueta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $color-pizarra-500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 0.25rem;
+}
+
+.campo-input, .campo-select {
+  flex: 1;
+  background-color: $color-superficie-contenedor-bajo;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  color: $color-en-superficie;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba($color-esmeralda-500, 0.2);
+  }
+}
+
+.campo-rango {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.campo-separador {
+  color: $color-pizarra-400;
+  font-size: 0.875rem;
+}
+
+.grilla-2-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.opcion-caja {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background-color: $color-superficie-contenedor-bajo;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &--exito:hover { background-color: $color-esmeralda-50; }
+  &--alerta:hover { background-color: rgba($color-terciario, 0.05); }
+
+  &__input {
+    border-radius: 0.25rem;
+    color: $color-esmeralda-600;
+
+    &:focus { box-shadow: 0 0 0 2px rgba($color-esmeralda-500, 0.2); }
+    
+    &--alerta {
+      color: $color-terciario;
+      &:focus { box-shadow: 0 0 0 2px rgba($color-terciario, 0.2); }
+    }
+  }
+
+  &__texto { font-size: 0.875rem; font-weight: 500; color: $color-pizarra-700; }
+}
+
+// ============================
+// Selector de Formatos
+// ============================
+.grilla-formatos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.formato-tarjeta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  border-radius: $radio-xl;
+  border: 2px solid transparent;
+  background-color: $color-superficie-contenedor-bajo;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover { background-color: $color-pizarra-200; }
+
+  &--activo {
+    border-color: $color-esmeralda-600;
+    background-color: $color-esmeralda-50;
+    &:hover { background-color: $color-esmeralda-50; }
+  }
+
+  &__radio {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    color: $color-esmeralda-600;
+  }
+
+  &__icono {
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+
+    &--excel { color: $color-esmeralda-700; }
+    &--pdf { color: #dc2626; } // Red para PDF
+    &--csv { color: $color-pizarra-600; }
+  }
+
+  &__nombre {
+    font-weight: 700;
+    color: $color-pizarra-700;
+
+    &--excel { color: $color-esmeralda-900; }
+  }
+
+  &__extension {
+    font-size: 0.75rem;
+    color: $color-pizarra-500;
+
+    &--excel { color: $color-esmeralda-600; }
+  }
+}
+
+// ============================
+// Tarjeta Oscura (Vista Previa)
+// ============================
+.tarjeta-oscura {
+  background-color: $color-pizarra-900; // Equivalente a zinc-900
+  color: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+
+  &__fondo-decorativo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8rem;
+    height: 8rem;
+    background-color: rgba($color-esmeralda-500, 0.1);
+    border-radius: 50%;
+    transform: translate(25%, -25%);
+    filter: blur(24px);
+  }
+
+  &__contenido { position: relative; z-index: 10; }
+
+  &__subtitulo {
+    color: $color-pizarra-400;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  &__titulo {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+
+  &__metricas {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  &__fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px solid rgba($color-pizarra-800, 1);
+    padding-bottom: 0.75rem;
+  }
+
+  &__etiqueta { color: $color-pizarra-400; font-size: 0.875rem; }
+
+  &__valor {
+    font-size: 1.125rem;
+    font-weight: 600;
+
+    &--esmeralda { color: $color-esmeralda-500; font-size: 1.5rem; font-weight: 700; }
+  }
+
+  &__info-box {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: rgba($color-pizarra-800, 0.5);
+    border-radius: $radio-xl;
+    border: 1px solid rgba($color-pizarra-700, 0.5);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  &__info-icono {
+    color: #fbbf24; // Amber 400
+    font-size: 0.875rem;
+    margin-top: 0.125rem;
+  }
+
+  &__info-texto {
+    font-size: 0.6875rem;
+    color: $color-pizarra-400;
+    line-height: 1.6;
+    font-style: italic;
+  }
+}
+
+// ============================
+// Botón Acción Principal
+// ============================
+.boton-accion-principal {
+  width: 100%;
+  background-color: $color-primario-contenedor;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba($color-esmeralda-900, 0.1);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $color-esmeralda-600;
+    .boton-accion-principal__icono { transform: rotate(12deg); }
+  }
+
+  &:active { transform: scale(0.95); }
+
+  &__contenedor {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__icono { font-weight: 700; transition: transform 0.2s ease; }
+
+  &__texto {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+
+  &__subtexto {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+  }
+}
+
+// ============================
+// Tarjeta Historial
+// ============================
+.tarjeta-historial {
+  background-color: rgba($color-superficie-contenedor-alto, 0.5);
+  border-radius: $radio-xl;
+  padding: 1.5rem;
+
+  &__titulo {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: $color-pizarra-500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+}
+
+.lista-historial {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.item-historial {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  &__icono-contenedor {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span { font-size: 0.875rem; }
+
+    &--excel { background-color: $color-esmeralda-100; color: $color-esmeralda-700; }
+    &--pdf { background-color: $color-pizarra-200; color: $color-pizarra-600; }
+  }
+
+  &__nombre { font-size: 0.6875rem; font-weight: 700; color: $color-pizarra-700; line-height: 1.25; }
+  &__meta { font-size: 0.5625rem; color: $color-pizarra-500; }
+
+  &__boton-descarga {
+    background: transparent;
+    border: none;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    span { font-size: 1.125rem; }
+
+    &--excel {
+      color: $color-esmeralda-700;
+      &:hover { background-color: $color-esmeralda-100; }
+    }
+    &--pdf {
+      color: $color-pizarra-600;
+      &:hover { background-color: $color-pizarra-200; }
+    }
+  }
+}
