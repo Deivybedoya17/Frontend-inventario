@@ -1,0 +1,191 @@
+<div class="factura-global-pagina">
+  
+  <!-- Header Actions -->
+  <div class="cabecera">
+    <div>
+      <h2 class="cabecera__titulo">Factura Global</h2>
+      <p class="cabecera__subtitulo">Consolidación y registro de bienes institucionales.</p>
+    </div>
+    <div class="cabecera__botones">
+      <button class="boton-primario" (click)="abrirGenerar()">
+        <span class="material-symbols-outlined">add_circle</span>
+        <span>Generar Factura Global</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- KPIs Bento Grid -->
+  <div class="grilla-kpis">
+    
+    <div class="kpi-card">
+      <div class="kpi-card__cabecera">
+        <span class="material-symbols-outlined icono-kpi" style="background-color: #f4f4f5; color: #52525b;">receipt</span>
+        <span class="kpi-card__etiqueta">Total Facturas</span>
+      </div>
+      <p class="kpi-card__valor">{{ kpis().total }}</p>
+      <p class="kpi-card__meta text-exito">
+        <span class="material-symbols-outlined">trending_up</span>
+        +12% este mes
+      </p>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-card__cabecera">
+        <span class="material-symbols-outlined icono-kpi icono-kpi--primario">check_circle</span>
+        <span class="kpi-card__etiqueta">Generadas</span>
+      </div>
+      <p class="kpi-card__valor">{{ kpis().generadas }}</p>
+      <p class="kpi-card__meta">73% del total anual</p>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-card__cabecera">
+        <span class="material-symbols-outlined icono-kpi icono-kpi--secundario">send</span>
+        <span class="kpi-card__etiqueta">Enviadas</span>
+      </div>
+      <p class="kpi-card__valor">{{ kpis().enviadas }}</p>
+      <p class="kpi-card__meta">Pendientes por confirmación</p>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-card__cabecera">
+        <span class="material-symbols-outlined icono-kpi icono-kpi--primario">payments</span>
+        <span class="kpi-card__etiqueta">Valor Consolidado</span>
+      </div>
+      <p class="kpi-card__valor truncate">{{ kpis().valorConsolidado }}</p>
+      <p class="kpi-card__meta">Pesos Colombianos (COP)</p>
+    </div>
+
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filtros-contenedor">
+    <div class="filtros-estados">
+      <label class="filtros-estados__etiqueta">Filtrar por Estado</label>
+      <div class="filtros-estados__botones">
+        @for (opcion of opcionesFiltro; track opcion) {
+          <button 
+            class="boton-filtro" 
+            [class.boton-filtro--activo]="filtroActivo() === opcion"
+            (click)="setFiltro(opcion)">
+            {{ opcion }}
+          </button>
+        }
+      </div>
+    </div>
+    
+    <div class="separador-vertical"></div>
+    
+    <div class="filtros-acciones">
+      <button class="boton-icono" title="Filtrar Fecha">
+        <span class="material-symbols-outlined">calendar_today</span>
+      </button>
+      <button class="boton-icono" title="Exportar Historial" (click)="abrirExportar()">
+        <span class="material-symbols-outlined">download</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Data Table Container -->
+  <div class="tabla-contenedor">
+    <table class="tabla-facturas">
+      <thead>
+        <tr>
+          <th>Número Factura</th>
+          <th>Fecha Generación</th>
+          <th>Solicitudes Asociadas</th>
+          <th>Estado</th>
+          <th>Valor Total</th>
+          <th>Usuario</th>
+          <th class="texto-derecha">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (fac of facturas(); track fac.numero) {
+          <!-- Filtrado Cliente (Simple) -->
+          @if (filtroActivo() === 'Todas' || filtroActivo() === fac.estado) {
+            <tr>
+              <td class="font-bold">{{ fac.numero }}</td>
+              <td class="texto-secundario">{{ fac.fecha }}</td>
+              <td>
+                <div class="badges-grupo">
+                  @for (sol of fac.solicitudes; track sol) {
+                    <span class="badge-solicitud">{{ sol }}</span>
+                  }
+                </div>
+              </td>
+              <td>
+                <span class="badge-estado" [ngClass]="{
+                  'badge-estado--generada': fac.estado === 'Generada',
+                  'badge-estado--enviada': fac.estado === 'Enviada',
+                  'badge-estado--anulada': fac.estado === 'Anulada'
+                }">{{ fac.estado }}</span>
+              </td>
+              <td class="font-bold texto-fuerte">{{ fac.total }}</td>
+              <td>
+                <div class="usuario-fila">
+                  <img [src]="fac.usuario.avatar" alt="Avatar">
+                  <span>{{ fac.usuario.nombre }}</span>
+                </div>
+              </td>
+              <td class="texto-derecha">
+                <div class="acciones-celda">
+                  <a routerLink="/detalle-factura-global" class="boton-celda" title="Ver detalle">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </a>
+                  <button class="boton-celda" title="Descargar PDF">
+                    <span class="material-symbols-outlined">picture_as_pdf</span>
+                  </button>
+                  <button class="boton-celda" title="Descargar XML">
+                    <span class="material-symbols-outlined">data_object</span>
+                  </button>
+                  <button class="boton-celda" title="Anular Factura" 
+                          [style.opacity]="fac.estado === 'Anulada' ? '0.5' : '1'"
+                          [style.cursor]="fac.estado === 'Anulada' ? 'not-allowed' : 'pointer'"
+                          (click)="abrirAnular(fac)">
+                    <span class="material-symbols-outlined" [style.color]="fac.estado === 'Anulada' ? 'inherit' : '#ba1830'">cancel</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="paginacion">
+      <p class="paginacion__texto">Mostrando 1 a 4 de {{ kpis().total }} registros</p>
+      <div class="paginacion__controles">
+        <button class="boton-pag"><span class="material-symbols-outlined">chevron_left</span></button>
+        <button class="boton-pag boton-pag--activo">1</button>
+        <button class="boton-pag">2</button>
+        <button class="boton-pag">3</button>
+        <button class="boton-pag"><span class="material-symbols-outlined">chevron_right</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Exportar Historial -->
+  @if (mostrarModalExportar()) {
+    <app-exportar-facturas-globales-modal
+      (cerrar)="cerrarExportar()">
+    </app-exportar-facturas-globales-modal>
+  }
+
+  <!-- Modal Generar Factura Global -->
+  @if (mostrarModalGenerar()) {
+    <app-generar-factura-global-modal
+      (cerrar)="cerrarGenerar()">
+    </app-generar-factura-global-modal>
+  }
+
+  <!-- Modal Anular Factura Global -->
+  @if (mostrarModalAnular()) {
+    <app-anular-factura-global-modal
+      [factura]="facturaSeleccionada()"
+      (cerrar)="cerrarAnular()">
+    </app-anular-factura-global-modal>
+  }
+
+</div>

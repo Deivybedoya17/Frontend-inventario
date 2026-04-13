@@ -1,0 +1,119 @@
+<div class="modal-overlay">
+  <!-- Backdrop -->
+  <div class="modal-backdrop" (click)="onCerrar()"></div>
+
+  <!-- Modal Box -->
+  <div class="modal-contenedor">
+    
+    <!-- Modal Header -->
+    <div class="modal-cabecera">
+      <div>
+        <h2 class="modal-titulo">Generar Factura Global</h2>
+        <p class="modal-subtitulo">Seleccione las solicitudes GIL-F-014 que desea consolidar en este documento fiscal.</p>
+      </div>
+      <button class="boton-cerrar" (click)="onCerrar()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-cuerpo">
+      
+      <!-- Factura Info -->
+      <div class="info-grilla">
+        <div class="info-grupo">
+          <label class="info-etiqueta">Número de Factura</label>
+          <div class="info-valor-caja">
+            FG-2026-002
+            <span class="badge-auto">Auto</span>
+          </div>
+        </div>
+        <div class="info-grupo">
+          <label class="info-etiqueta">Fecha de Generación</label>
+          <div class="info-valor-caja font-medium">
+            {{ hoy }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Available Requests -->
+      <div class="solicitudes-seccion">
+        <h3 class="solicitudes-titulo">
+          Solicitudes GIL-F-014 Disponibles
+          <span class="badge-contador">{{ solicitudes().length }}</span>
+        </h3>
+        
+        <div class="solicitudes-lista">
+          
+          @for (sol of solicitudes(); track sol.id; let idx = $index) {
+            
+            <div class="tarjeta-solicitud" 
+                 [class.tarjeta-solicitud--error]="sol.estadoError"
+                 [class.tarjeta-solicitud--seleccionada]="sol.seleccionada"
+                 (click)="toggleSeleccion(idx)">
+                 
+              <div class="solicitud-encabezado">
+                <div class="solicitud-info">
+                  
+                  <div class="checkbox-personalizado" [class.marcado]="sol.seleccionada">
+                    @if (sol.seleccionada) {
+                      <span class="material-symbols-outlined check-icono">check</span>
+                    }
+                  </div>
+                  
+                  <div class="solicitud-texto">
+                    <p class="solicitud-id">{{ sol.id }}</p>
+                    
+                    @if (sol.estadoError) {
+                      <div class="alerta-error">
+                        <span class="material-symbols-outlined">error</span>
+                        {{ sol.mensajeError }}
+                      </div>
+                    } @else {
+                      <p class="solicitud-subinfo">{{ sol.productosTotales }} productos registrados</p>
+                    }
+                    
+                    <div class="etiquetas-productos">
+                      @for (prod of sol.productos; track prod) {
+                        <span class="etiqueta-producto">{{ prod }}</span>
+                      }
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="solicitud-valor">
+                   <p class="valor-texto" [class.texto-primario]="sol.seleccionada && !sol.estadoError">
+                     {{ sol.valor }}
+                   </p>
+                </div>
+              </div>
+              
+            </div>
+            
+          }
+
+        </div>
+      </div>
+
+      <!-- Observaciones -->
+      <div class="observaciones-seccion">
+        <label class="info-etiqueta">Observaciones</label>
+        <textarea class="textarea-observacion" placeholder="Añadir notas internas sobre esta factura global..." rows="3"></textarea>
+      </div>
+
+    </div>
+
+    <!-- Modal Actions -->
+    <div class="modal-pie">
+      <div class="info-pie">
+        <span class="etiqueta-total">Total Consolidado:</span>
+        <span class="valor-total">$1.200.000</span>
+      </div>
+      <div class="botones-pie">
+        <button class="boton-cancelar" (click)="onCerrar()">Cancelar</button>
+        <button class="boton-generar" (click)="onGenerar()">Generar Factura Global</button>
+      </div>
+    </div>
+    
+  </div>
+</div>

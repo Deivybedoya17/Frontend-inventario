@@ -1,0 +1,107 @@
+<div class="modal-overlay">
+  <!-- Modal Content -->
+  <div class="modal-backdrop" (click)="onCerrar()"></div>
+  <div class="modal-contenedor">
+    
+    <!-- Modal Header -->
+    <div class="modal-cabecera">
+      <h3 class="modal-titulo">Exportar Historial de Movimientos</h3>
+      <p class="modal-subtitulo">Configure los parámetros para generar su reporte de entradas y salidas.</p>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-cuerpo">
+      
+      <!-- Date Range Section -->
+      <div class="seccion-form">
+        <label class="form-etiqueta">Rango de Fechas</label>
+        <div class="grupo-fechas">
+          <div class="input-contenedor date-cont">
+            <span class="material-symbols-outlined icono-izq">calendar_today</span>
+            <input class="input-form" type="date" value="2023-10-01"/>
+            <span class="etiqueta-flotante">Fecha Inicio</span>
+          </div>
+          <div class="input-contenedor date-cont">
+            <span class="material-symbols-outlined icono-izq">event</span>
+            <input class="input-form" type="date" value="2023-10-31"/>
+            <span class="etiqueta-flotante">Fecha Fin</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter by Type -->
+      <div class="seccion-form">
+        <label class="form-etiqueta">Tipo de Movimiento</label>
+        <div class="grupo-filtros">
+          <button class="btn-filtro" [ngClass]="tipoSeleccionado() === 'Entradas' ? 'activo' : ''" (click)="setTipo('Entradas')">
+            Entradas
+          </button>
+          <button class="btn-filtro" [ngClass]="tipoSeleccionado() === 'Salidas' ? 'activo' : ''" (click)="setTipo('Salidas')">
+            Salidas
+          </button>
+          <button class="btn-filtro" [ngClass]="tipoSeleccionado() === 'Ambos' ? 'activo' : ''" (click)="setTipo('Ambos')">
+            Ambos
+          </button>
+        </div>
+      </div>
+
+      <!-- Format Selection -->
+      <div class="seccion-form">
+        <label class="form-etiqueta">Formato de Archivo</label>
+        <div class="grupo-formatos">
+          
+          <!-- Excel Card -->
+          <div class="formato-card excel-formato" [ngClass]="formatoSeleccionado() === 'Excel' ? 'activo border-primario bg-primario-5' : ''" (click)="setFormato('Excel')">
+            <div class="icono-formato">
+              <span class="material-symbols-outlined icono-grande">table_chart</span>
+            </div>
+            <span class="nombre-formato">Excel (.xlsx)</span>
+            @if(formatoSeleccionado() === 'Excel') {
+              <div class="icono-check text-primario">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              </div>
+            }
+          </div>
+
+          <!-- PDF Card -->
+          <div class="formato-card pdf-formato" [ngClass]="formatoSeleccionado() === 'PDF' ? 'activo border-rojo bg-rojo-5' : ''" (click)="setFormato('PDF')">
+            <div class="icono-formato">
+              <span class="material-symbols-outlined icono-grande">picture_as_pdf</span>
+            </div>
+            <span class="nombre-formato">PDF (.pdf)</span>
+            @if(formatoSeleccionado() === 'PDF') {
+              <div class="icono-check text-rojo">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              </div>
+            }
+          </div>
+
+          <!-- CSV Card -->
+          <div class="formato-card csv-formato" [ngClass]="formatoSeleccionado() === 'CSV' ? 'activo border-azul bg-azul-5' : ''" (click)="setFormato('CSV')">
+            <div class="icono-formato">
+              <span class="material-symbols-outlined icono-grande">csv</span>
+            </div>
+            <span class="nombre-formato">CSV (.csv)</span>
+            @if(formatoSeleccionado() === 'CSV') {
+              <div class="icono-check text-azul">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+              </div>
+            }
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-pie">
+      <button class="btn-cancelar" type="button" (click)="onCerrar()">
+        Cancelar
+      </button>
+      <button class="btn-primario" type="button" (click)="onExportar()">
+        <span class="material-symbols-outlined">download</span>
+        Exportar Reporte
+      </button>
+    </div>
+  </div>
+</div>

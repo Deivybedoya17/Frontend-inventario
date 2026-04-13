@@ -1,0 +1,224 @@
+<div class="vista-contenedor">
+  
+  <!-- Header & Actions -->
+  <div class="cabecera">
+    <div class="cabecera__info">
+      <nav class="miga-pan">
+        <span>INVENTARIO</span>
+        <span class="material-symbols-outlined icono-separador">chevron_right</span>
+        <span class="miga-activa">ENTRADAS Y SALIDAS</span>
+      </nav>
+      <h1 class="titulo-vista">Entradas y Salidas de Productos</h1>
+      <p class="subtitulo-vista">Registro histórico y gestión de flujos de almacén en tiempo real.</p>
+    </div>
+    <div class="cabecera__acciones">
+      <button class="btn btn-salida" (click)="abrirNuevaSalida()">
+        <span class="material-symbols-outlined">outbox</span>
+        Nueva Salida
+      </button>
+      <button class="btn btn-entrada-gil" (click)="abrirEntradaGil()">
+        <span class="material-symbols-outlined">description</span>
+        Entrada GIL-F-014
+      </button>
+      <button class="btn btn-entrada-nueva" (click)="abrirNuevaEntrada()">
+        <span class="material-symbols-outlined">add_circle</span>
+        Nueva Entrada
+      </button>
+    </div>
+  </div>
+
+  <!-- KPIs Bento Grid -->
+  <div class="kpi-grid">
+    
+    <!-- Entradas Hoy -->
+    <div class="kpi-tarjeta borde-verde">
+      <div class="kpi-cabecera">
+        <div class="kpi-icono bg-verde-claro txt-verde">
+          <span class="material-symbols-outlined">login</span>
+        </div>
+        <span class="kpi-tendencia bg-verde-claro txt-verde">
+          <span class="material-symbols-outlined icono-pequeno">trending_up</span>
+          {{ kpis().entradasHoy.diff }}
+        </span>
+      </div>
+      <p class="kpi-etiqueta">Entradas Hoy</p>
+      <h3 class="kpi-valor">{{ kpis().entradasHoy.valor }}</h3>
+      <p class="kpi-sub">{{ kpis().entradasHoy.sub }}</p>
+    </div>
+
+    <!-- Salidas Hoy -->
+    <div class="kpi-tarjeta borde-naranja">
+      <div class="kpi-cabecera">
+        <div class="kpi-icono bg-naranja-claro txt-naranja">
+          <span class="material-symbols-outlined">logout</span>
+        </div>
+        <span class="kpi-tendencia bg-naranja-claro txt-naranja">
+          <span class="material-symbols-outlined icono-pequeno">trending_down</span>
+          {{ kpis().salidasHoy.diff }}
+        </span>
+      </div>
+      <p class="kpi-etiqueta">Salidas Hoy</p>
+      <h3 class="kpi-valor">{{ kpis().salidasHoy.valor }}</h3>
+      <p class="kpi-sub">{{ kpis().salidasHoy.sub }}</p>
+    </div>
+
+    <!-- Valor Entradas -->
+    <div class="kpi-tarjeta">
+      <div class="kpi-cabecera">
+        <div class="kpi-icono bg-azul-claro txt-azul">
+          <span class="material-symbols-outlined">payments</span>
+        </div>
+        <span class="kpi-tag-gris">{{ kpis().valorEntradas.tag }}</span>
+      </div>
+      <p class="kpi-etiqueta">Valor Entradas</p>
+      <h3 class="kpi-valor">{{ kpis().valorEntradas.valor }}</h3>
+      <p class="kpi-sub">{{ kpis().valorEntradas.sub }}</p>
+    </div>
+
+    <!-- Pendientes -->
+    <div class="kpi-tarjeta borde-rojo">
+      <div class="kpi-cabecera">
+        <div class="kpi-icono bg-rojo-claro txt-rojo">
+          <span class="material-symbols-outlined">pending_actions</span>
+        </div>
+        <div class="indicador-pulso">
+          <span class="pulso-ping bg-rojo-medio"></span>
+          <span class="pulso-centro bg-rojo-fuerte"></span>
+        </div>
+      </div>
+      <p class="kpi-etiqueta">Pendientes</p>
+      <h3 class="kpi-valor txt-rojo-fuerte">{{ kpis().pendientes.valor }}</h3>
+      <p class="kpi-sub">{{ kpis().pendientes.sub }}</p>
+    </div>
+
+  </div>
+
+  <!-- Contenedor Principal Tabla -->
+  <div class="tabla-contenedor">
+    
+    <div class="tabla-cabecera">
+      <div class="tabla-titulos">
+        <h2 class="tabla-titulo">Historial de Movimientos</h2>
+        <p class="tabla-subtitulo">Filtrando últimos 30 días</p>
+      </div>
+      <div class="tabla-acciones">
+        <button class="btn-accion-secundaria">
+          <span class="material-symbols-outlined icono">filter_alt</span>
+          Filtros
+        </button>
+        <button class="btn-accion-secundaria" (click)="abrirExportar()">
+          <span class="material-symbols-outlined icono">download</span>
+          Exportar
+        </button>
+      </div>
+    </div>
+
+    <div class="scroll-tabla">
+      <table class="movimientos-tabla">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Producto</th>
+            <th class="txt-centro">Cantidad</th>
+            <th>Fecha/Hora</th>
+            <th>Origen/Destino</th>
+            <th>Usuario</th>
+            <th class="txt-derecha">Valor</th>
+            <th class="txt-centro">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          @for (mov of movimientos(); track mov.sku) {
+            <tr class="mov-fila">
+              <!-- Tipo -->
+              <td>
+                <span class="badge-tipo" [ngClass]="mov.tipo === 'Entrada' ? 'bg-verde-claro txt-verde' : 'bg-rojo-claro txt-rojo'">
+                  <span class="material-symbols-outlined icon-min">{{ mov.tipo === 'Entrada' ? 'arrow_downward' : 'arrow_upward' }}</span>
+                  {{ mov.tipo }}
+                </span>
+              </td>
+              <!-- Producto -->
+              <td>
+                <div class="info-bloque">
+                  <p class="texto-principal">{{ mov.producto }}</p>
+                  <p class="texto-secundario">SKU: {{ mov.sku }}</p>
+                </div>
+              </td>
+              <!-- Cantidad -->
+              <td class="txt-centro">
+                @if(mov.tipo === 'Entrada') {
+                  <span class="txt-verde cant-grande">+{{ mov.cantidad }}</span>
+                } @else {
+                  <span class="txt-rojo cant-grande">-{{ mov.cantidad }}</span>
+                }
+                <span class="unidad-txt">{{ mov.unidad }}</span>
+              </td>
+              <!-- Fecha -->
+              <td>
+                <div class="info-bloque">
+                  <p class="texto-cuerpo">{{ mov.fecha }}</p>
+                  <p class="texto-secundario">{{ mov.hora }}</p>
+                </div>
+              </td>
+              <!-- Origen/Destino -->
+              <td>
+                <p class="texto-cuerpo-mediano">{{ mov.origenDestino }}</p>
+              </td>
+              <!-- Usuario -->
+              <td>
+                <div class="usuario-celda">
+                  <div class="usuario-avatar-cont">
+                    <img [src]="mov.usuario.avatar" alt="Avatar" class="avatar-img">
+                  </div>
+                  <span class="usuario-nombre">{{ mov.usuario.nombre }}</span>
+                </div>
+              </td>
+              <!-- Valor -->
+              <td class="txt-derecha">
+                <p class="texto-principal">{{ mov.valor }}</p>
+              </td>
+              <!-- Estado -->
+              <td class="txt-centro">
+                <span class="badge-estado" [ngClass]="mov.estado === 'Completado' ? 'bg-verde-50 txt-verde-700' : 'bg-amarillo-50 txt-amarillo-700'">
+                  {{ mov.estado }}
+                </span>
+              </td>
+            </tr>
+          }
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Paginación -->
+    <div class="paginacion-area">
+      <p class="paginacion-texto">Mostrando 1 a 10 de 1,248 movimientos registrados</p>
+      <div class="paginacion-controles">
+        <button class="btn-pag-nav"><span class="material-symbols-outlined">chevron_left</span></button>
+        <button class="btn-pag-num activo">1</button>
+        <button class="btn-pag-num">2</button>
+        <button class="btn-pag-num">3</button>
+        <span class="pag-puntos">...</span>
+        <button class="btn-pag-nav"><span class="material-symbols-outlined">chevron_right</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modales -->
+@if (mostrarNuevaEntrada()) {
+  <app-registrar-entrada-producto-modal (cerrar)="cerrarNuevaEntrada()"></app-registrar-entrada-producto-modal>
+}
+
+@if (mostrarNuevaSalida()) {
+  <app-registrar-salida-producto-modal (cerrar)="cerrarNuevaSalida()"></app-registrar-salida-producto-modal>
+}
+
+@if (mostrarEntradaGil()) {
+  <app-registrar-entrada-gil-f014-modal (cerrar)="cerrarEntradaGil()"></app-registrar-entrada-gil-f014-modal>
+}
+
+@if (mostrarExportar()) {
+  <app-exportar-historial-movimientos-modal (cerrar)="cerrarExportar()"></app-exportar-historial-movimientos-modal>
+}

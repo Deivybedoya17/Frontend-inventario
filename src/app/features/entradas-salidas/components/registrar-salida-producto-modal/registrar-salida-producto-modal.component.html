@@ -1,0 +1,110 @@
+<div class="modal-overlay">
+  <!-- Modal Content -->
+  <div class="modal-backdrop" (click)="onCerrar()"></div>
+  <div class="modal-contenedor">
+    
+    <!-- Modal Header -->
+    <div class="modal-cabecera">
+      <div class="cabecera-izq">
+        <div class="icono-contenedor bg-rojo-claro txt-rojo-primario">
+          <span class="material-symbols-outlined icono-grande" style="font-variation-settings: 'FILL' 1;">logout</span>
+        </div>
+        <div class="textos-cabecera">
+          <h3 class="modal-titulo">Registrar Salida de Producto</h3>
+          <p class="modal-subtitulo-especial">CONTROL DE INVENTARIO</p>
+        </div>
+      </div>
+      <button class="btn-cerrar-icon" (click)="onCerrar()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-cuerpo">
+      <form class="formulario-flex">
+        
+        <!-- Two Column Row: Product & Qty -->
+        <div class="grupo-grid grid-tres">
+          <div class="campo ext-doble">
+            <label class="form-etiqueta">Producto o Código</label>
+            <div class="input-contenedor busqueda-contenedor">
+              <span class="material-symbols-outlined icono-izq">barcode_scanner</span>
+              <span class="material-symbols-outlined icono-buscar">search</span>
+              <input class="input-form input-con-icono-doble pr-40" placeholder="Busque por nombre o escanee código" type="text" value="KB-992"/>
+              <div class="badge-detectado">
+                <span class="badge-tag">Detectado</span>
+                <span class="badge-nombre">Teclado Mecánico RGB</span>
+              </div>
+            </div>
+          </div>
+          <div class="campo">
+            <label class="form-etiqueta">Cantidad</label>
+            <div class="input-contenedor">
+              <input class="input-form input-centro" placeholder="0" type="number" value="1"/>
+              <span class="unidad-derecha">uds</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two Column Row: Date & Area -->
+        <div class="grupo-grid grid-dos">
+          <div class="campo">
+            <label class="form-etiqueta">Fecha</label>
+            <div class="input-contenedor">
+              <span class="material-symbols-outlined icono-izq">calendar_today</span>
+              <input class="input-form input-con-icono" type="text" value="05/04/2026"/>
+            </div>
+          </div>
+          <div class="campo">
+            <label class="form-etiqueta">Área de Destino</label>
+            <div class="input-contenedor">
+              <select class="input-form select-form">
+                <option>Sistemas y Desarrollo</option>
+                <option>Administración</option>
+                <option>Mantenimiento</option>
+                <option>Bienestar Estudiantil</option>
+              </select>
+              <span class="material-symbols-outlined icono-select">expand_more</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Responsibility -->
+        <div class="campo">
+          <label class="form-etiqueta">Responsable</label>
+          <div class="input-contenedor">
+            <span class="material-symbols-outlined icono-izq">person</span>
+            <input class="input-form input-con-icono" placeholder="Nombre completo del solicitante" type="text"/>
+          </div>
+        </div>
+
+        <!-- Purpose -->
+        <div class="campo">
+          <label class="form-etiqueta">Propósito</label>
+          <div class="input-contenedor">
+            <input class="input-form" placeholder="Motivo de la salida (ej: Mantenimiento, Dotación)" type="text"/>
+          </div>
+        </div>
+
+        <!-- Observations -->
+        <div class="campo">
+          <label class="form-etiqueta">Observaciones</label>
+          <div class="input-contenedor">
+            <textarea class="textarea-form" placeholder="Detalles adicionales del movimiento..." rows="3"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-pie">
+      <button class="btn-cancelar" type="button" (click)="onCerrar()">
+        Cancelar
+      </button>
+      <button class="btn-primario" type="button" (click)="onRegistrarSalida()">
+        <span class="material-symbols-outlined">check_circle</span>
+        Registrar Salida
+      </button>
+    </div>
+  </div>
+</div>

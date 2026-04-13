@@ -18,7 +18,7 @@ $color-superficie-brillante: #f8f9fa;
 $color-en-secundario: #ffffff;
 $color-en-error: #ffffff;
 $color-contorno-variante: #bdcab9;
-$color-primario: #28a745;
+$color-primario: #39A900;
 $color-superficie-contenedor: #edeeef;
 $color-secundario-contenedor: #d8e1ea;
 $color-en-fondo: #191c1d;
@@ -30,7 +30,7 @@ $color-en-primario-fijo: #002106;
 $color-terciario-contenedor: #ff555f;
 $color-en-superficie: #191c1d;
 $color-en-secundario-fijo: #141d23;
-$color-superficie-tinte: #28a745;
+$color-superficie-tinte: #39A900;
 $color-en-terciario-contenedor: #5d0010;
 $color-en-error-contenedor: #93000a;
 $color-en-terciario-fijo: #410008;
@@ -49,7 +49,8 @@ $color-en-terciario: #ffffff;
 $color-superficie-contenedor-bajo: #f3f4f5;
 $color-terciario: #ba1830;
 $color-superficie-variante: #e1e3e4;
-$color-primario-contenedor: #28a745;
+$color-primario-contenedor: #39A900;
+$color-primario-hover: #38A800; // Agregado para hover de botones SENA
 $color-en-secundario-contenedor: #5b646b;
 $color-error: #ba1a1a;
 
@@ -78,7 +79,7 @@ $color-naranja-400: #fb923c;
 $color-naranja-500: #f97316;
 
 // Gradientes
-$gradiente-primario: linear-gradient(135deg, #28a745 0%, #006e25 100%);
+$gradiente-primario: linear-gradient(135deg, #39A900 0%, #38A800 100%);
 
 // =======================
 // TIPOGRAFÍA

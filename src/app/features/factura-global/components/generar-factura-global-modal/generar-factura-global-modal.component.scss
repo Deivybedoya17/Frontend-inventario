@@ -1,0 +1,395 @@
+@import '../../../../../styles/variables';
+
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba($color-en-superficie, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.modal-contenedor {
+  position: relative;
+  background-color: white;
+  width: 100%;
+  max-width: 42rem; // max-w-2xl
+  border-radius: $radio-xl;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-cabecera {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid $color-pizarra-100;
+}
+
+.modal-titulo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: $color-en-superficie;
+  letter-spacing: -0.025em;
+  font-family: $fuente-titular;
+}
+
+.modal-subtitulo {
+  font-size: 0.875rem;
+  color: $color-pizarra-500;
+  margin-top: 0.25rem;
+}
+
+.boton-cerrar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: $color-pizarra-400;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover { background-color: $color-pizarra-100; }
+  span { font-size: 1.125rem; }
+}
+
+.modal-cuerpo {
+  padding: 2rem;
+  max-height: calc(100vh - 12rem);
+  overflow-y: auto;
+}
+
+.info-grilla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.info-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-etiqueta {
+  font-size: 0.6875rem; // ~11px
+  font-weight: 700;
+  color: $color-pizarra-500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.info-valor-caja {
+  background-color: $color-superficie-contenedor-bajo;
+  padding: 0.75rem 1rem;
+  border-radius: $radio-xl;
+  font-weight: 700;
+  color: $color-en-superficie;
+  display: flex;
+  align-items: center;
+}
+
+.font-medium { font-weight: 500; }
+
+.badge-auto {
+  margin-left: 0.5rem;
+  font-size: 0.625rem;
+  background-color: rgba($color-primario, 0.15);
+  color: $color-primario-hover;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  line-height: 1;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.solicitudes-seccion {
+  margin-bottom: 2rem;
+}
+
+.solicitudes-titulo {
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: $color-en-superficie;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.badge-contador {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-pizarra-100;
+  border-radius: 50%;
+  font-size: 0.625rem;
+  color: $color-pizarra-500;
+}
+
+.solicitudes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tarjeta-solicitud {
+  background-color: white;
+  border: 1px solid $color-pizarra-200;
+  border-radius: $radio-xl;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: rgba($color-primario, 0.3);
+  }
+
+  &--seleccionada {
+    border: 2px solid rgba($color-primario, 0.3);
+    
+    // In original code, there's no background color change on select, just border.
+    // If we want a subtle bg, we could use rgba($color-primario, 0.05)
+  }
+
+  &--error {
+    background-color: rgba($color-pizarra-50, 0.5);
+    border-color: $color-pizarra-100;
+    opacity: 0.75;
+    filter: grayscale(0.5);
+    cursor: not-allowed;
+
+    &:hover { border-color: $color-pizarra-100; }
+  }
+}
+
+.solicitud-encabezado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.solicitud-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.checkbox-personalizado {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid $color-pizarra-200;
+  border-radius: 0.25rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  .tarjeta-solicitud--error & {
+    border-color: $color-pizarra-300;
+  }
+
+  &.marcado {
+    border-color: $color-primario;
+    background-color: $color-primario;
+  }
+
+  .check-icono {
+    color: white;
+    font-size: 1rem;
+    font-weight: 900;
+  }
+}
+
+.solicitud-texto {
+  display: flex;
+  flex-direction: column;
+}
+
+.solicitud-id {
+  font-weight: 700;
+  color: $color-en-superficie;
+}
+
+.solicitud-subinfo {
+  font-size: 0.6875rem;
+  color: $color-pizarra-500;
+  font-weight: 500;
+}
+
+.alerta-error {
+  color: $color-terciario;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+
+  span { font-size: 0.875rem; }
+}
+
+.etiquetas-productos {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.etiqueta-producto {
+  padding: 0.25rem 0.5rem;
+  background-color: $color-superficie-contenedor-bajo;
+  border-radius: $radio-lg;
+  font-size: 0.625rem;
+  color: $color-pizarra-600;
+  font-weight: 500;
+
+  .tarjeta-solicitud--error & {
+    background-color: white;
+    border: 1px solid $color-pizarra-100;
+  }
+}
+
+.solicitud-valor {
+  text-align: right;
+}
+
+.valor-texto {
+  font-weight: 900;
+  color: $color-en-superficie;
+  
+  .tarjeta-solicitud--error & {
+    color: $color-pizarra-400;
+  }
+
+  &.texto-primario {
+    color: $color-primario; // changed to SENA green
+  }
+}
+
+.observaciones-seccion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.textarea-observacion {
+  width: 100%;
+  background-color: $color-superficie-contenedor-bajo;
+  border: none;
+  border-radius: $radio-xl;
+  padding: 1rem;
+  font-size: 0.875rem;
+  resize: vertical;
+  outline: none;
+  transition: box-shadow 0.2s;
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba($color-primario, 0.2);
+  }
+
+  &::placeholder {
+    color: $color-pizarra-400;
+  }
+}
+
+.modal-pie {
+  padding: 1.5rem 2rem;
+  background-color: $color-pizarra-50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-pie {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.etiqueta-total {
+  font-size: 0.6875rem;
+  color: $color-pizarra-500;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.valor-total {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: $color-primario;
+}
+
+.botones-pie {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.boton-cancelar {
+  padding: 0.75rem 1.5rem;
+  border-radius: $radio-xl;
+  font-weight: 700;
+  color: $color-pizarra-600;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 0.875rem;
+
+  &:hover { background-color: $color-pizarra-200; }
+}
+
+.boton-generar {
+  padding: 0.75rem 2rem;
+  background-color: $color-primario;
+  color: white;
+  border: none;
+  border-radius: $radio-xl;
+  font-weight: 700;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 10px 15px -3px rgba($color-primario, 0.2);
+
+  &:hover {
+    background-color: $color-primario-hover;
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}

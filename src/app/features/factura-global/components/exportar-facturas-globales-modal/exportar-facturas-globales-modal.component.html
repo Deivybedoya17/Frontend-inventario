@@ -1,0 +1,94 @@
+<div class="modal-overlay">
+  <!-- Backdrop -->
+  <div class="modal-backdrop" (click)="onCerrar()"></div>
+
+  <!-- Modal Container -->
+  <div class="modal-contenedor">
+    
+    <!-- Modal Header -->
+    <div class="modal-cabecera">
+      <div>
+        <h3 class="modal-cabecera__titulo">Exportar Historial de Facturas</h3>
+        <p class="modal-cabecera__desc">Configure los parámetros para generar su reporte detallado.</p>
+      </div>
+      <button class="boton-cerrar" (click)="onCerrar()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-cuerpo">
+      
+      <!-- Date Range Section -->
+      <div class="grupo-form">
+        <label class="etiqueta-form">Rango de Fechas</label>
+        <div class="fechas-grilla">
+          <div class="campo-fecha">
+            <span class="material-symbols-outlined">calendar_today</span>
+            <input type="date" value="2024-01-01" class="input-fecha">
+          </div>
+          <div class="campo-fecha">
+            <span class="material-symbols-outlined">event</span>
+            <input type="date" value="2024-03-31" class="input-fecha">
+          </div>
+        </div>
+      </div>
+
+      <!-- Invoice Status Multiselect -->
+      <div class="grupo-form">
+        <label class="etiqueta-form">Estado de Factura</label>
+        <div class="estados-grupo">
+          @for (estado of estados(); track estado.nombre; let i = $index) {
+            <label class="estado-label">
+              <input type="checkbox" [checked]="estado.seleccionado" (change)="toggleEstado(i)" class="estado-checkbox">
+              <div class="estado-boton">{{ estado.nombre }}</div>
+            </label>
+          }
+        </div>
+      </div>
+
+      <!-- Format Selection -->
+      <div class="grupo-form">
+        <label class="etiqueta-form">Formato de Archivo</label>
+        <div class="formatos-grilla">
+          
+          <label class="formato-label">
+            <input type="radio" name="format" value="excel" [checked]="formatoSeleccionado() === 'excel'" (change)="setFormato('excel')" class="formato-radio">
+            <div class="formato-tarjeta">
+              <span class="material-symbols-outlined icono-excel">table_view</span>
+              <span class="formato-nombre">Excel (.xlsx)</span>
+            </div>
+          </label>
+
+          <label class="formato-label">
+            <input type="radio" name="format" value="pdf" [checked]="formatoSeleccionado() === 'pdf'" (change)="setFormato('pdf')" class="formato-radio">
+            <div class="formato-tarjeta">
+              <span class="material-symbols-outlined icono-pdf">picture_as_pdf</span>
+              <span class="formato-nombre">PDF (.pdf)</span>
+            </div>
+          </label>
+
+          <label class="formato-label">
+            <input type="radio" name="format" value="csv" [checked]="formatoSeleccionado() === 'csv'" (change)="setFormato('csv')" class="formato-radio">
+            <div class="formato-tarjeta">
+              <span class="material-symbols-outlined icono-csv">csv</span>
+              <span class="formato-nombre">CSV (.csv)</span>
+            </div>
+          </label>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-pie">
+      <button class="boton-cancelar" (click)="onCerrar()">Cancelar</button>
+      <button class="boton-accion" (click)="exportar()">
+        <span class="material-symbols-outlined">download</span>
+        Exportar Reporte
+      </button>
+    </div>
+
+  </div>
+</div>

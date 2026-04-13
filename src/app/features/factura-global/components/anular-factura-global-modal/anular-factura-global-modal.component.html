@@ -1,0 +1,35 @@
+<div class="modal-overlay">
+  <!-- Backdrop -->
+  <div class="modal-backdrop" (click)="onCerrar()"></div>
+  
+  <!-- Modal Box -->
+  <div class="modal-contenedor">
+    <div class="modal-cuerpo-aviso">
+      <!-- Red Warning Icon Container -->
+      <div class="icono-peligro-contenedor">
+        <span class="material-symbols-outlined icono-peligro">warning</span>
+      </div>
+      
+      <!-- Content -->
+      <h3 class="modal-titulo">¿Está seguro de que desea anular esta factura global?</h3>
+      <div class="aviso-detalle">
+        <p class="aviso-texto">
+          Esta acción marcará la factura <span class="font-bold">{{ factura?.numero || 'seleccionada' }}</span> como <span class="badge-anulada">Anulada</span>. Los registros asociados volverán a estar disponibles para nuevas facturaciones. Esta acción no se puede deshacer.
+        </p>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="botones-grupo">
+        <button class="boton-peligro" (click)="onAnular()">
+          Anular Definitivamente
+        </button>
+        <button class="boton-secundario" (click)="onCerrar()">
+          Conservar Factura
+        </button>
+      </div>
+    </div>
+    
+    <!-- Decoration Bar -->
+    <div class="barra-decoracion"></div>
+  </div>
+</div>

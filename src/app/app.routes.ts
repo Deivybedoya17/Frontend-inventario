@@ -71,6 +71,18 @@ export const routes: Routes = [
         loadComponent: () => import('./features/pdf-gil-f014/pdf-gil-f014.component').then(m => m.PdfGilF014Component)
       },
       {
+        path: 'factura-global',
+        loadComponent: () => import('./features/factura-global/factura-global.component').then(m => m.FacturaGlobalComponent)
+      },
+      {
+        path: 'detalle-factura-global',
+        loadComponent: () => import('./features/detalle-factura-global/detalle-factura-global.component').then(m => m.DetalleFacturaGlobalComponent)
+      },
+      {
+        path: 'entradas-salidas',
+        loadComponent: () => import('./features/entradas-salidas/entradas-salidas.component').then(m => m.EntradasSalidasComponent)
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'

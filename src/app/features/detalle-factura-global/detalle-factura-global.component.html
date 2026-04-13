@@ -1,0 +1,187 @@
+<div class="detalle-factura-pagina">
+
+  <!-- 1. Encabezado -->
+  <div class="cabecera">
+    <div>
+      <nav class="miga-pan">
+        <a routerLink="/factura-global" class="miga-pan__enlace">Factura Global</a>
+        <span class="material-symbols-outlined miga-pan__separador">chevron_right</span>
+        <span class="miga-pan__actual">{{ factura().id }}</span>
+      </nav>
+      <h2 class="cabecera__titulo">Detalle de Factura Global <span class="texto-primario">{{ factura().id }}</span></h2>
+    </div>
+    <button class="boton-primario">
+      <span class="material-symbols-outlined">picture_as_pdf</span>
+      Descargar PDF
+    </button>
+  </div>
+
+  <!-- 2. Resumen Bento Grid -->
+  <div class="grilla-resumen">
+    
+    <div class="tarjeta-resumen">
+      <p class="tarjeta-resumen__etiqueta">Fecha de Emisión</p>
+      <div class="tarjeta-resumen__contenido">
+        <div class="icono-fondo">
+          <span class="material-symbols-outlined">calendar_today</span>
+        </div>
+        <p class="tarjeta-resumen__valor">{{ factura().fechaEmision }}</p>
+      </div>
+    </div>
+
+    <div class="tarjeta-resumen">
+      <p class="tarjeta-resumen__etiqueta">Generada por</p>
+      <div class="tarjeta-resumen__contenido">
+        <div class="icono-fondo">
+          <span class="material-symbols-outlined">person_pin</span>
+        </div>
+        <p class="tarjeta-resumen__valor">{{ factura().generadaPor }}</p>
+      </div>
+    </div>
+
+    <div class="tarjeta-resumen">
+      <p class="tarjeta-resumen__etiqueta">Estado Actual</p>
+      <div class="tarjeta-resumen__contenido">
+        <span class="badge-estado">
+          <span class="badge-estado__punto"></span>
+          {{ factura().estado }}
+        </span>
+      </div>
+    </div>
+
+    <div class="tarjeta-destacada">
+      <div class="tarjeta-destacada__fondo-icono">
+        <span class="material-symbols-outlined">payments</span>
+      </div>
+      <p class="tarjeta-destacada__etiqueta">Valor Total Facturado</p>
+      <p class="tarjeta-destacada__valor">{{ factura().valorTotal }}</p>
+    </div>
+
+  </div>
+
+  <!-- 3. Tabla de Solicitudes y 4. Auditoría -->
+  <div class="grilla-contenido">
+    
+    <!-- Columna Tabla -->
+    <div class="columna-principal">
+      <div class="tabla-contenedor">
+        <div class="tabla-contenedor__cabecera">
+          <h3 class="tabla-contenedor__titulo">Solicitudes GIL-F-014 Asociadas</h3>
+          <span class="tabla-contenedor__meta">{{ factura().solicitudes.length }} registros encontrados</span>
+        </div>
+        
+        <div class="tabla-scroll">
+          <table class="tabla-solicitudes">
+            <thead>
+              <tr>
+                <th>Código GIL</th>
+                <th>Fecha Solicitud</th>
+                <th>Instructor Responsable</th>
+                <th class="texto-derecha">Monto</th>
+                <th class="texto-centro">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (sol of factura().solicitudes; track sol.codigo) {
+                <tr>
+                  <td class="font-bold texto-primario">{{ sol.codigo }}</td>
+                  <td class="texto-secundario">{{ sol.fecha }}</td>
+                  <td>
+                    <div class="usuario-fila">
+                      <div class="usuario-fila__avatar">{{ sol.instructor.iniciales }}</div>
+                      <span class="usuario-fila__nombre">{{ sol.instructor.nombre }}</span>
+                    </div>
+                  </td>
+                  <td class="font-bold texto-derecha">{{ sol.monto }}</td>
+                  <td class="texto-centro">
+                    <button class="boton-icono" title="Ver Solicitud">
+                      <span class="material-symbols-outlined">visibility</span>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna Auditoría -->
+    <div class="columna-lateral">
+      
+      <!-- Historial de Auditoría -->
+      <div class="seccion-auditoria">
+        <h3 class="seccion-auditoria__titulo">
+          <span class="material-symbols-outlined">history</span>
+          Historial de Auditoría
+        </h3>
+        
+        <div class="linea-tiempo">
+          @for (item of factura().auditoria; track item.titulo) {
+            <div class="linea-tiempo__item" [ngClass]="{ 'linea-tiempo__item--desvanecido': item.estado === 'pendiente' }">
+              <div class="linea-tiempo__icono" [ngClass]="{
+                'linea-tiempo__icono--hecho': item.estado === 'hecho',
+                'linea-tiempo__icono--actual': item.estado === 'actual',
+                'linea-tiempo__icono--pendiente': item.estado === 'pendiente'
+              }">
+                <span class="material-symbols-outlined">{{ item.estado === 'hecho' ? 'check' : (item.estado === 'actual' ? 'sync' : 'pending') }}</span>
+              </div>
+              
+              <div class="linea-tiempo__contenido">
+                <p class="linea-tiempo__titulo" [class.texto-primario]="item.estado === 'actual'">{{ item.titulo }}</p>
+                <p class="linea-tiempo__desc">{{ item.descripcion }}</p>
+                
+                @if (item.fechaHora) {
+                  <div class="linea-tiempo__meta">
+                    <span class="meta-fecha">{{ item.fechaHora }}</span>
+                    <span class="meta-usuario" [ngClass]="{
+                      'meta-usuario--destacado': item.estado === 'hecho',
+                      'meta-usuario--normal': item.estado === 'actual'
+                    }">{{ item.usuario }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Tarjeta Certificación -->
+      <div class="tarjeta-certificacion">
+        <div class="tarjeta-certificacion__icono-fondo">
+          <span class="material-symbols-outlined">verified</span>
+        </div>
+        
+        <div class="tarjeta-certificacion__info">
+          <h4 class="info-titulo">Información de Certificación</h4>
+          <p class="info-desc">Esta factura ha sido generada siguiendo los lineamientos del formato GIL-F-014 v.3 y cuenta con trazabilidad completa de activos.</p>
+          
+          <div class="info-lista">
+            <div class="info-item">
+              <span class="material-symbols-outlined">qr_code_2</span>
+              <span>HASH: 8A2B9C-D1E3F4</span>
+            </div>
+            <div class="info-item">
+              <span class="material-symbols-outlined">security</span>
+              <span>Protocolo: SSL-V2-SENA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tarjeta-certificacion__responsable">
+          <p class="res-etiqueta">Responsable de Auditoría</p>
+          <div class="res-fila">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaFWzggaGBADmxgDza1s8wIUUkH-jmCNkBWHK1fW_SqIRh_OpI2WGpPSuxblPKrR8IGp68u3jJsNLbOVu5Eyxh8JfrYYwk5wh041RAriFFBocZPJyZPLBPhN8Ra74c5LSUos_6kG5L1Axldotjs2LTPHrUU5Mt2bj7rJlvxsQROpEZKp0-B1cxxXCLOOBDsxM2hroql9rcb2y6urn8_CyGcY509TceskuA7idLQPZTNyzcQGkBWr3n9UGoie1RKFSDmYaQf7YiTcA0" alt="Responsable" class="res-avatar">
+            <div class="res-texto">
+              <p class="res-nombre">Dra. Claudia Meza</p>
+              <p class="res-cargo">Control Interno</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

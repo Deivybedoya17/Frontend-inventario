@@ -1,0 +1,104 @@
+<div class="modal-overlay">
+  <!-- Modal Content -->
+  <div class="modal-backdrop" (click)="onCerrar()"></div>
+  <div class="modal-contenedor">
+    
+    <!-- Modal Header -->
+    <div class="modal-cabecera">
+      <div class="titulos">
+        <h2 class="modal-titulo">Entrada por GIL-F-014</h2>
+        <p class="modal-subtitulo">Cargar bienes al inventario desde una solicitud aprobada.</p>
+      </div>
+      <button class="btn-cerrar-icon" (click)="onCerrar()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-cuerpo">
+      
+      <!-- Top Fields -->
+      <div class="grupo-grid grid-tres">
+        <!-- Select GIL -->
+        <div class="campo">
+          <label class="form-etiqueta">Código de GIL-F-014</label>
+          <div class="input-contenedor">
+            <select class="input-form select-form font-gruesa txt-primario">
+              <option>Seleccionar solicitud...</option>
+              <option>GIL-2023-0892</option>
+              <option>GIL-2023-0901</option>
+              <option>GIL-2023-1014</option>
+            </select>
+            <span class="material-symbols-outlined icono-select">expand_more</span>
+          </div>
+        </div>
+        <!-- Fecha -->
+        <div class="campo">
+          <label class="form-etiqueta">Fecha de Entrada</label>
+          <div class="input-contenedor">
+            <input class="input-form font-media" type="date"/>
+          </div>
+        </div>
+        <!-- Responsable -->
+        <div class="campo">
+          <label class="form-etiqueta">Responsable de Recepción</label>
+          <div class="input-contenedor">
+            <input class="input-form font-media" placeholder="Nombre completo" type="text"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview Table -->
+      <div class="seccion-tabla">
+        <h3 class="titulito-seccion">Vista Previa de Ítems</h3>
+        <div class="tabla-marco">
+          <table class="tabla-completa">
+            <thead>
+              <tr>
+                <th>Nombre del Bien</th>
+                <th class="centro">Cant. Solicitada</th>
+                <th class="centro">Cant. Recibida</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              @for (item of itemsPreview(); track item.nombre) {
+                <tr>
+                  <td>
+                    <div class="celda-bien">
+                      <div class="icono-cuadro bg-verde-claro txt-verde-primario">
+                        <span class="material-symbols-outlined">{{ item.icono }}</span>
+                      </div>
+                      <span class="nombre-bien">{{ item.nombre }}</span>
+                    </div>
+                  </td>
+                  <td class="centro numero-grande">
+                    {{ item.solicitado }}
+                  </td>
+                  <td class="centro">
+                    <input class="input-tabla" 
+                           [ngClass]="item.recibido !== item.solicitado ? 'alerta-recepcion' : ''"
+                           type="number" 
+                           [value]="item.recibido"/>
+                  </td>
+                </tr>
+              }
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-pie">
+      <button class="btn-cancelar" type="button" (click)="onCerrar()">
+        Cancelar
+      </button>
+      <button class="btn-primario" type="button" (click)="onRegistrarEntrada()">
+        <span class="material-symbols-outlined">inventory</span>
+        Registrar Entrada por GIL
+      </button>
+    </div>
+  </div>
+</div>

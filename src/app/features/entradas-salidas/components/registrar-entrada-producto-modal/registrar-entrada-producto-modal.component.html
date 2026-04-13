@@ -1,0 +1,116 @@
+<div class="modal-overlay">
+  <!-- Modal Content -->
+  <div class="modal-backdrop" (click)="onCerrar()"></div>
+  <div class="modal-contenedor">
+    
+    <!-- Modal Header -->
+    <div class="modal-cabecera">
+      <div class="cabecera-izq">
+        <div class="icono-contenedor bg-verde-claro txt-verde-primario">
+          <span class="material-symbols-outlined">move_to_inbox</span>
+        </div>
+        <div class="textos-cabecera">
+          <h3 class="modal-titulo">Registrar Entrada de Producto</h3>
+          <p class="modal-subtitulo">Complete la información para actualizar el stock.</p>
+        </div>
+      </div>
+      <button class="btn-cerrar-icon" (click)="onCerrar()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-cuerpo">
+      <form class="formulario-grid">
+        <!-- Product Search / Autocomplete -->
+        <div class="campo campo-ancho">
+          <label class="form-etiqueta">Código o Nombre del Producto</label>
+          <div class="input-contenedor busqueda-contenedor">
+            <span class="material-symbols-outlined icono-izq">qr_code_2</span>
+            <span class="material-symbols-outlined icono-buscar icono-btn">search</span>
+            <input class="input-form input-con-icono pr-40" placeholder="Buscar por código o nombre..." type="text" value="PROD-UTP-001"/>
+            <div class="badge-autocompletado">Cable UTP Cat 6 (Autocompletado)</div>
+          </div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="campo">
+          <label class="form-etiqueta">Cantidad</label>
+          <div class="input-contenedor">
+            <span class="material-symbols-outlined icono-izq">box_add</span>
+            <input class="input-form input-con-icono" placeholder="0.00" type="number"/>
+          </div>
+        </div>
+
+        <!-- Date -->
+        <div class="campo">
+          <label class="form-etiqueta">Fecha de Ingreso</label>
+          <div class="input-contenedor">
+            <span class="material-symbols-outlined icono-izq">calendar_today</span>
+            <input class="input-form input-con-icono" type="text" value="05/04/2026"/>
+          </div>
+        </div>
+
+        <!-- Provider -->
+        <div class="campo">
+          <label class="form-etiqueta">Proveedor</label>
+          <div class="input-contenedor">
+            <span class="material-symbols-outlined icono-izq">business</span>
+            <select class="input-form select-form input-con-icono">
+              <option>Seleccione proveedor...</option>
+              <option selected>TechSupply Global S.A.</option>
+              <option>InfraRed Mayoristas</option>
+            </select>
+            <span class="material-symbols-outlined icono-select">expand_more</span>
+          </div>
+        </div>
+
+        <!-- Invoice Number -->
+        <div class="campo">
+          <label class="form-etiqueta">Nº Factura / Remisión</label>
+          <div class="input-contenedor">
+            <span class="material-symbols-outlined icono-izq">receipt_long</span>
+            <input class="input-form input-con-icono" placeholder="FAC-2026-045" type="text"/>
+          </div>
+        </div>
+
+        <!-- Warehouse Location -->
+        <div class="campo">
+          <label class="form-etiqueta">Ubicación en Almacén</label>
+          <div class="input-contenedor">
+            <span class="material-symbols-outlined icono-izq">location_on</span>
+            <input class="input-form input-con-icono" placeholder="Pasillo A - Estante 4" type="text"/>
+          </div>
+        </div>
+
+        <!-- Unit Price -->
+        <div class="campo">
+          <label class="form-etiqueta">Costo Unitario</label>
+          <div class="input-contenedor">
+            <span class="material-symbols-outlined icono-izq">payments</span>
+            <input class="input-form input-con-icono" placeholder="$ 0.00" type="text"/>
+          </div>
+        </div>
+
+        <!-- Observations -->
+        <div class="campo campo-ancho">
+          <label class="form-etiqueta">Observaciones</label>
+          <div class="input-contenedor">
+            <textarea class="textarea-form" placeholder="Detalles adicionales sobre el envío o estado del producto..." rows="3"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-pie">
+      <button class="btn-cancelar" type="button" (click)="onCerrar()">
+        Cancelar
+      </button>
+      <button class="btn-primario" type="button" (click)="onRegistrar()">
+        <span class="material-symbols-outlined">check_circle</span>
+        Registrar Entrada
+      </button>
+    </div>
+  </div>
+</div>

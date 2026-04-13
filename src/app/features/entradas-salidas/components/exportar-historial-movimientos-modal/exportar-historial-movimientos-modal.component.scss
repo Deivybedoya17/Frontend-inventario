@@ -1,0 +1,318 @@
+@import '../../../../../styles/variables';
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba($color-en-superficie, 0.4);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.modal-contenedor {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 35rem; // ~560px
+  background-color: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  animation: modalScaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid $color-superficie-contenedor-alto;
+}
+
+@keyframes modalScaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-cabecera {
+  padding: 2rem 2rem 1.5rem 2rem;
+  background-color: white;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+}
+
+.modal-titulo {
+  font-size: 1.5rem; // 2xl
+  font-weight: 800; // extrabold
+  font-family: $fuente-titular;
+  color: $color-en-superficie;
+  margin: 0;
+  letter-spacing: -0.025em;
+}
+
+.modal-subtitulo {
+  font-size: 0.875rem; // sm
+  color: $color-pizarra-500;
+  margin: 0;
+  margin-top: 0.25rem;
+}
+
+.modal-cuerpo {
+  padding: 0 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-etiqueta {
+  display: block;
+  font-size: 0.6875rem; // xs
+  font-weight: 700; // bold
+  color: $color-pizarra-500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+// Fechas
+.grupo-fechas {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  
+  @media (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.input-contenedor {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: $color-superficie-contenedor-bajo;
+  border-radius: $radio-xl;
+
+  .icono-izq {
+    position: absolute;
+    left: 1rem;
+    color: $color-pizarra-400;
+    pointer-events: none;
+    font-size: 1.125rem;
+  }
+}
+
+.input-form {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: $radio-xl;
+  padding: 0.75rem 1rem 0.75rem 3rem; // room for icon
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $color-en-superficie;
+  outline: none;
+  transition: all 0.2s;
+  font-family: $fuente-cuerpo;
+
+  &:focus {
+    border-color: rgba($color-primario, 0.3);
+    box-shadow: 0 0 0 3px rgba($color-primario, 0.1);
+    background-color: white;
+  }
+}
+
+.date-cont {
+  .etiqueta-flotante {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+    font-size: 0.625rem;
+    color: $color-pizarra-400;
+    font-weight: 600;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+}
+
+// Filtros
+.grupo-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.btn-filtro {
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  background-color: $color-superficie-contenedor-bajo;
+  border: 1px solid rgba($color-pizarra-400, 0.3);
+  color: $color-pizarra-600;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: $color-superficie-contenedor-alto;
+  }
+
+  &.activo {
+    background-color: $color-secundario; // Primary container in material
+    color: white;
+    border-color: $color-secundario;
+    box-shadow: 0 2px 4px rgba($color-secundario, 0.2);
+  }
+}
+
+// Formatos
+.grupo-formatos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.formato-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: $radio-xl;
+  border: 1px solid $color-pizarra-200;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: $color-pizarra-50;
+  }
+  
+  .icono-check {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .icono-formato {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+
+    .icono-grande {
+      font-size: 1.875rem; // 3xl
+    }
+  }
+
+  .nombre-formato {
+    font-size: 0.75rem; // xs
+    font-weight: 700; // bold
+    color: $color-pizarra-600;
+    letter-spacing: -0.025em;
+  }
+
+  // specific types
+  &.excel-formato {
+    .icono-formato {
+      background-color: rgba($color-primario, 0.1);
+      color: $color-primario;
+    }
+    &.activo {
+      border-color: $color-primario;
+      background-color: rgba($color-primario, 0.05);
+      .nombre-formato { color: $color-en-superficie; }
+    }
+  }
+
+  &.pdf-formato {
+    .icono-formato {
+      background-color: rgba($color-terciario, 0.1);
+      color: $color-terciario;
+    }
+    &.activo {
+      border-color: $color-terciario;
+      background-color: rgba($color-terciario, 0.05);
+      .nombre-formato { color: $color-en-superficie; }
+    }
+  }
+
+  &.csv-formato {
+    .icono-formato {
+      background-color: rgba(#5b646b, 0.1);
+      color: #5b646b;
+    }
+    &.activo {
+      border-color: #5b646b;
+      background-color: rgba(#5b646b, 0.05);
+      .nombre-formato { color: $color-en-superficie; }
+    }
+  }
+}
+
+.text-primario { color: $color-primario; }
+.text-rojo { color: $color-terciario; }
+.text-azul { color: #5b646b; }
+
+
+// Modal Pie
+.modal-pie {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  background-color: $color-superficie-contenedor-bajo;
+  border-top: 1px solid $color-superficie-contenedor-alto;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+
+.btn-cancelar {
+  background: none;
+  border: none;
+  color: $color-pizarra-600;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: $radio-xl;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $color-pizarra-200;
+  }
+}
+
+.btn-primario {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: $color-primario;
+  background-image: $gradiente-primario;
+  color: white;
+  border: none;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.75rem 2rem;
+  border-radius: $radio-xl;
+  box-shadow: 0 4px 6px -1px rgba($color-primario, 0.2);
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover {
+    box-shadow: 0 10px 15px -3px rgba($color-primario, 0.3);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+
+  span {
+    font-size: 1.125rem;
+  }
+}
