@@ -1,13 +1,14 @@
+import { LucideAngularModule } from 'lucide-angular';
 import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-exportar-historial-movimientos-modal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LucideAngularModule],
   templateUrl: './exportar-historial-movimientos-modal.component.html',
-  styleUrls: ['./exportar-historial-movimientos-modal.component.scss']
-})
+  styleUrls: ['./exportar-historial-movimientos-modal.component.scss'],
+  })
 export class ExportarHistorialMovimientosModalComponent {
   @Output() cerrar = new EventEmitter<void>();
 

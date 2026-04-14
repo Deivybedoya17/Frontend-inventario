@@ -1,13 +1,14 @@
+import { LucideAngularModule } from 'lucide-angular';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registrar-salida-producto-modal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LucideAngularModule],
   templateUrl: './registrar-salida-producto-modal.component.html',
-  styleUrls: ['./registrar-salida-producto-modal.component.scss']
-})
+  styleUrls: ['./registrar-salida-producto-modal.component.scss'],
+  })
 export class RegistrarSalidaProductoModalComponent {
   @Output() cerrar = new EventEmitter<void>();
 

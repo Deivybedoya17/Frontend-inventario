@@ -7,7 +7,7 @@
     <div class="modal-cabecera">
       <div class="cabecera-izq">
         <div class="icono-contenedor bg-verde-claro txt-verde-primario">
-          <span class="material-symbols-outlined">move_to_inbox</span>
+          <lucide-icon name="package-plus" class=""></lucide-icon>
         </div>
         <div class="textos-cabecera">
           <h3 class="modal-titulo">Registrar Entrada de Producto</h3>
@@ -15,7 +15,7 @@
         </div>
       </div>
       <button class="btn-cerrar-icon" (click)="onCerrar()">
-        <span class="material-symbols-outlined">close</span>
+        <lucide-icon name="x" class=""></lucide-icon>
       </button>
     </div>
 
@@ -26,8 +26,8 @@
         <div class="campo campo-ancho">
           <label class="form-etiqueta">Código o Nombre del Producto</label>
           <div class="input-contenedor busqueda-contenedor">
-            <span class="material-symbols-outlined icono-izq">qr_code_2</span>
-            <span class="material-symbols-outlined icono-buscar icono-btn">search</span>
+            <lucide-icon name="qr-code" class="icono-izq"></lucide-icon>
+            <lucide-icon name="search" class="icono-buscar icono-btn"></lucide-icon>
             <input class="input-form input-con-icono pr-40" placeholder="Buscar por código o nombre..." type="text" value="PROD-UTP-001"/>
             <div class="badge-autocompletado">Cable UTP Cat 6 (Autocompletado)</div>
           </div>
@@ -37,7 +37,7 @@
         <div class="campo">
           <label class="form-etiqueta">Cantidad</label>
           <div class="input-contenedor">
-            <span class="material-symbols-outlined icono-izq">box_add</span>
+            <lucide-icon name="package-plus" class="icono-izq"></lucide-icon>
             <input class="input-form input-con-icono" placeholder="0.00" type="number"/>
           </div>
         </div>
@@ -46,7 +46,7 @@
         <div class="campo">
           <label class="form-etiqueta">Fecha de Ingreso</label>
           <div class="input-contenedor">
-            <span class="material-symbols-outlined icono-izq">calendar_today</span>
+            <lucide-icon name="calendar" class="icono-izq"></lucide-icon>
             <input class="input-form input-con-icono" type="text" value="05/04/2026"/>
           </div>
         </div>
@@ -55,13 +55,13 @@
         <div class="campo">
           <label class="form-etiqueta">Proveedor</label>
           <div class="input-contenedor">
-            <span class="material-symbols-outlined icono-izq">business</span>
+            <lucide-icon name="building-2" class="icono-izq"></lucide-icon>
             <select class="input-form select-form input-con-icono">
               <option>Seleccione proveedor...</option>
               <option selected>TechSupply Global S.A.</option>
               <option>InfraRed Mayoristas</option>
             </select>
-            <span class="material-symbols-outlined icono-select">expand_more</span>
+            <lucide-icon name="chevron-down" class="icono-select"></lucide-icon>
           </div>
         </div>
 
@@ -69,7 +69,7 @@
         <div class="campo">
           <label class="form-etiqueta">Nº Factura / Remisión</label>
           <div class="input-contenedor">
-            <span class="material-symbols-outlined icono-izq">receipt_long</span>
+            <lucide-icon name="receipt-text" class="icono-izq"></lucide-icon>
             <input class="input-form input-con-icono" placeholder="FAC-2026-045" type="text"/>
           </div>
         </div>
@@ -78,7 +78,7 @@
         <div class="campo">
           <label class="form-etiqueta">Ubicación en Almacén</label>
           <div class="input-contenedor">
-            <span class="material-symbols-outlined icono-izq">location_on</span>
+            <lucide-icon name="map-pin" class="icono-izq"></lucide-icon>
             <input class="input-form input-con-icono" placeholder="Pasillo A - Estante 4" type="text"/>
           </div>
         </div>
@@ -87,7 +87,7 @@
         <div class="campo">
           <label class="form-etiqueta">Costo Unitario</label>
           <div class="input-contenedor">
-            <span class="material-symbols-outlined icono-izq">payments</span>
+            <lucide-icon name="circle-dollar-sign" class="icono-izq"></lucide-icon>
             <input class="input-form input-con-icono" placeholder="$ 0.00" type="text"/>
           </div>
         </div>
@@ -108,7 +108,7 @@
         Cancelar
       </button>
       <button class="btn-primario" type="button" (click)="onRegistrar()">
-        <span class="material-symbols-outlined">check_circle</span>
+        <lucide-icon name="check-circle-2" class=""></lucide-icon>
         Registrar Entrada
       </button>
     </div>

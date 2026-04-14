@@ -10,7 +10,7 @@
         <p class="modal-subtitulo">Cargar bienes al inventario desde una solicitud aprobada.</p>
       </div>
       <button class="btn-cerrar-icon" (click)="onCerrar()">
-        <span class="material-symbols-outlined">close</span>
+        <lucide-icon name="x" class=""></lucide-icon>
       </button>
     </div>
 
@@ -29,7 +29,7 @@
               <option>GIL-2023-0901</option>
               <option>GIL-2023-1014</option>
             </select>
-            <span class="material-symbols-outlined icono-select">expand_more</span>
+            <lucide-icon name="chevron-down" class="icono-select"></lucide-icon>
           </div>
         </div>
         <!-- Fecha -->
@@ -67,7 +67,7 @@
                   <td>
                     <div class="celda-bien">
                       <div class="icono-cuadro bg-verde-claro txt-verde-primario">
-                        <span class="material-symbols-outlined">{{ item.icono }}</span>
+                        <lucide-icon [name]="(item.icono ) || 'circle'" class=""></lucide-icon>
                       </div>
                       <span class="nombre-bien">{{ item.nombre }}</span>
                     </div>
@@ -96,7 +96,7 @@
         Cancelar
       </button>
       <button class="btn-primario" type="button" (click)="onRegistrarEntrada()">
-        <span class="material-symbols-outlined">inventory</span>
+        <lucide-icon name="boxes" class=""></lucide-icon>
         Registrar Entrada por GIL
       </button>
     </div>

@@ -4,8 +4,8 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: calc(100% - 16rem); /* 100% menos el ancho de la barra lateral (16rem) */
-  height: 4rem; /* 64px */
+  width: calc(100% - 16rem); 
+  height: 4rem; 
   background-color: $color-superficie-contenedor-mas-bajo;
   border-bottom: 1px solid $color-pizarra-100;
   display: flex;
@@ -54,29 +54,6 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
-  }
-
-  &__navegacion {
-    display: flex;
-    gap: 1.5rem;
-    font-size: 0.875rem;
-  }
-
-  &__enlace-nav {
-    text-decoration: none;
-    transition: color 0.3s ease, background-color 0.3s ease;
-    padding: 0.25rem 0.5rem;
-    border-radius: $radio-defecto;
-    color: $color-pizarra-500;
-
-    &.activo {
-      color: $color-esmeralda-700;
-      font-weight: 600;
-    }
-
-    &.hover:hover {
-      background-color: $color-pizarra-50;
-    }
   }
 
   &__herramientas {

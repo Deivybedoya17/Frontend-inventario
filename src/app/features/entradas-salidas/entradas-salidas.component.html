@@ -5,7 +5,7 @@
     <div class="cabecera__info">
       <nav class="miga-pan">
         <span>INVENTARIO</span>
-        <span class="material-symbols-outlined icono-separador">chevron_right</span>
+        <lucide-icon name="chevron-right" class="icono-separador"></lucide-icon>
         <span class="miga-activa">ENTRADAS Y SALIDAS</span>
       </nav>
       <h1 class="titulo-vista">Entradas y Salidas de Productos</h1>
@@ -13,15 +13,15 @@
     </div>
     <div class="cabecera__acciones">
       <button class="btn btn-salida" (click)="abrirNuevaSalida()">
-        <span class="material-symbols-outlined">outbox</span>
+        <lucide-icon name="package-minus" class=""></lucide-icon>
         Nueva Salida
       </button>
       <button class="btn btn-entrada-gil" (click)="abrirEntradaGil()">
-        <span class="material-symbols-outlined">description</span>
+        <lucide-icon name="file-text" class=""></lucide-icon>
         Entrada GIL-F-014
       </button>
       <button class="btn btn-entrada-nueva" (click)="abrirNuevaEntrada()">
-        <span class="material-symbols-outlined">add_circle</span>
+        <lucide-icon name="plus-circle" class=""></lucide-icon>
         Nueva Entrada
       </button>
     </div>
@@ -34,10 +34,10 @@
     <div class="kpi-tarjeta borde-verde">
       <div class="kpi-cabecera">
         <div class="kpi-icono bg-verde-claro txt-verde">
-          <span class="material-symbols-outlined">login</span>
+          <lucide-icon name="log-in" class=""></lucide-icon>
         </div>
         <span class="kpi-tendencia bg-verde-claro txt-verde">
-          <span class="material-symbols-outlined icono-pequeno">trending_up</span>
+          <lucide-icon name="trending-up" class="icono-pequeno"></lucide-icon>
           {{ kpis().entradasHoy.diff }}
         </span>
       </div>
@@ -50,10 +50,10 @@
     <div class="kpi-tarjeta borde-naranja">
       <div class="kpi-cabecera">
         <div class="kpi-icono bg-naranja-claro txt-naranja">
-          <span class="material-symbols-outlined">logout</span>
+          <lucide-icon name="log-out" class=""></lucide-icon>
         </div>
         <span class="kpi-tendencia bg-naranja-claro txt-naranja">
-          <span class="material-symbols-outlined icono-pequeno">trending_down</span>
+          <lucide-icon name="trending-down" class="icono-pequeno"></lucide-icon>
           {{ kpis().salidasHoy.diff }}
         </span>
       </div>
@@ -66,7 +66,7 @@
     <div class="kpi-tarjeta">
       <div class="kpi-cabecera">
         <div class="kpi-icono bg-azul-claro txt-azul">
-          <span class="material-symbols-outlined">payments</span>
+          <lucide-icon name="circle-dollar-sign" class=""></lucide-icon>
         </div>
         <span class="kpi-tag-gris">{{ kpis().valorEntradas.tag }}</span>
       </div>
@@ -79,7 +79,7 @@
     <div class="kpi-tarjeta borde-rojo">
       <div class="kpi-cabecera">
         <div class="kpi-icono bg-rojo-claro txt-rojo">
-          <span class="material-symbols-outlined">pending_actions</span>
+          <lucide-icon name="clock-4" class=""></lucide-icon>
         </div>
         <div class="indicador-pulso">
           <span class="pulso-ping bg-rojo-medio"></span>
@@ -103,11 +103,11 @@
       </div>
       <div class="tabla-acciones">
         <button class="btn-accion-secundaria">
-          <span class="material-symbols-outlined icono">filter_alt</span>
+          <lucide-icon name="filter" class="icono"></lucide-icon>
           Filtros
         </button>
         <button class="btn-accion-secundaria" (click)="abrirExportar()">
-          <span class="material-symbols-outlined icono">download</span>
+          <lucide-icon name="download" class="icono"></lucide-icon>
           Exportar
         </button>
       </div>
@@ -134,7 +134,7 @@
               <!-- Tipo -->
               <td>
                 <span class="badge-tipo" [ngClass]="mov.tipo === 'Entrada' ? 'bg-verde-claro txt-verde' : 'bg-rojo-claro txt-rojo'">
-                  <span class="material-symbols-outlined icon-min">{{ mov.tipo === 'Entrada' ? 'arrow_downward' : 'arrow_upward' }}</span>
+                  <lucide-icon [name]="mov.tipo === 'Entrada'  ? 'arrow-down' : 'arrow-up'" class="icon-min"></lucide-icon>
                   {{ mov.tipo }}
                 </span>
               </td>
@@ -195,12 +195,12 @@
     <div class="paginacion-area">
       <p class="paginacion-texto">Mostrando 1 a 10 de 1,248 movimientos registrados</p>
       <div class="paginacion-controles">
-        <button class="btn-pag-nav"><span class="material-symbols-outlined">chevron_left</span></button>
+        <button class="btn-pag-nav"><lucide-icon name="chevron-left" class=""></lucide-icon></button>
         <button class="btn-pag-num activo">1</button>
         <button class="btn-pag-num">2</button>
         <button class="btn-pag-num">3</button>
         <span class="pag-puntos">...</span>
-        <button class="btn-pag-nav"><span class="material-symbols-outlined">chevron_right</span></button>
+        <button class="btn-pag-nav"><lucide-icon name="chevron-right" class=""></lucide-icon></button>
       </div>
     </div>
   </div>

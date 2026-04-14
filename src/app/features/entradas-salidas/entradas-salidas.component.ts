@@ -1,3 +1,4 @@
+import { LucideAngularModule } from 'lucide-angular';
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -9,17 +10,10 @@ import { ExportarHistorialMovimientosModalComponent } from './components/exporta
 @Component({
   selector: 'app-entradas-salidas',
   standalone: true,
-  imports: [
-    CommonModule, 
-    RouterModule,
-    RegistrarEntradaProductoModalComponent,
-    RegistrarEntradaGilF014ModalComponent,
-    RegistrarSalidaProductoModalComponent,
-    ExportarHistorialMovimientosModalComponent
-  ],
+  imports: [CommonModule, RouterModule, RegistrarEntradaProductoModalComponent, RegistrarEntradaGilF014ModalComponent, RegistrarSalidaProductoModalComponent, ExportarHistorialMovimientosModalComponent, LucideAngularModule],
   templateUrl: './entradas-salidas.component.html',
-  styleUrls: ['./entradas-salidas.component.scss']
-})
+  styleUrls: ['./entradas-salidas.component.scss'],
+  })
 export class EntradasSalidasComponent {
   
   public kpis = signal({

@@ -7,7 +7,7 @@
     <div class="modal-cabecera">
       <div class="cabecera-izq">
         <div class="icono-contenedor bg-rojo-claro txt-rojo-primario">
-          <span class="material-symbols-outlined icono-grande" style="font-variation-settings: 'FILL' 1;">logout</span>
+          <lucide-icon name="log-out" class="icono-grande" style="font-variation-settings: 'FILL' 1;"></lucide-icon>
         </div>
         <div class="textos-cabecera">
           <h3 class="modal-titulo">Registrar Salida de Producto</h3>
@@ -15,7 +15,7 @@
         </div>
       </div>
       <button class="btn-cerrar-icon" (click)="onCerrar()">
-        <span class="material-symbols-outlined">close</span>
+        <lucide-icon name="x" class=""></lucide-icon>
       </button>
     </div>
 
@@ -28,8 +28,8 @@
           <div class="campo ext-doble">
             <label class="form-etiqueta">Producto o Código</label>
             <div class="input-contenedor busqueda-contenedor">
-              <span class="material-symbols-outlined icono-izq">barcode_scanner</span>
-              <span class="material-symbols-outlined icono-buscar">search</span>
+              <lucide-icon name="scan-barcode" class="icono-izq"></lucide-icon>
+              <lucide-icon name="search" class="icono-buscar"></lucide-icon>
               <input class="input-form input-con-icono-doble pr-40" placeholder="Busque por nombre o escanee código" type="text" value="KB-992"/>
               <div class="badge-detectado">
                 <span class="badge-tag">Detectado</span>
@@ -51,7 +51,7 @@
           <div class="campo">
             <label class="form-etiqueta">Fecha</label>
             <div class="input-contenedor">
-              <span class="material-symbols-outlined icono-izq">calendar_today</span>
+              <lucide-icon name="calendar" class="icono-izq"></lucide-icon>
               <input class="input-form input-con-icono" type="text" value="05/04/2026"/>
             </div>
           </div>
@@ -64,7 +64,7 @@
                 <option>Mantenimiento</option>
                 <option>Bienestar Estudiantil</option>
               </select>
-              <span class="material-symbols-outlined icono-select">expand_more</span>
+              <lucide-icon name="chevron-down" class="icono-select"></lucide-icon>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
         <div class="campo">
           <label class="form-etiqueta">Responsable</label>
           <div class="input-contenedor">
-            <span class="material-symbols-outlined icono-izq">person</span>
+            <lucide-icon name="user" class="icono-izq"></lucide-icon>
             <input class="input-form input-con-icono" placeholder="Nombre completo del solicitante" type="text"/>
           </div>
         </div>
@@ -102,7 +102,7 @@
         Cancelar
       </button>
       <button class="btn-primario" type="button" (click)="onRegistrarSalida()">
-        <span class="material-symbols-outlined">check_circle</span>
+        <lucide-icon name="check-circle-2" class=""></lucide-icon>
         Registrar Salida
       </button>
     </div>

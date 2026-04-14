@@ -2,12 +2,12 @@
   <!-- Logo Header -->
   <div class="barra-lateral__encabezado">
     <div class="barra-lateral__logo-contenedor">
-      <div class="barra-lateral__logo-icono">
-        <span class="material-symbols-outlined barra-lateral__logo-simbolo">inventory_2</span>
+      <div class="barra-lateral__logo-icono barra-lateral__logo-icono--imagen">
+        <img src="logo-gastro.png" alt="Gastro SENA" class="barra-lateral__logo-img" />
       </div>
       <div class="barra-lateral__logo-texto">
-        <h1 class="barra-lateral__titulo">SENA Inventario</h1>
-        <p class="barra-lateral__subtitulo">Precision Ledger</p>
+        <h1 class="barra-lateral__titulo">GASTRO SENA</h1>
+        <p class="barra-lateral__subtitulo">FICHA 3066489</p>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
     <div class="barra-lateral__grupo">
       <p class="barra-lateral__etiqueta-grupo">Panel Principal</p>
       <a routerLink="/dashboard" routerLinkActive="barra-lateral__enlace--activo" class="barra-lateral__enlace">
-        <span class="material-symbols-outlined barra-lateral__icono">dashboard</span>
+        <lucide-icon name="layout-dashboard" class="barra-lateral__icono"></lucide-icon>
         <span class="barra-lateral__texto">Dashboard</span>
       </a>
     </div>
@@ -29,21 +29,21 @@
       <p class="barra-lateral__etiqueta-grupo">Gestión de Inventario</p>
       <div class="barra-lateral__grupo-items">
         <a routerLink="/bienes" routerLinkActive="barra-lateral__enlace--activo" class="barra-lateral__enlace">
-          <span class="material-symbols-outlined barra-lateral__icono">inventory_2</span>
+          <lucide-icon name="package-search" class="barra-lateral__icono"></lucide-icon>
           <span class="barra-lateral__texto">Gestión de Bienes</span>
         </a>
         <a routerLink="/prefacturas" routerLinkActive="barra-lateral__enlace--activo" class="barra-lateral__enlace barra-lateral__enlace--con-insignia">
-          <span class="material-symbols-outlined barra-lateral__icono">receipt_long</span>
+          <lucide-icon name="scroll-text" class="barra-lateral__icono"></lucide-icon>
           <span class="barra-lateral__texto">Pre Facturas</span>
           <span class="barra-lateral__insignia">3</span>
         </a>
         <a routerLink="/gil-f014" routerLinkActive="barra-lateral__enlace--activo" class="barra-lateral__enlace barra-lateral__enlace--con-insignia">
-          <span class="material-symbols-outlined barra-lateral__icono">description</span>
+          <lucide-icon name="file-text" class="barra-lateral__icono"></lucide-icon>
           <span class="barra-lateral__texto">Formato GIL-F-014</span>
           <span class="barra-lateral__insignia">5</span>
         </a>
         <a routerLink="/factura-global" routerLinkActive="barra-lateral__enlace--activo" class="barra-lateral__enlace">
-          <span class="material-symbols-outlined barra-lateral__icono">receipt</span>
+          <lucide-icon name="receipt" class="barra-lateral__icono"></lucide-icon>
           <span class="barra-lateral__texto">Factura Global</span>
         </a>
       </div>
@@ -54,11 +54,11 @@
       <p class="barra-lateral__etiqueta-grupo">Movimientos y Control</p>
       <div class="barra-lateral__grupo-items">
         <a routerLink="/entradas-salidas" routerLinkActive="barra-lateral__enlace--activo" class="barra-lateral__enlace">
-          <span class="material-symbols-outlined barra-lateral__icono">swap_horiz</span>
+          <lucide-icon name="arrow-right-left" class="barra-lateral__icono"></lucide-icon>
           <span class="barra-lateral__texto">Entradas y Salidas</span>
         </a>
         <a href="#" class="barra-lateral__enlace barra-lateral__enlace--con-insignia">
-          <span class="material-symbols-outlined barra-lateral__icono">warning</span>
+          <lucide-icon name="triangle-alert" class="barra-lateral__icono"></lucide-icon>
           <span class="barra-lateral__texto">Alertas de Stock</span>
           <span class="barra-lateral__insignia barra-lateral__insignia--alerta">23</span>
         </a>
@@ -70,11 +70,11 @@
       <p class="barra-lateral__etiqueta-grupo">Administración</p>
       <div class="barra-lateral__grupo-items">
         <a href="#" class="barra-lateral__enlace">
-          <span class="material-symbols-outlined barra-lateral__icono">account_balance_wallet</span>
+          <lucide-icon name="wallet" class="barra-lateral__icono"></lucide-icon>
           <span class="barra-lateral__texto">Presupuesto</span>
         </a>
         <a href="#" class="barra-lateral__enlace">
-          <span class="material-symbols-outlined barra-lateral__icono">account_balance</span>
+          <lucide-icon name="landmark" class="barra-lateral__icono"></lucide-icon>
           <span class="barra-lateral__texto">Conciliación</span>
         </a>
       </div>
@@ -85,15 +85,15 @@
   <!-- Footer de la barra lateral -->
   <div class="barra-lateral__pie">
     <a href="#" class="barra-lateral__enlace">
-      <span class="material-symbols-outlined barra-lateral__icono">settings</span>
+      <lucide-icon name="settings" class="barra-lateral__icono"></lucide-icon>
       <span class="barra-lateral__texto">Configuración</span>
     </a>
     <a href="#" class="barra-lateral__enlace">
-      <span class="material-symbols-outlined barra-lateral__icono">person</span>
+      <lucide-icon name="user" class="barra-lateral__icono"></lucide-icon>
       <span class="barra-lateral__texto">Perfil</span>
     </a>
     <a href="#" class="barra-lateral__enlace barra-lateral__enlace--peligro">
-      <span class="material-symbols-outlined barra-lateral__icono">logout</span>
+      <lucide-icon name="log-out" class="barra-lateral__icono"></lucide-icon>
       <span class="barra-lateral__texto">Cerrar Sesión</span>
     </a>
   </div>
